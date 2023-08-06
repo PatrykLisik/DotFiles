@@ -1,0 +1,96 @@
+! dracula
+!! special
+!*.foreground:   #f8f8f2
+!*.background:   #282a36
+!*.cursorColor:  #f8f8f2
+!
+!! black
+!*.color0:       #000000
+!*.color8:       #4d4d4d
+!
+!! red
+!*.color1:       #ff5555
+!*.color9:       #ff6e67
+!
+!! green
+!*.color2:       #50fa7b
+!*.color10:      #5af78e
+!
+!! yellow
+!*.color3:       #f1fa8c
+!*.color11:      #f4f99d
+!
+!! blue
+!*.color4:       #bd93f9
+!*.color12:      #caa9fa
+!
+!! magenta
+!*.color5:       #ff79c6
+!*.color13:      #ff92d0
+!
+!! cyan
+!*.color6:       #8be9fd
+!*.color14:      #9aedfe
+!
+!! white
+!*.color7:       #bfbfbf
+!*.color15:      #e6e6e6
+
+! rose pine https://github.com/rose-pine/st/blob/main/dist/xresources/rose-pine-dawn.Xresources 
+*background: #faf4ed 
+*foreground: #575279
+
+! overlay + muted
+*color0: #f2e9e1
+*color8: #9893a5
+
+! love
+*color1: #b4637a
+*color9: #b4637a
+
+! foam
+*color2: #56949f
+*color10: #56949f
+
+! gold
+*color3: #ea9d34
+*color11: #ea9d34
+
+! pine
+*color4: #286983
+*color12: #286983
+
+! iris
+*color5: #907aa9
+*color13: #907aa9
+
+! rose
+*color6: #d7827e
+*color14: #d7827e
+
+! text
+*color7: #575279
+*color15: #57527
+
+9URxvt.font: \
+            xft:Noto Sans Mono:style=Normal:antialias=true:size=10:minspace=False, \
+            xft:UbuntuMono Nerd Font Mono:style=Regular:antialias=true:size=10:minspace=False, \
+            xft:SauceCodePro Nerd Font:style=Regular:antialias=true:size=10:minspace=False, \
+            xft:DejaVuSansMono Nerd Font:antialias=true:size=10minspace=False, \
+            xft:DroidSansMono Nerd Font Mono:antialias=true:size=10, \
+            xft:FuraMono NF:size=16:antialias=true:minspace=False, \
+            xft:RobotoMono Nerd Font:antialias=true:size=10:minspace=False, \
+            xft:Noto Sans Mono:antialias=true:size=10:minspace=False, \
+            xft:Monospace:style=Medium:antialias=true:minspace=False
+
+URxvt.keysym.C-minus:  resize-font:smaller
+URxvt.keysym.C-plus:   resize-font:bigger
+URxvt.keysym.C-equal:  resize-font:equal
+
+URxvt.url-launcher: chromium
+URxvt.matcher.button: 1
+URxvt.keysym.M-u: perl:matcher:select
+URxvt.scrollstyle: plain
+URxvt.keysym.M-Escape: perl:keyboard-select:activate
+URxvt.perl-ext-common: url-select,keyboard-select,resize-font,matcher,selection-to-clipboard,readline
+
