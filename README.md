@@ -1,2 +1,4 @@
-# LogitechPerformanceMX
-simple scripts for every day use
+# .Files 
+- sane nvim 
+- rose-pine Xresources 
+- bashrc 
