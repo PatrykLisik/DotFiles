@@ -1,78 +1,115 @@
-! dracula
-!! special
-!*.foreground:   #f8f8f2
-!*.background:   #282a36
-!*.cursorColor:  #f8f8f2
+ dracula
+! special
+*.foreground:   #f8f8f2
+*.background:   #282a36
+*.cursorColor:  #f8f8f2
+
+! black
+*.color0:       #000000
+*.color8:       #4d4d4d
+
+! red
+*.color1:       #ff5555
+*.color9:       #ff6e67
+
+! green
+*.color2:       #50fa7b
+*.color10:      #5af78e
+
+! yellow
+*.color3:       #f1fa8c
+*.color11:      #f4f99d
+
+! blue
+*.color4:       #bd93f9
+*.color12:      #caa9fa
+
+! magenta
+*.color5:       #ff79c6
+*.color13:      #ff92d0
+
+! cyan
+*.color6:       #8be9fd
+*.color14:      #9aedfe
+
+! white
+*.color7:       #bfbfbf
+*.color15:      #e6e6e6
+
+!! rose pine https://github.com/rose-pine/st/blob/main/dist/xresources/rose-pine-dawn.Xresources 
+!*background: #faf4ed 
+!*foreground: #575279
 !
-!! black
-!*.color0:       #000000
-!*.color8:       #4d4d4d
+!! overlay + muted
+!*color0: #f2e9e1
+!*color8: #9893a5
 !
-!! red
-!*.color1:       #ff5555
-!*.color9:       #ff6e67
+!! love
+!*color1: #b4637a
+!*color9: #b4637a
 !
-!! green
-!*.color2:       #50fa7b
-!*.color10:      #5af78e
+!! foam
+!*color2: #56949f
+!*color10: #56949f
 !
-!! yellow
-!*.color3:       #f1fa8c
-!*.color11:      #f4f99d
+!! gold
+!*color3: #ea9d34
+!*color11: #ea9d34
 !
-!! blue
-!*.color4:       #bd93f9
-!*.color12:      #caa9fa
+!! pine
+!*color4: #286983
+!*color12: #286983
 !
-!! magenta
-!*.color5:       #ff79c6
-!*.color13:      #ff92d0
+!! iris
+!*color5: #907aa9
+!*color13: #907aa9
 !
-!! cyan
-!*.color6:       #8be9fd
-!*.color14:      #9aedfe
+!! rose
+!*color6: #d7827e
+!*color14: #d7827e
 !
-!! white
-!*.color7:       #bfbfbf
-!*.color15:      #e6e6e6
+!! text
+!*color7: #575279
+!*color15: #57527
 
-! rose pine https://github.com/rose-pine/st/blob/main/dist/xresources/rose-pine-dawn.Xresources 
-*background: #faf4ed 
-*foreground: #575279
 
-! overlay + muted
-*color0: #f2e9e1
-*color8: #9893a5
+!! rose pine 
+!*background: #191724 
+!*foreground: #e0def4
+!
+!! overlay + muted
+!*color0: #26233a
+!*color8: #6e6a86
+!
+!! love
+!*color1: #eb6f92
+!*color9: #eb6f92
+!
+!! foam
+!*color2: #9ccfd8
+!*color10: #9ccfd8
+!
+!! gold
+!*color3: #f6c177
+!*color11: #f6c177
+!
+!! pine
+!*color4: #31748f
+!*color12: #31748f
+!
+!! iris
+!*color5: #c4a7e7
+!*color13: #c4a7e7
+!
+!! rose
+!*color6: #ebbcba
+!*color14: #ebbcba
+!
+!! text
+!*color7: #e0def4
+!*color15: #e0def4
 
-! love
-*color1: #b4637a
-*color9: #b4637a
-
-! foam
-*color2: #56949f
-*color10: #56949f
-
-! gold
-*color3: #ea9d34
-*color11: #ea9d34
-
-! pine
-*color4: #286983
-*color12: #286983
-
-! iris
-*color5: #907aa9
-*color13: #907aa9
-
-! rose
-*color6: #d7827e
-*color14: #d7827e
-
-! text
-*color7: #575279
-*color15: #57527
-
-9URxvt.font: \
+URxvt.font: \
             xft:Noto Sans Mono:style=Normal:antialias=true:size=10:minspace=False, \
             xft:UbuntuMono Nerd Font Mono:style=Regular:antialias=true:size=10:minspace=False, \
             xft:SauceCodePro Nerd Font:style=Regular:antialias=true:size=10:minspace=False, \

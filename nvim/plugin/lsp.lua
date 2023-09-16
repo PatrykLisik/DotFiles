@@ -26,3 +26,4 @@ lsp.ensure_installed({
 
 require('lspconfig').pylsp.setup{}
 lsp.setup()
+
