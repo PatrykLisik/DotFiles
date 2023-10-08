@@ -113,3 +113,5 @@ export "AUTOENV_AUTH_FILE=/home/plisik/.config/autoenv_auth_list"
 export "AUTOENV_ENABLE_LEAVE=TRUE"
 export "AUTOENV_ENV_FILENAME=.env.enter"
 source ~/.config/.autoenv/activate.sh
+
+export JAVA_HOME=$(readlink -f /usr/bin/java | sed "s:bin/java::")

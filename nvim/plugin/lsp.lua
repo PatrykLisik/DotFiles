@@ -18,12 +18,48 @@ lsp.ensure_installed({
 	"marksman",
 	"pylsp",
 	"dockerls",
+    "gopls",
+    "texlab",
+    "ltex",
+    "lua_ls"
 })
 
 
 -- (Optional) Configure lua language server for neovim
--- require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
+require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
 
-require('lspconfig').pylsp.setup{}
+require('lspconfig').pylsp.setup{
+  settings = {
+    pylsp = {
+      plugins = {
+        pycodestyle = {
+          ignore = {'W391'},
+          maxLineLength = 120
+        }
+      }
+    }
+  }
+}
+
+require('lspconfig').gopls.setup{
+  settings = {
+    gopls = {
+      analyses = {
+        unusedparams = true,
+      },
+      staticcheck = true,
+      gofumpt = true,
+    },
+  },
+}
+
+require("lspconfig").ltex.setup{
+    -- on_attach = on_attach,
+    cmd = { "ltex-ls" },
+    filetypes = { "markdown", "text", "md", "tex", "txt" },
+    lang = { "en-GB","pl-PL" },
+    flags = { debounce_text_changes = 300 }
+}
+
 lsp.setup()
 

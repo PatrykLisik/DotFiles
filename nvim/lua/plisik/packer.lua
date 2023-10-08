@@ -27,7 +27,7 @@ return require('packer').startup(function(use)
             require('cosmic-ui').setup()
         end,
     })
-    use {
+    use( {
         'VonHeikemen/lsp-zero.nvim',
         branch = 'v2.x',
         requires = {
@@ -41,10 +41,14 @@ return require('packer').startup(function(use)
             {'hrsh7th/cmp-nvim-lsp'}, -- Required
             {'L3MON4D3/LuaSnip'},     -- Required
         }
-    }
-       use {
+    })
+       use({
         "nvim-tree/nvim-tree.lua",
         after = "nvim-web-devicons",
         requires = "nvim-tree/nvim-web-devicons",
-    }
+    })
+    use({
+    "iamcco/markdown-preview.nvim",
+    run = function() vim.fn["mkdp#util#install"]() end,
+})
 end)

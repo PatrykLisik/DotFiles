@@ -22,7 +22,7 @@ vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><
 
 -- newtrw
 
-vim.g.netrw_banner = 0
+--vim.g.netrw_banner = 0
 vim.g.netrw_liststyle = 3
 --vim.g.netrw_browse_split = 4
 --vim.g.netrw_altv = 1
@@ -32,15 +32,9 @@ netrw_liststyle = 3
 vim.keymap.set("n","<leader>e", vim.cmd.Lexplore)
 
 --ada dad adad adad adadad a
---No bufer buferbuferbuferbufer onbufer, pase, delete, cut in normal mode is delete
+--, pase, delete, cut in normal mode is delete
 
---set clipboard=unnamed
-
-
-
----No bufer overwriting on copy, pase, delete, cut in normal mode is delete
---No bufer overwriting on o--, paspaspaspaspaspaspaspaspaspaspaspaspaseeeeeeeeeeeee
---overwritingoverwritingoverwritingoverwritingoverwritingoverwriting
+---No bufer overwriting on , pase, delete, cut in normal mode is delete
 vim.keymap.set({"n", "v"},"L", "e")
 vim.keymap.set({"n","v"},"H", "b")
 vim.keymap.set({"v","n"}, "J", "j")
@@ -49,9 +43,9 @@ vim.keymap.set({"v", "n"}, "K", "k")
 
 vim.keymap.set({"v", "n"}, "p", '"*p')
 --vim.keymap.set({"n", "v"}, "pp", "*p")
---vim.keymap.set("x", "x", [[_x]])
+vim.keymap.set({"x", "v"}, "x", '"*x :let @+=@*<CR>', {noremap=true, silent=true})
 vim.keymap.set({"v", "n"}, "d", [[_d]])
-vim.keymap.set({"v", "n"}, "D", 'd$',  {noremap=true, silent=true})
-vim.keymap.set("v", "y", '"*y :let @+=@*<CR>', {noremap=true, silent=true})
-
+vim.keymap.set({"v", "n"}, "D", '_d$', {noremap=true, silent=true})
+vim.keymap.set({"v", "n"}, "y", '"*y :let @+=@*<CR>', {noremap=true, silent=true})
+vim.keymap.set( "n", "yy", '"*yy :let @+=@*<CR>', {noremap=true, silent=true})
 
