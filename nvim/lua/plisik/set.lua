@@ -28,4 +28,6 @@ vim.opt.isfname:append("@-@")
 
 vim.opt.updatetime = 50
 
-vim.opt.colorcolumn = "140"
+vim.opt.colorcolumn = "120"
+
+vim.api.nvim_create_user_command("Spell", "setlocal spell! spelllang=en,pl", { desc = "Toggle spelling" })

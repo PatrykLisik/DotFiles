@@ -31,8 +31,7 @@ vim.g.netrw_winsize = 25
 netrw_liststyle = 3
 vim.keymap.set("n","<leader>e", vim.cmd.Lexplore)
 
---ada dad adad adad adadad a
---, pase, delete, cut in normal mode is delete
+--adad adadad a
 
 ---No bufer overwriting on , pase, delete, cut in normal mode is delete
 vim.keymap.set({"n", "v"},"L", "e")
@@ -44,7 +43,7 @@ vim.keymap.set({"v", "n"}, "K", "k")
 vim.keymap.set({"v", "n"}, "p", '"*p')
 --vim.keymap.set({"n", "v"}, "pp", "*p")
 vim.keymap.set({"x", "v"}, "x", '"*x :let @+=@*<CR>', {noremap=true, silent=true})
-vim.keymap.set({"v", "n"}, "d", [[_d]])
+vim.keymap.set({"v", "n"}, "d", '"_d')
 vim.keymap.set({"v", "n"}, "D", '_d$', {noremap=true, silent=true})
 vim.keymap.set({"v", "n"}, "y", '"*y :let @+=@*<CR>', {noremap=true, silent=true})
 vim.keymap.set( "n", "yy", '"*yy :let @+=@*<CR>', {noremap=true, silent=true})

@@ -1,4 +1,7 @@
 local lsp = require('lsp-zero')
+local cmp = require('cmp')
+local cmp_action = require('lsp-zero').cmp_action()
+
 lsp.preset({})
 
 lsp.on_attach(function(client, bufnr)
@@ -13,6 +16,27 @@ lsp.on_attach(function(client, bufnr)
   buf_set_keymap('v', '<C-Space>', '<cmd>lua vim.lsp.buf.range_code_action()<CR>', opts)
 end)
 
+-- Use Enter to confirm completion
+cmp.setup({
+  mapping = cmp.mapping.preset.insert({
+    ['<CR>'] = cmp.mapping.confirm({select = false}),
+  })
+})
+--Preselect first item
+cmp.setup({
+  preselect = 'item',
+  completion = {
+    completeopt = 'menu,menuone,noinsert'
+  },
+})
+
+cmp.setup({
+  mapping = cmp.mapping.preset.insert({
+    ['<Tab>'] = cmp_action.luasnip_supertab(),
+    ['<S-Tab>'] = cmp_action.luasnip_shift_supertab(),
+  })
+})
+
 lsp.ensure_installed({
 	-- Replace these with whatever servers you want to install
 	"marksman",
@@ -21,7 +45,9 @@ lsp.ensure_installed({
     "gopls",
     "texlab",
     "ltex",
-    "lua_ls"
+    "lua_ls",
+    "jdtls",
+    "vale_ls"
 })
 
 
@@ -35,6 +61,13 @@ require('lspconfig').pylsp.setup{
         pycodestyle = {
           ignore = {'W391'},
           maxLineLength = 120
+        },
+        black={
+            enabled = true,
+            line_length = 120
+        },
+        jedi = {
+            auto_import_modules = {"numpy"}
         }
       }
     }
@@ -56,10 +89,16 @@ require('lspconfig').gopls.setup{
 require("lspconfig").ltex.setup{
     -- on_attach = on_attach,
     cmd = { "ltex-ls" },
-    filetypes = { "markdown", "text", "md", "tex", "txt" },
-    lang = { "en-GB","pl-PL" },
+    filetypes = {  "tex",},
+    lang = { },
     flags = { debounce_text_changes = 300 }
 }
 
+
+require("lspconfig").jdtls.setup{}
+
+require("lspconfig").vale_ls.setup{
+filetypes={ "markdown", "text","tex" }
+}
 lsp.setup()
 

@@ -42,13 +42,14 @@ return require('packer').startup(function(use)
             {'L3MON4D3/LuaSnip'},     -- Required
         }
     })
-       use({
+    use({
         "nvim-tree/nvim-tree.lua",
         after = "nvim-web-devicons",
         requires = "nvim-tree/nvim-web-devicons",
     })
     use({
-    "iamcco/markdown-preview.nvim",
-    run = function() vim.fn["mkdp#util#install"]() end,
-})
+        "iamcco/markdown-preview.nvim",
+        run = function() vim.fn["mkdp#util#install"]() end,
+    })
+    use('vigoux/LanguageTool.nvim')
 end)

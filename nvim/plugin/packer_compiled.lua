@@ -74,6 +74,11 @@ end
 time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
+  ["LanguageTool.nvim"] = {
+    loaded = true,
+    path = "/home/plisik/.local/share/nvim/site/pack/packer/start/LanguageTool.nvim",
+    url = "https://github.com/vigoux/LanguageTool.nvim"
+  },
   LuaSnip = {
     loaded = true,
     path = "/home/plisik/.local/share/nvim/site/pack/packer/start/LuaSnip",
