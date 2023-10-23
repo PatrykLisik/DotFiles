@@ -28,7 +28,7 @@ vim.g.netrw_liststyle = 3
 --vim.g.netrw_altv = 1
 vim.g.netrw_winsize = 25
 
-netrw_liststyle = 3
+local  netrw_liststyle = 3
 vim.keymap.set("n","<leader>e", vim.cmd.Lexplore)
 
 --adad adadad a
@@ -37,7 +37,7 @@ vim.keymap.set("n","<leader>e", vim.cmd.Lexplore)
 vim.keymap.set({"n", "v"},"L", "e")
 vim.keymap.set({"n","v"},"H", "b")
 vim.keymap.set({"v","n"}, "J", "j")
-vim.keymap.set({"v", "n"}, "K", "k")
+--vim.keymap.set({"v", "n"}, "K", "k")
 
 
 vim.keymap.set({"v", "n"}, "p", '"*p')
