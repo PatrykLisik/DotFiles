@@ -8,7 +8,7 @@ lsp.on_attach(function(client, bufnr)
   -- see :help lsp-zero-keybindings
   -- to learn the available actions
   lsp.default_keymaps({buffer = bufnr})
- 
+
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
   local opts = { noremap=true, silent=true }
@@ -43,8 +43,8 @@ lsp.ensure_installed({
 	"pylsp",
 	"dockerls",
     "gopls",
-    "texlab",
-    "ltex",
+   "texlab",
+--    "ltex",
     "lua_ls",
     "jdtls",
     "vale_ls"
@@ -86,13 +86,64 @@ require('lspconfig').gopls.setup{
   },
 }
 
-require("lspconfig").ltex.setup{
-    -- on_attach = on_attach,
-    cmd = { "ltex-ls" },
-    filetypes = {  "tex",},
-    lang = { },
-    flags = { debounce_text_changes = 300 }
+
+require('lspconfig').texlab.setup{
+            on_attach = lsp.on_attach,
+            cmd = { "texlab" },
+            texlab = {
+                rootDirectory = nil,
+                build = {
+                    executable = 'latexmk',
+                    args = { '-pdf', '-shell-escape -f -interaction=nonstopmode', '-synctex=1', '%f' },
+                    pdfDirectory = "./pdf",
+                    onSave = true,
+                    forwardSearchAfter = true,
+                },
+                auxDirectory = './aux',
+                forwardSearch = {
+                    executable = nil,
+                    args = {},
+                },
+                chktex = {
+                    onOpenAndSave = true,
+                    onEdit = true,
+                },
+                diagnosticsDelay = 300,
+                latexFormatter = 'latexindent',
+                latexindent = {
+                    ['local'] = nil, -- local is a reserved keyword
+                    modifyLineBreaks = false,
+                },
+                bibtexFormatter = 'texlab',
+                formatterLineLength = 120,
+            },
 }
+
+--require("lspconfig").ltex.setup({
+--    -- on_attach = on_attach,
+--    on_attach = function(client, bufnr)
+--        -- your other on_attach code
+--        -- for example, set keymaps here, like
+--        -- vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, opts)
+--        -- (see below code block for more details)
+--        require("ltex-utils").on_attach(bufnr)
+--    end,
+--    settings = {
+--        ltex = {
+--            cmd = { "ltex-ls" },
+--            filetypes = {"tex",},
+--            lang = {"pl-PL" },
+--            flags = { debounce_text_changes = 300 },
+--            dictionary =  {
+--             --  path ={ ":/home/plisik/.config/nvim/spell" },
+--             --  filename = "pl.dict"
+--                         use_vim_dict = false,
+--            -- show/suppress vim command output such as `spellgood` or `mkspell`
+--            vim_cmd_output = false,
+--           },
+--        },
+--    },
+--})
 
 
 require("lspconfig").jdtls.setup{}
