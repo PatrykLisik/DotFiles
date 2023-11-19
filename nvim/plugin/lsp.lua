@@ -94,7 +94,6 @@ require('lspconfig').texlab.setup{
             cmd = { "texlab" },
             settings = {
                 texlab = {
-
                     rootDirectory = nil,
                     build = {
                         executable = 'latexmk',
@@ -103,11 +102,12 @@ require('lspconfig').texlab.setup{
                         onSave = true,
                         forwardSearchAfter = true,
                     },
-                    auxDirectory = './aux',
                     forwardSearch = {
-                        executable = nil,
-                        args = {},
+                        executable = "zathura",
+                        args = {"--synctex-forward", "%l:1:%f", "%p"},
+                        onSave = true
                     },
+                    auxDirectory = './aux',
                     chktex = {
                         onOpenAndSave = true,
                         onEdit = true,
