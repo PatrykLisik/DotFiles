@@ -1,6 +1,7 @@
 local lsp = require('lsp-zero')
 local cmp = require('cmp')
 local cmp_action = require('lsp-zero').cmp_action()
+local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 lsp.preset({})
 
@@ -80,7 +81,7 @@ require('lspconfig').gopls.setup{
       analyses = {
         unusedparams = true,
       },
-      staticcheck = true,
+      staticcheck = false,
       gofumpt = true,
     },
   },
@@ -89,33 +90,37 @@ require('lspconfig').gopls.setup{
 
 require('lspconfig').texlab.setup{
             on_attach = lsp.on_attach,
+            capabilities = lsp_capabilities,
             cmd = { "texlab" },
-            texlab = {
-                rootDirectory = nil,
-                build = {
-                    executable = 'latexmk',
-                    args = { '-pdf', '-shell-escape -f -interaction=nonstopmode', '-synctex=1', '%f' },
-                    pdfDirectory = "./pdf",
-                    onSave = true,
-                    forwardSearchAfter = true,
+            settings = {
+                texlab = {
+
+                    rootDirectory = nil,
+                    build = {
+                        executable = 'latexmk',
+                        args = { '-pdf', '-shell-escape', '-f', '-interaction=nonstopmode', '-synctex=1', '%f' },
+                        pdfDirectory = "./pdf",
+                        onSave = true,
+                        forwardSearchAfter = true,
+                    },
+                    auxDirectory = './aux',
+                    forwardSearch = {
+                        executable = nil,
+                        args = {},
+                    },
+                    chktex = {
+                        onOpenAndSave = true,
+                        onEdit = true,
+                    },
+                    diagnosticsDelay = 300,
+                    latexFormatter = 'latexindent',
+                    latexindent = {
+                        ['local'] = nil, -- local is a reserved keyword
+                        modifyLineBreaks = false,
+                    },
+                    bibtexFormatter = 'texlab',
+                    formatterLineLength = 120,
                 },
-                auxDirectory = './aux',
-                forwardSearch = {
-                    executable = nil,
-                    args = {},
-                },
-                chktex = {
-                    onOpenAndSave = true,
-                    onEdit = true,
-                },
-                diagnosticsDelay = 300,
-                latexFormatter = 'latexindent',
-                latexindent = {
-                    ['local'] = nil, -- local is a reserved keyword
-                    modifyLineBreaks = false,
-                },
-                bibtexFormatter = 'texlab',
-                formatterLineLength = 120,
             },
 }
 

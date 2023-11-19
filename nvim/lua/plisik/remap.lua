@@ -48,3 +48,5 @@ vim.keymap.set({"v", "n"}, "D", '_d$', {noremap=true, silent=true})
 vim.keymap.set({"v", "n"}, "y", '"*y :let @+=@*<CR>', {noremap=true, silent=true})
 vim.keymap.set( "n", "yy", '"*yy :let @+=@*<CR>', {noremap=true, silent=true})
 
+--select all
+vim.keymap.set({"n"}, "C-a>" , "ggVG")
