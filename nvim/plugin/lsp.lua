@@ -97,8 +97,8 @@ require('lspconfig').texlab.setup{
                     rootDirectory = nil,
                     build = {
                         executable = 'latexmk',
-                        args = { '-pdf', '-shell-escape', '-f', '-interaction=nonstopmode', '-synctex=1', '%f' },
-                        pdfDirectory = "./pdf",
+                        args = { '-pdf', '-shell-escape','-pv', '-f','-output-directory=./pdf/', '-interaction=nonstopmode', '-synctex=1', '%f' },
+                        pdfDirectory = "./pdf/",
                         onSave = true,
                         forwardSearchAfter = true,
                     },
