@@ -158,3 +158,8 @@ filetypes={ "markdown", "text","tex" }
 }
 lsp.setup()
 
+require'cmp'.setup {
+  sources = {
+    { name = 'path' }
+  }
+}
