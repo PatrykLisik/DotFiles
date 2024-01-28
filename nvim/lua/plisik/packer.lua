@@ -17,7 +17,7 @@ return require('packer').startup(function(use)
 	use('ThePrimeagen/harpoon')
 	use('mbbill/undotree')
     use('tpope/vim-fugitive')
-    use({ 'rose-pine/neovim', as = 'rose-pine' })
+    use({'rose-pine/neovim', as = 'rose-pine' })
     use('hrsh7th/cmp-path')
     use('integralist/vim-mypy')
     use("terrortylor/nvim-comment")
@@ -53,4 +53,14 @@ return require('packer').startup(function(use)
         run = function() vim.fn["mkdp#util#install"]() end,
     })
     use('vigoux/LanguageTool.nvim')
+    use('simrat39/inlay-hints.nvim')
+    --use('uga-rosa/cmp-dictionary')
+   -- use("jhofscheier/ltex-utils.nvim")
+   use({'jakewvincent/texmagic.nvim',
+   config = function()
+       require('texmagic').setup({
+           -- Config goes here; leave blank for defaults
+       })
+   end
+})
 end)

@@ -105,6 +105,11 @@ _G.packer_plugins = {
     path = "/home/plisik/.local/share/nvim/site/pack/packer/start/harpoon",
     url = "https://github.com/ThePrimeagen/harpoon"
   },
+  ["inlay-hints.nvim"] = {
+    loaded = true,
+    path = "/home/plisik/.local/share/nvim/site/pack/packer/start/inlay-hints.nvim",
+    url = "https://github.com/simrat39/inlay-hints.nvim"
+  },
   ["lsp-zero.nvim"] = {
     loaded = true,
     path = "/home/plisik/.local/share/nvim/site/pack/packer/start/lsp-zero.nvim",
@@ -157,6 +162,11 @@ _G.packer_plugins = {
     path = "/home/plisik/.local/share/nvim/site/pack/packer/start/nvim-treesitter",
     url = "https://github.com/nvim-treesitter/nvim-treesitter"
   },
+  ["nvim-treesitter-context"] = {
+    loaded = true,
+    path = "/home/plisik/.local/share/nvim/site/pack/packer/start/nvim-treesitter-context",
+    url = "https://github.com/nvim-treesitter/nvim-treesitter-context"
+  },
   ["nvim-web-devicons"] = {
     loaded = true,
     path = "/home/plisik/.local/share/nvim/site/pack/packer/start/nvim-web-devicons",
@@ -182,6 +192,12 @@ _G.packer_plugins = {
     path = "/home/plisik/.local/share/nvim/site/pack/packer/start/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
   },
+  ["texmagic.nvim"] = {
+    config = { "\27LJ\2\2:\0\0\2\0\3\0\a6\0\0\0'\1\1\0B\0\2\0029\0\2\0004\1\0\0B\0\2\1K\0\1\0\nsetup\rtexmagic\frequire\0" },
+    loaded = true,
+    path = "/home/plisik/.local/share/nvim/site/pack/packer/start/texmagic.nvim",
+    url = "https://github.com/jakewvincent/texmagic.nvim"
+  },
   undotree = {
     loaded = true,
     path = "/home/plisik/.local/share/nvim/site/pack/packer/start/undotree",
@@ -204,6 +220,10 @@ time([[Defining packer_plugins]], false)
 time([[Config for cosmic-ui]], true)
 try_loadstring("\27LJ\2\0027\0\0\2\0\3\0\0066\0\0\0'\1\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\14cosmic-ui\frequire\0", "config", "cosmic-ui")
 time([[Config for cosmic-ui]], false)
+-- Config for: texmagic.nvim
+time([[Config for texmagic.nvim]], true)
+try_loadstring("\27LJ\2\2:\0\0\2\0\3\0\a6\0\0\0'\1\1\0B\0\2\0029\0\2\0004\1\0\0B\0\2\1K\0\1\0\nsetup\rtexmagic\frequire\0", "config", "texmagic.nvim")
+time([[Config for texmagic.nvim]], false)
 -- Load plugins in order defined by `after`
 time([[Sequenced loading]], true)
 vim.cmd [[ packadd nvim-web-devicons ]]

@@ -2,6 +2,7 @@ local lsp = require('lsp-zero')
 local cmp = require('cmp')
 local cmp_action = require('lsp-zero').cmp_action()
 local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
+local ih = require("inlay-hints")
 
 lsp.preset({})
 
@@ -76,14 +77,26 @@ require('lspconfig').pylsp.setup{
 }
 
 require('lspconfig').gopls.setup{
+  on_attach = function(c, b)
+    ih.on_attach(c, b)
+  end,
   settings = {
     gopls = {
       analyses = {
         unusedparams = true,
       },
-      staticcheck = false,
+      staticcheck = true,
       gofumpt = true,
-    },
+      hints = {
+          assignVariableTypes = true,
+          compositeLiteralFields = true,
+          compositeLiteralTypes = true,
+          constantValues = true,
+          functionTypeParameters = true,
+          parameterNames = true,
+          rangeVariableTypes = true,
+      },
+  },
   },
 }
 
@@ -158,8 +171,3 @@ filetypes={ "markdown", "text","tex" }
 }
 lsp.setup()
 
-require'cmp'.setup {
-  sources = {
-    { name = 'path' }
-  }
-}
