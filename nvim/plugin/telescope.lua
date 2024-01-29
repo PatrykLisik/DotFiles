@@ -29,3 +29,16 @@ require('telescope').setup{
     -- please take a look at the readme of the extension you want to configure
   },
 }
+
+
+local builtin = require('telescope.builtin')
+vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
+-- vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
+vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
+vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
+
+vim.keymap.set("n", "<leader>fg", ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>")
+
+local live_grep_args_shortcuts = require("telescope-live-grep-args.shortcuts")
+vim.keymap.set("n", "<leader>fw", live_grep_args_shortcuts.grep_word_under_cursor)
+vim.keymap.set("v", "<leader>fw", live_grep_args_shortcuts.grep_visual_selection)
