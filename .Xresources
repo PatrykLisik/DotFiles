@@ -110,6 +110,7 @@
 !*color15: #e0def4
 
 URxvt.font: \
+            xft:NotoSansM Nerd Font Mono:size=10, \
             xft:Noto Sans Mono:style=Normal:antialias=true:size=10:minspace=False, \
             xft:UbuntuMono Nerd Font Mono:style=Regular:antialias=true:size=10:minspace=False, \
             xft:SauceCodePro Nerd Font:style=Regular:antialias=true:size=10:minspace=False, \
