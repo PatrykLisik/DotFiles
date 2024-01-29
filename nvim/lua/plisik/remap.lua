@@ -28,7 +28,6 @@ vim.g.netrw_liststyle = 3
 --vim.g.netrw_altv = 1
 vim.g.netrw_winsize = 25
 
-local  netrw_liststyle = 3
 vim.keymap.set("n","<leader>e", vim.cmd.Lexplore)
 
 --adad adadad a
@@ -37,6 +36,7 @@ vim.keymap.set("n","<leader>e", vim.cmd.Lexplore)
 vim.keymap.set({"n", "v"},"L", "e")
 vim.keymap.set({"n","v"},"H", "b")
 vim.keymap.set({"v","n"}, "J", "j")
+-- LSP uses capital K to show tool tips
 --vim.keymap.set({"v", "n"}, "K", "k")
 
 
@@ -50,3 +50,11 @@ vim.keymap.set( "n", "yy", '"*yy :let @+=@*<CR>', {noremap=true, silent=true})
 
 --select all
 vim.keymap.set({"n"}, "<leader>as" , "ggVG")
+
+--telescope 
+local builtin = require('telescope.builtin')
+vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
+vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
+vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
+vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
+

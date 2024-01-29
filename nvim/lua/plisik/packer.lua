@@ -17,7 +17,9 @@ return require('packer').startup(function(use)
 	use('ThePrimeagen/harpoon')
 	use('mbbill/undotree')
     use('tpope/vim-fugitive')
+    --themes
     use({'rose-pine/neovim', as = 'rose-pine' })
+    use { "catppuccin/nvim", as = "catppuccin" }
     use('hrsh7th/cmp-path')
     use('integralist/vim-mypy')
     use("terrortylor/nvim-comment")
@@ -54,6 +56,10 @@ return require('packer').startup(function(use)
     })
     use('vigoux/LanguageTool.nvim')
     use('simrat39/inlay-hints.nvim')
+    use {
+        'nvim-lualine/lualine.nvim',
+        requires = { 'nvim-tree/nvim-web-devicons', opt = true }
+    }
     --use('uga-rosa/cmp-dictionary')
    -- use("jhofscheier/ltex-utils.nvim")
    use({'jakewvincent/texmagic.nvim',

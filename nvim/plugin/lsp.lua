@@ -85,7 +85,7 @@ require('lspconfig').gopls.setup{
       analyses = {
         unusedparams = true,
       },
-      staticcheck = true,
+      staticcheck = false,
       gofumpt = true,
       hints = {
           assignVariableTypes = true,
