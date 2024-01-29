@@ -26,5 +26,9 @@ Spell check
 - `z=` -- show spelling suggestions
 
 Undotree
-- `<leader>F5 - toogle  
+- `<leader>F5` -- toogle  
+
+Comments 
+- `c` -- comment line
+- `<leader>c` comment block
 
