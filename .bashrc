@@ -108,6 +108,10 @@ if [ -f "$HOME/.config/bash-git-prompt/gitprompt.sh" ]; then
     source $HOME/.config/bash-git-prompt/gitprompt.sh
 fi
 
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/.local/bin" ] ; then
+    PATH="$HOME/.local/bin:$PATH"
+fi
 
 #export "AUTOENV_AUTH_FILE=/home/plisik/.config/autoenv_auth_list"
 #export "AUTOENV_ENABLE_LEAVE=TRUE"
