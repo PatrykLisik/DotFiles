@@ -23,10 +23,10 @@ vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><
 -- newtrw
 
 --vim.g.netrw_banner = 0
-vim.g.netrw_liststyle = 3
+-- vim.g.netrw_liststyle = 3
 --vim.g.netrw_browse_split = 4
 --vim.g.netrw_altv = 1
-vim.g.netrw_winsize = 25
+-- vim.g.netrw_winsize = 25
 
 vim.keymap.set("n","<leader>e", vim.cmd.Lexplore)
 
