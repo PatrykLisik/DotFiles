@@ -1,40 +1,40 @@
- dracula
+! dracula
 ! special
-*.foreground:   #f8f8f2
-*.background:   #282a36
-*.cursorColor:  #f8f8f2
-
-! black
-*.color0:       #000000
-*.color8:       #4d4d4d
-
-! red
-*.color1:       #ff5555
-*.color9:       #ff6e67
-
-! green
-*.color2:       #50fa7b
-*.color10:      #5af78e
-
-! yellow
-*.color3:       #f1fa8c
-*.color11:      #f4f99d
-
-! blue
-*.color4:       #bd93f9
-*.color12:      #caa9fa
-
-! magenta
-*.color5:       #ff79c6
-*.color13:      #ff92d0
-
-! cyan
-*.color6:       #8be9fd
-*.color14:      #9aedfe
-
-! white
-*.color7:       #bfbfbf
-*.color15:      #e6e6e6
+!*.foreground:   #f8f8f2
+!*.background:   #282a36
+!*.cursorColor:  #f8f8f2
+!
+!! black
+!*.color0:       #000000
+!*.color8:       #4d4d4d
+!
+!! red
+!*.color1:       #ff5555
+!*.color9:       #ff6e67
+!
+!! green
+!*.color2:       #50fa7b
+!*.color10:      #5af78e
+!
+!! yellow
+!*.color3:       #f1fa8c
+!*.color11:      #f4f99d
+!
+!! blue
+!*.color4:       #bd93f9
+!*.color12:      #caa9fa
+!
+!! magenta
+!*.color5:       #ff79c6
+!*.color13:      #ff92d0
+!
+!! cyan
+!*.color6:       #8be9fd
+!*.color14:      #9aedfe
+!
+!! white
+!*.color7:       #bfbfbf
+!*.color15:      #e6e6e6
 
 !! rose pine https://github.com/rose-pine/st/blob/main/dist/xresources/rose-pine-dawn.Xresources 
 !*background: #faf4ed 
@@ -109,6 +109,41 @@
 !*color7: #e0def4
 !*color15: #e0def4
 
+! https://raw.githubusercontent.com/catppuccin/xresources/main/mocha.Xresources
+*background: #1E1E2E
+*foreground: #CDD6F4
+
+! black
+*color0: #45475A
+*color8: #585B70
+
+! red
+*color1: #F38BA8
+*color9: #F38BA8
+
+! green
+*color2: #A6E3A1
+*color10: #A6E3A1
+
+! yellow
+*color3: #F9E2AF
+*color11: #F9E2AF
+
+! blue
+*color4: #89B4FA
+*color12: #89B4FA
+
+! magenta
+*color5: #F5C2E7
+*color13: #F5C2E7
+
+! cyan
+*color6: #94E2D5
+*color14: #94E2D5
+
+! white
+*color7: #BAC2DE
+*color15: #A6ADC8
 URxvt.font: \
             xft:NotoSansM Nerd Font Mono:size=10, \
             xft:Noto Sans Mono:style=Normal:antialias=true:size=10:minspace=False, \
