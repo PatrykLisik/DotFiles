@@ -18,12 +18,13 @@ vim.keymap.set("n", "<leader>Y", [["+Y]])
 
 vim.keymap.set("n", "Q", "<nop>")
 
+--rename word under the key
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
 -- newtrw
 
 --vim.g.netrw_banner = 0
--- vim.g.netrw_liststyle = 3
+vim.g.netrw_liststyle = 3
 --vim.g.netrw_browse_split = 4
 --vim.g.netrw_altv = 1
 -- vim.g.netrw_winsize = 25
@@ -50,5 +51,14 @@ vim.keymap.set( "n", "yy", '"*yy :let @+=@*<CR>', {noremap=true, silent=true})
 
 --select all
 vim.keymap.set({"n"}, "<leader>as" , "ggVG")
+
+--moves in insert mode
+vim.keymap.set("i","<C-h>", "<Left>", {noremap=true})
+vim.keymap.set("i","<C-j>", "<Down>", {noremap=true})
+vim.keymap.set("i","<C-k>", "<Up>", {noremap=true})
+vim.keymap.set("i","<C-l>", "<Right>", {noremap=true})
+
+--ctrl backspace to detele whole word
+vim.api.nvim_set_keymap('i', '<C-H>', '<C-W>', {noremap = true})
 
 

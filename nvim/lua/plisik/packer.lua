@@ -25,7 +25,7 @@ return require('packer').startup(function(use)
     use('tpope/vim-fugitive')
     --themes
     use({'rose-pine/neovim', as = 'rose-pine' })
-    use { "catppuccin/nvim", as = "catppuccin" }
+    use {"catppuccin/nvim", as = "catppuccin" }
     use('hrsh7th/cmp-path')
     use('integralist/vim-mypy')
     use("terrortylor/nvim-comment")
@@ -48,7 +48,14 @@ return require('packer').startup(function(use)
             -- Autocompletion
             {'hrsh7th/nvim-cmp'},     -- Required
             {'hrsh7th/cmp-nvim-lsp'}, -- Required
-            {'L3MON4D3/LuaSnip'},     -- Required
+            use({
+                "L3MON4D3/LuaSnip",
+                -- follow latest release.
+                tag = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
+                -- install jsregexp (optional!:).
+                run = "make install_jsregexp"
+            }),     -- Required
+            use { 'saadparwaiz1/cmp_luasnip' }
         }
     })
     use({

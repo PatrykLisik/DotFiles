@@ -3,7 +3,6 @@ local cmp = require('cmp')
 local cmp_action = require('lsp-zero').cmp_action()
 local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
 local ih = require("inlay-hints")
-
 lsp.preset({})
 
 lsp.on_attach(function(client, bufnr)
@@ -39,14 +38,31 @@ cmp.setup({
   })
 })
 
+-- lua snippets lsp setup
+cmp.setup({
+    snippet = {
+        expand = function(args)
+            require'luasnip'.lsp_expand(args.body)
+        end
+    },
+    sources = {
+        {name = 'nvim_lsp'},
+        {name = 'luasnip', option = { show_autosnippets = true } },
+    },
+    mapping = {
+        ['<C-f>'] = cmp_action.luasnip_jump_forward(),
+        ['<C-b>'] = cmp_action.luasnip_jump_backward(),
+    }
+})
+
+
 lsp.ensure_installed({
 	-- Replace these with whatever servers you want to install
 	"marksman",
 	"pylsp",
 	"dockerls",
     "gopls",
-   "texlab",
---    "ltex",
+    "texlab",
     "lua_ls",
     "jdtls",
     "vale_ls"
