@@ -65,7 +65,8 @@ lsp.ensure_installed({
     "texlab",
     "lua_ls",
     "jdtls",
-    "vale_ls"
+    "vale_ls",
+    "docker_compose_language_service"
 })
 
 
@@ -153,37 +154,13 @@ require('lspconfig').texlab.setup{
             },
 }
 
---require("lspconfig").ltex.setup({
---    -- on_attach = on_attach,
---    on_attach = function(client, bufnr)
---        -- your other on_attach code
---        -- for example, set keymaps here, like
---        -- vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, opts)
---        -- (see below code block for more details)
---        require("ltex-utils").on_attach(bufnr)
---    end,
---    settings = {
---        ltex = {
---            cmd = { "ltex-ls" },
---            filetypes = {"tex",},
---            lang = {"pl-PL" },
---            flags = { debounce_text_changes = 300 },
---            dictionary =  {
---             --  path ={ ":/home/plisik/.config/nvim/spell" },
---             --  filename = "pl.dict"
---                         use_vim_dict = false,
---            -- show/suppress vim command output such as `spellgood` or `mkspell`
---            vim_cmd_output = false,
---           },
---        },
---    },
---})
-
-
 require("lspconfig").jdtls.setup{}
 
 require("lspconfig").vale_ls.setup{
-filetypes={ "markdown", "text","tex" }
+    filetypes={ "markdown", "text","tex" }
 }
+
+require("lspconfig").docker_compose_language_service.setup{}
+
 lsp.setup()
 
