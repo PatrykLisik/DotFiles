@@ -76,6 +76,7 @@ fi
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
+alias vim='nvim'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -113,6 +114,9 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
+if [ -d "$HOME/snap/bin" ] ; then
+    PATH="$HOME/snap/bin:$PATH"
+fi
 #export "AUTOENV_AUTH_FILE=/home/plisik/.config/autoenv_auth_list"
 #export "AUTOENV_ENABLE_LEAVE=TRUE"
 #export "AUTOENV_ENV_FILENAME=.env.enter"
