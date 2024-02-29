@@ -10,11 +10,11 @@ lsp.on_attach(function(client, bufnr)
   -- to learn the available actions
   lsp.default_keymaps({buffer = bufnr})
 
-  local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
-  local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
-  local opts = { noremap=true, silent=true }
-  buf_set_keymap('n', '<C-Space>', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-  buf_set_keymap('v', '<C-Space>', '<cmd>lua vim.lsp.buf.range_code_action()<CR>', opts)
+  -- local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+  -- local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+  -- local opts = { noremap=true, silent=true }
+  -- buf_set_keymap('n', '<C-Space>', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+  -- buf_set_keymap('v', '<C-c>', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
 end)
 
 -- Use Enter to confirm completion
@@ -160,7 +160,11 @@ require("lspconfig").vale_ls.setup{
     filetypes={ "markdown", "text","tex" }
 }
 
-require("lspconfig").docker_compose_language_service.setup{}
+require("lspconfig").docker_compose_language_service.setup{
+    filetypes={"yml", "yaml"}
+}
+
+require("lspconfig").dockerls.setup{}
 
 lsp.setup()
 
