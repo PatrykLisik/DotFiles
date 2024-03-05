@@ -5,12 +5,14 @@ local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
 local ih = require("inlay-hints")
 lsp.preset({})
 
+--https://github.com/williamboman/mason-lspconfig.nvim?tab=readme-ov-file#setup
+
 lsp.on_attach(function(client, bufnr)
   -- see :help lsp-zero-keybindings
   -- to learn the available actions
   lsp.default_keymaps({buffer = bufnr})
-
-  -- local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+  print(client.config.name .. "starting" )
+  local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
   -- local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
   -- local opts = { noremap=true, silent=true }
   -- buf_set_keymap('n', '<C-Space>', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
@@ -161,7 +163,11 @@ require("lspconfig").vale_ls.setup{
 }
 
 require("lspconfig").docker_compose_language_service.setup{
-    filetypes={"yml", "yaml"}
+    -- on_attach=lsp.on_attach,
+    filetypes={"yml", "yaml"},
+    -- root_pattern={"docker-compose.yaml", "docker-compose.yml", "compose.yaml", "compose.yml"},
+    -- cmd={ "docker-compose-langserver", "--stdio" },
+    -- single_file_support=true
 }
 
 require("lspconfig").dockerls.setup{}
