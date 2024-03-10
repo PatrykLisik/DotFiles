@@ -10,11 +10,13 @@ return require('packer').startup(function(use)
         -- or                            , branch = '0.1.x',
         requires = {
             { 'nvim-lua/plenary.nvim' },
-            -- { "nvim-telescope/telescope-live-grep-args.nvim" }
+            { "nvim-telescope/telescope-live-grep-args.nvim" },
+            { 'nvim-telescope/telescope-fzf-native.nvim', run = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
         },
-        -- config = function()
-            -- require("telescope").load_extension("live_grep_args")
-        -- end
+        config = function()
+            require("telescope").load_extension("live_grep_args")
+            require('telescope').load_extension('fzf')
+        end
     }
     use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
     use('nvim-treesitter/nvim-treesitter-context')
@@ -24,7 +26,6 @@ return require('packer').startup(function(use)
     use('tpope/vim-fugitive')
     use { "catppuccin/nvim", as = "catppuccin" }
     use('hrsh7th/cmp-path')
-    use('integralist/vim-mypy')
     use("terrortylor/nvim-comment")
     use({
         'CosmicNvim/cosmic-ui',
@@ -71,15 +72,14 @@ return require('packer').startup(function(use)
         requires = { 'nvim-tree/nvim-web-devicons', opt = true }
     }
     --use('uga-rosa/cmp-dictionary')
-    -- use("jhofscheier/ltex-utils.nvim")
-    use({
-        'jakewvincent/texmagic.nvim',
-        config = function()
-            require('texmagic').setup({
-                -- Config goes here; leave blank for defaults
-            })
-        end
-    })
+    -- use({
+    --     'jakewvincent/texmagic.nvim',
+    --     config = function()
+    --         require('texmagic').setup({
+    --             -- Config goes here; leave blank for defaults
+    --         })
+    --     end
+    -- })
     -- use({
     --     "stevearc/oil.nvim",
     --     config = function()

@@ -1,6 +1,6 @@
 # .Files 
 - sane nvim 
-- rose-pine Xresources 
+- cappucin Xresources 
 - bashrc 
 
 
