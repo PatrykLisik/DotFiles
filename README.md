@@ -28,10 +28,7 @@ Spell check
 Undotree
 - `<leader>F5` -- toogle  
 
-Comments 
-- `c` -- comment line
-- `<leader>c` comment block
-
+[Comments](https://github.com/terrortylor/nvim-comment?tab=readme-ov-file#usage)
 ## Running node based LSP
 
 Nodejs from ubuntu repository is too old to run most lsps.
