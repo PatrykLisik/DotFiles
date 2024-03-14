@@ -26,6 +26,7 @@ return require('packer').startup(function(use)
     use('tpope/vim-fugitive')
     use { "catppuccin/nvim", as = "catppuccin" }
     use('hrsh7th/cmp-path')
+    use('octaltree/cmp-look')
     use("terrortylor/nvim-comment")
     use({
         'CosmicNvim/cosmic-ui',
@@ -71,6 +72,7 @@ return require('packer').startup(function(use)
         'nvim-lualine/lualine.nvim',
         requires = { 'nvim-tree/nvim-web-devicons', opt = true }
     }
+    use("icewind/ltex-client.nvim")
     --use('uga-rosa/cmp-dictionary')
     -- use({
     --     'jakewvincent/texmagic.nvim',

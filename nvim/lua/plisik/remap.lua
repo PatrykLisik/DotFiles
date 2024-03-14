@@ -62,4 +62,4 @@ vim.keymap.set("i","<C-l>", "<Right>", {noremap=true})
 --ctrl backspace to detele whole word
 vim.api.nvim_set_keymap('i', '<C-H>', '<C-W>', {noremap = true})
 
-
+-- vim.cmd("Spell")
