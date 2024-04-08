@@ -208,7 +208,7 @@ require("lspconfig").dockerls.setup {
 }
 
 require('lspconfig').typos_lsp.setup({
-    filetypes = { "go", "python", "yaml", "java" },
+    filetypes = { "lua", "go", "python", "yaml", "java", "sql" },
     -- Logging level of the language server. Logs appear in :LspLog. Defaults to error.
     cmd_env = { RUST_LOG = "error" },
     init_options = {

@@ -34,7 +34,7 @@ vim.keymap.set("n","<leader>e", vim.cmd.Lexplore)
 
 --adad adadad a
 
----No bufer overwriting on , pase, delete, cut in normal mode is delete
+---No buffer overwriting on , paste, delete, cut in normal mode is delete
 vim.keymap.set({"n", "v"},"L", "e")
 vim.keymap.set({"n","v"},"H", "b")
 vim.keymap.set({"v","n"}, "J", "j")
@@ -61,5 +61,11 @@ vim.keymap.set("i","<C-l>", "<Right>", {noremap=true})
 
 --ctrl backspace to detele whole word
 vim.api.nvim_set_keymap('i', '<C-H>', '<C-W>', {noremap = true})
+
+--moving to different buferrs fast 
+vim.api.nvim_set_keymap('n', '<leader>l', '<C-W>l', {noremap=true})
+vim.api.nvim_set_keymap('n', '<leader>h', '<C-W>h', {noremap=true})
+vim.api.nvim_set_keymap('n', '<leader>j', '<C-W>j', {noremap=true})
+vim.api.nvim_set_keymap('n', '<leader>k', '<C-W>k', {noremap=true})
 
 -- vim.cmd("Spell")
