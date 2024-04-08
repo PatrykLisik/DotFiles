@@ -11,7 +11,7 @@ lsp.on_attach(function(client, bufnr)
     -- see :help lsp-zero-keybindings
     -- to learn the available actions
     lsp.default_keymaps({ buffer = bufnr })
-    print(client.config.name .. " starting...")
+    -- print(client.config.name .. " starting...")
     local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
     -- local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
     local opts = { noremap = true, silent = true }
