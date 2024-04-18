@@ -1,1 +1,1 @@
-require("inlay-hints").setup()
+-- require("inlay-hints").setup()

@@ -35,7 +35,8 @@ vim.api.nvim_create_user_command("Spell", "setlocal spell! spelllang=en,pl", { d
 -- treesitter folding
 vim.opt.foldlevel = 20
 vim.opt.foldmethod = "expr"
-vim.opt.foldexpr = "nvim_treesitter#foldexpr()"vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 vim.opt.foldtext = "v:lua.vim.treesitter.foldtext()"
 
 vim.env.PATH = "/snap/bin/npm:"..vim.env.PATH

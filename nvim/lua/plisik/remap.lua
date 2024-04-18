@@ -10,7 +10,7 @@ vim.keymap.set("n", "<leader>", "<nop>")
 --vim.keymap.set("n", "<C-d>", "<C-d>zz")
 --vim.keymap.set("n", "<C-u>", "<C-u>zz")
 
--- paste witout replace
+-- paste without replace
 vim.keymap.set("x", "p", [["_d+P]])
 
 vim.keymap.set({"n", "v"}, "<leader>y", [["+y]])
@@ -30,7 +30,7 @@ vim.g.netrw_browse_split = 0
 --vim.g.netrw_altv = 1
 vim.g.netrw_winsize = 25
 
-vim.keymap.set("n","<leader>e", vim.cmd.Lexplore)
+-- vim.keymap.set("n","<leader>e", vim.cmd.Lexplore)
 
 --adad adadad a
 

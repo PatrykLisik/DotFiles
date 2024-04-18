@@ -73,19 +73,26 @@ return require('packer').startup(function(use)
         requires = { 'nvim-tree/nvim-web-devicons', opt = true }
     }
     use("icewind/ltex-client.nvim")
-    --use('uga-rosa/cmp-dictionary')
-    -- use({
+    use("ThePrimeagen/vim-be-good")
+    use{ 'anuvyklack/pretty-fold.nvim',
+    config = function()
+        require('pretty-fold').setup()
+    end
+    }
+    use {'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async'}
+--use('uga-rosa/cmp-dictionary')
+-- use({
     --     'jakewvincent/texmagic.nvim',
     --     config = function()
-    --         require('texmagic').setup({
-    --             -- Config goes here; leave blank for defaults
-    --         })
-    --     end
-    -- })
-    -- use({
-    --     "stevearc/oil.nvim",
-    --     config = function()
-    --         require("oil").setup()
-    --     end,
-    -- })
-end)
+        --         require('texmagic').setup({
+            --             -- Config goes here; leave blank for defaults
+            --         })
+            --     end
+            -- })
+            -- use({
+                --     "stevearc/oil.nvim",
+                --     config = function()
+                    --         require("oil").setup()
+                    --     end,
+                    -- })
+                end)
