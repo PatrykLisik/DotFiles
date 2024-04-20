@@ -39,4 +39,6 @@ vim.api.nvim_create_user_command("Spell", "setlocal spell! spelllang=en,pl", { d
 -- vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 -- vim.opt.foldtext = "v:lua.vim.treesitter.foldtext()"
 
+vim.opt.syntax = "off"
+
 vim.env.PATH = "/snap/bin/npm:"..vim.env.PATH
