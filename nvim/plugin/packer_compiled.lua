@@ -217,6 +217,11 @@ _G.packer_plugins = {
     path = "/home/plisik/.local/share/nvim/site/pack/packer/start/promise-async",
     url = "https://github.com/kevinhwang91/promise-async"
   },
+  ["telescope-file-browser.nvim"] = {
+    loaded = true,
+    path = "/home/plisik/.local/share/nvim/site/pack/packer/start/telescope-file-browser.nvim",
+    url = "https://github.com/nvim-telescope/telescope-file-browser.nvim"
+  },
   ["telescope-fzf-native.nvim"] = {
     loaded = true,
     path = "/home/plisik/.local/share/nvim/site/pack/packer/start/telescope-fzf-native.nvim",

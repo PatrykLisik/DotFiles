@@ -31,6 +31,7 @@ vim.opt.updatetime = 50
 vim.opt.colorcolumn = "120"
 
 vim.api.nvim_create_user_command("Spell", "setlocal spell! spelllang=en,pl", { desc = "Toggle spelling" })
+vim.cmd("setlocal spell spelllang=en,pl")
 
 -- treesitter folding
 -- vim.opt.foldlevel = 20
@@ -39,6 +40,10 @@ vim.api.nvim_create_user_command("Spell", "setlocal spell! spelllang=en,pl", { d
 -- vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 -- vim.opt.foldtext = "v:lua.vim.treesitter.foldtext()"
 
-vim.opt.syntax = "off"
+vim.cmd.syntax 'off'
 
 vim.env.PATH = "/snap/bin/npm:"..vim.env.PATH
+
+vim.g.netrw_preview   = 1
+vim.g.netrw_liststyle = 3
+vim.g.netrw_winsize   = 30
