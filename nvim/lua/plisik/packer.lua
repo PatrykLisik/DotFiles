@@ -74,11 +74,6 @@ return require('packer').startup(function(use)
     }
     use("icewind/ltex-client.nvim")
     use("ThePrimeagen/vim-be-good")
-    use{ 'anuvyklack/pretty-fold.nvim',
-    config = function()
-        require('pretty-fold').setup()
-    end
-    }
     use {'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async'}
 --use('uga-rosa/cmp-dictionary')
 -- use({
