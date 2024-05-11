@@ -15,8 +15,9 @@ lsp.on_attach(function(client, bufnr)
     local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
     -- local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
     local opts = { noremap = true, silent = true }
-    buf_set_keymap('n', '<C-Space>', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-    buf_set_keymap('v', '<C-Space>', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+    buf_set_keymap('n', '<C-Space>', '<cmd>lua require("cosmic-ui").code_actions()<cr>', opts)
+    buf_set_keymap('v', '<C-Space>', '<cmd>lua require("cosmic-ui").code_actions()<cr>', opts)
+    buf_set_keymap('n', '<F2>', '<cmd>lua require("cosmic-ui").rename()<cr>', opts)
     -- buf_set_keymap('v', '<C-c>', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
 end)
 -- Use Enter to confirm completion

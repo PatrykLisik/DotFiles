@@ -77,6 +77,7 @@ return require('packer').startup(function(use)
     use("ThePrimeagen/vim-be-good")
     use {'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async'}
     use {'javiorfo/nvim-soil', requires = 'javiorfo/nvim-nyctophilia' } -- puml
+    use{"sindrets/diffview.nvim"}
 --use('uga-rosa/cmp-dictionary')
 -- use({
     --     'jakewvincent/texmagic.nvim',
