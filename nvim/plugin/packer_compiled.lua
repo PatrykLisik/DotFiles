@@ -175,6 +175,16 @@ _G.packer_plugins = {
     path = "/home/plisik/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
     url = "https://github.com/neovim/nvim-lspconfig"
   },
+  ["nvim-nyctophilia"] = {
+    loaded = true,
+    path = "/home/plisik/.local/share/nvim/site/pack/packer/start/nvim-nyctophilia",
+    url = "https://github.com/javiorfo/nvim-nyctophilia"
+  },
+  ["nvim-soil"] = {
+    loaded = true,
+    path = "/home/plisik/.local/share/nvim/site/pack/packer/start/nvim-soil",
+    url = "https://github.com/javiorfo/nvim-soil"
+  },
   ["nvim-tree.lua"] = {
     load_after = {},
     loaded = true,

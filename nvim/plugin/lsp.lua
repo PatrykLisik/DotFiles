@@ -16,6 +16,7 @@ lsp.on_attach(function(client, bufnr)
     -- local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
     local opts = { noremap = true, silent = true }
     buf_set_keymap('n', '<C-Space>', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+    buf_set_keymap('v', '<C-Space>', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
     -- buf_set_keymap('v', '<C-c>', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
 end)
 -- Use Enter to confirm completion
@@ -80,16 +81,21 @@ lsp.ensure_installed({
     -- Replace these with whatever servers you want to install
     "marksman",
     "pylsp",
-    "dockerls",
     "gopls",
     "texlab",
     "lua_ls",
     "jdtls",
     -- "vale_ls",
     "docker_compose_language_service",
+    "dockerls",
     "typos_lsp",
-    "pyright"
     -- "ltex"
+    "jsonls",
+    "yamlls",
+    "jinja_lsp",
+    "bashls",
+    "vacuum",
+
 })
 
 
@@ -100,16 +106,30 @@ require('lspconfig').pylsp.setup {
     settings = {
         pylsp = {
             plugins = {
-                pycodestyle = {
-                    ignore = { 'W391' },
-                    maxLineLength = 120
-                },
                 black = {
                     enabled = true,
-                    line_length = 120
+                    line_length = 140
                 },
                 jedi = {
-                    auto_import_modules = { "numpy" }
+                    auto_import_modules = { "numpy", "datetime", "json" }
+                },
+                jedi_rename = {
+                    enabled = true
+                },
+                jedi_completion = {
+                    eager = true,
+                    fuzzy = true
+
+                },
+                rope_autoimport = {
+                    enabled = true,
+                    memory = true,
+                    completions = {
+                        enabled = false
+                    }
+                },
+                flake8 = {
+                    extendignore = "W503"
                 }
             }
         }
@@ -215,16 +235,18 @@ require('lspconfig').typos_lsp.setup({
     init_options = {
         -- Custom config. Used together with any workspace config files, taking precedence for
         -- settings declared in both. Equivalent to the typos `--config` cli argument.
-        config = '~/code/typos-lsp/crates/typos-lsp/tests/typos.toml',
+        config = '~/.config/typos_lsp/typos.toml',
         -- How typos are rendered in the editor, eg: as errors, warnings, information, or hints.
         -- Defaults to error.
         diagnosticSeverity = "Warning"
     }
 })
 
-
-require("lspconfig").pyright.setup{}
-
+require'lspconfig'.jsonls.setup{}
+require'lspconfig'.yamlls.setup{}
+require'lspconfig'.jinja_lsp.setup{}
+require'lspconfig'.bashls.setup{}
+require'lspconfig'.vacuum.setup{}
 -- require'lspconfig'.ltex.setup{
 --     on_attach = lsp.on_attach,
 --     settings ={
