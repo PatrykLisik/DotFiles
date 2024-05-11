@@ -28,7 +28,7 @@ cmp.setup({
 })
 --Preselect first item
 cmp.setup({
-    preselect = 'item',
+    preselect = cmp.PreselectMode.None,
     completion = {
         completeopt = 'menu,menuone,noinsert'
     },
