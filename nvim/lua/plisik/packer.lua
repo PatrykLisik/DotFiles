@@ -46,8 +46,8 @@ return require('packer').startup(function(use)
             { 'williamboman/mason-lspconfig.nvim' }, -- Optional
 
             -- Autocompletion
-            { 'hrsh7th/nvim-cmp' },   -- Required
-            { 'hrsh7th/cmp-nvim-lsp' }, -- Required
+            { "hrsh7th/nvim-cmp" },   -- Required
+            { "hrsh7th/cmp-nvim-lsp" }, -- Required
             use({
                 "L3MON4D3/LuaSnip",
                 -- follow latest release.
@@ -76,9 +76,10 @@ return require('packer').startup(function(use)
     use("icewind/ltex-client.nvim")
     use("ThePrimeagen/vim-be-good")
     use {'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async'}
-    use {'javiorfo/nvim-soil', requires = 'javiorfo/nvim-nyctophilia' } -- puml
+    -- use {'javiorfo/nvim-soil', requires = 'javiorfo/nvim-nyctophilia' } -- puml
     use{"sindrets/diffview.nvim"}
-    use{"tpope/vim-surround"}
+
+    use("tpope/vim-surround")
 --use('uga-rosa/cmp-dictionary')
 -- use({
     --     'jakewvincent/texmagic.nvim',

@@ -90,7 +90,7 @@ lsp.ensure_installed({
     "docker_compose_language_service",
     "dockerls",
     "typos_lsp",
-    -- "ltex"
+    "ltex",
     "jsonls",
     "yamlls",
     "jinja_lsp",
@@ -248,21 +248,21 @@ require'lspconfig'.yamlls.setup{}
 require'lspconfig'.jinja_lsp.setup{}
 require'lspconfig'.bashls.setup{}
 require'lspconfig'.vacuum.setup{}
--- require'lspconfig'.ltex.setup{
---     on_attach = lsp.on_attach,
---     settings ={
---         ltex = {
---             language = "pl-PL",
---             languageToolHttpServerUri='http://localhost:8081',
---             setenceCacheSize = 2000,
---             additionalRules = {
---                 enablePickyRules = true,
---                 motherTongue = "pl-Pl",
---             }
---         }
---     }
--- }
--- require("ltex-client").setup({
---     user_dictionaries_path = '/home/plisik/.config/nvim/spell'
--- })
+require'lspconfig'.ltex.setup{
+    on_attach = lsp.on_attach,
+    settings ={
+        ltex = {
+            language = "pl-PL",
+           languageToolHttpServerUri='http://localhost:8081/v2',
+            setenceCacheSize = 2000,
+            additionalRules = {
+                enablePickyRules = true,
+                motherTongue = "pl-Pl",
+            }
+        }
+    }
+}
+require("ltex-client").setup({
+    user_dictionaries_path = '/home/plisik/.config/nvim/spell'
+})
 lsp.setup()
