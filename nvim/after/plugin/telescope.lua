@@ -1,7 +1,7 @@
 require('telescope').setup {
     defaults = {
         file_ignore_patterns = {
-            "inv%_dev/.",
+            "inv%-dev/.",
             ".git/",
             "%.env"
         },
