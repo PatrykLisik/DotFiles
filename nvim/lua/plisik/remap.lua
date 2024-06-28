@@ -69,3 +69,8 @@ vim.api.nvim_set_keymap('n', '<leader>j', '<C-W>j', {noremap=true})
 vim.api.nvim_set_keymap('n', '<leader>k', '<C-W>k', {noremap=true})
 
 -- vim.cmd("Spell")
+
+-- Custom save and quit
+vim.api.nvim_create_user_command("W", "wa", { desc = "Save all" })
+vim.api.nvim_create_user_command("Q", "wa <CR> q", { desc = "Save all and quit" })
+
