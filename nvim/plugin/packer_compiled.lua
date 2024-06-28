@@ -49,8 +49,8 @@ local function save_profiles(threshold)
 end
 
 time([[Luarocks path setup]], true)
-local package_path_str = "/home/plisik/.cache/nvim/packer_hererocks/2.1.0-beta3/share/lua/5.1/?.lua;/home/plisik/.cache/nvim/packer_hererocks/2.1.0-beta3/share/lua/5.1/?/init.lua;/home/plisik/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/luarocks/rocks-5.1/?.lua;/home/plisik/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/luarocks/rocks-5.1/?/init.lua"
-local install_cpath_pattern = "/home/plisik/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/lua/5.1/?.so"
+local package_path_str = "/home/plisik/.cache/nvim/packer_hererocks/2.1.1713484068/share/lua/5.1/?.lua;/home/plisik/.cache/nvim/packer_hererocks/2.1.1713484068/share/lua/5.1/?/init.lua;/home/plisik/.cache/nvim/packer_hererocks/2.1.1713484068/lib/luarocks/rocks-5.1/?.lua;/home/plisik/.cache/nvim/packer_hererocks/2.1.1713484068/lib/luarocks/rocks-5.1/?/init.lua"
+local install_cpath_pattern = "/home/plisik/.cache/nvim/packer_hererocks/2.1.1713484068/lib/lua/5.1/?.so"
 if not string.find(package.path, package_path_str, 1, true) then
   package.path = package.path .. ';' .. package_path_str
 end
@@ -120,6 +120,11 @@ _G.packer_plugins = {
     path = "/home/plisik/.local/share/nvim/site/pack/packer/start/diffview.nvim",
     url = "https://github.com/sindrets/diffview.nvim"
   },
+  ["easypick.nvim"] = {
+    loaded = true,
+    path = "/home/plisik/.local/share/nvim/site/pack/packer/start/easypick.nvim",
+    url = "https://github.com/axkirillov/easypick.nvim"
+  },
   harpoon = {
     loaded = true,
     path = "/home/plisik/.local/share/nvim/site/pack/packer/start/harpoon",
@@ -179,16 +184,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/plisik/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
     url = "https://github.com/neovim/nvim-lspconfig"
-  },
-  ["nvim-nyctophilia"] = {
-    loaded = true,
-    path = "/home/plisik/.local/share/nvim/site/pack/packer/start/nvim-nyctophilia",
-    url = "https://github.com/javiorfo/nvim-nyctophilia"
-  },
-  ["nvim-soil"] = {
-    loaded = true,
-    path = "/home/plisik/.local/share/nvim/site/pack/packer/start/nvim-soil",
-    url = "https://github.com/javiorfo/nvim-soil"
   },
   ["nvim-tree.lua"] = {
     load_after = {},
@@ -267,6 +262,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/plisik/.local/share/nvim/site/pack/packer/start/vim-fugitive",
     url = "https://github.com/tpope/vim-fugitive"
+  },
+  ["vim-repeat"] = {
+    loaded = true,
+    path = "/home/plisik/.local/share/nvim/site/pack/packer/start/vim-repeat",
+    url = "https://github.com/tpope/vim-repeat"
   },
   ["vim-surround"] = {
     loaded = true,

@@ -35,6 +35,7 @@ require('telescope').setup {
 
 local builtin = require('telescope.builtin')
 
+
 vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
 vim.keymap.set('n', '<leader>gg', builtin.git_files, {})
 vim.keymap.set("n", "<leader>fg", ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>")
@@ -54,3 +55,6 @@ vim.keymap.set("n", "<space>bf", function()
 end)
 --
 -- vim.builtin.telescope.defaults.preview = { treesitter = false }
+
+vim.g.telescope_changed_files_base_branch = "master"
+vim.keymap.set('n', '<leader>cc', ":Easypick changed_files<CR>", {})

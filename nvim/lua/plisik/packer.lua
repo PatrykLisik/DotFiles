@@ -6,13 +6,14 @@ vim.cmd [[packadd packer.nvim]]
 return require('packer').startup(function(use)
     -- Packer can manage itself
     use 'wbthomason/packer.nvim'
-    use {'nvim-telescope/telescope.nvim', tag = '0.1.5',
+    use { 'nvim-telescope/telescope.nvim', tag = '0.1.5',
         -- or                            , branch = '0.1.x',
         requires = {
             { 'nvim-lua/plenary.nvim' },
             { "nvim-telescope/telescope-live-grep-args.nvim" },
-            { 'nvim-telescope/telescope-fzf-native.nvim', run = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' },
-            {"nvim-telescope/telescope-file-browser.nvim"}
+            { 'nvim-telescope/telescope-fzf-native.nvim',    run = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' },
+            { "nvim-telescope/telescope-file-browser.nvim" },
+            { "axkirillov/easypick.nvim" }
         },
         config = function()
             require("telescope").load_extension("live_grep_args")
@@ -41,12 +42,12 @@ return require('packer').startup(function(use)
         branch = 'v2.x',
         requires = {
             -- LSP Support
-            { 'neovim/nvim-lspconfig' },           -- Required
-            { 'williamboman/mason.nvim' },         -- Optional
+            { 'neovim/nvim-lspconfig' },             -- Required
+            { 'williamboman/mason.nvim' },           -- Optional
             { 'williamboman/mason-lspconfig.nvim' }, -- Optional
 
             -- Autocompletion
-            { "hrsh7th/nvim-cmp" },   -- Required
+            { "hrsh7th/nvim-cmp" },     -- Required
             { "hrsh7th/cmp-nvim-lsp" }, -- Required
             use({
                 "L3MON4D3/LuaSnip",
@@ -75,24 +76,25 @@ return require('packer').startup(function(use)
     }
     use("icewind/ltex-client.nvim")
     use("ThePrimeagen/vim-be-good")
-    use {'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async'}
+    use { 'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async' }
     -- use {'javiorfo/nvim-soil', requires = 'javiorfo/nvim-nyctophilia' } -- puml
-    use{"sindrets/diffview.nvim"}
+    use { "sindrets/diffview.nvim" }
 
     use("tpope/vim-surround")
---use('uga-rosa/cmp-dictionary')
--- use({
+    use("tpope/vim-repeat")
+    --use('uga-rosa/cmp-dictionary')
+    -- use({
     --     'jakewvincent/texmagic.nvim',
     --     config = function()
-        --         require('texmagic').setup({
-            --             -- Config goes here; leave blank for defaults
-            --         })
-            --     end
-            -- })
-            -- use({
-                --     "stevearc/oil.nvim",
-                --     config = function()
-                    --         require("oil").setup()
-                    --     end,
-                    -- })
-                end)
+    --         require('texmagic').setup({
+    --             -- Config goes here; leave blank for defaults
+    --         })
+    --     end
+    -- })
+    -- use({
+    --     "stevearc/oil.nvim",
+    --     config = function()
+    --         require("oil").setup()
+    --     end,
+    -- })
+end)
