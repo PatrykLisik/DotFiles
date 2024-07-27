@@ -19,7 +19,8 @@ require('telescope').setup {
             hijack_netrw = true,
             follow_symlinks = true,
             cwd_to_path = true,
-            auto_depth = true
+            auto_depth = true,
+            collapse_dirs = true
 
         }
     },
@@ -29,6 +30,11 @@ require('telescope').setup {
             -- actions.which_key shows the mappings for your picker,
             -- e.g. git_{create, delete, ...}_branch for the git_branches picker
             ["<C-h>"] = "which_key"
+        },
+        n = {
+            ["C-j"]  = require('telescope.actions').cycle_history_next,
+            ["C-k"]  = require('telescope.actions').cycle_history_prev,
+
         }
     }
 }
@@ -47,10 +53,10 @@ vim.keymap.set('n', '<leader>fb', builtin.current_buffer_fuzzy_find, {})
 require("telescope").load_extension "file_browser"
 
 -- open file_browser with the path of the current buffer
-vim.keymap.set("n", "<space>fc", ":Telescope file_browser path=%:p:h select_buffer=true<CR>")
+vim.keymap.set("n", "<space>bf", ":Telescope file_browser path=%:p:h select_buffer=true<CR><ESC>")
 
 -- Alternatively, using lua API
-vim.keymap.set("n", "<space>bf", function()
+vim.keymap.set("n", "<space>ba", function()
     require("telescope").extensions.file_browser.file_browser()
 end)
 --

@@ -171,7 +171,7 @@ require('lspconfig').pylsp.setup {
 local util = require 'lspconfig.util'
 require('lspconfig').gopls.setup {
     on_attach = function(c, b)
-        ih.on_attach(c, b)
+        lsp.on_attach(c, b)
     end,
     settings = {
         gopls = {

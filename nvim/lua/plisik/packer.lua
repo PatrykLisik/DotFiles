@@ -82,6 +82,13 @@ return require('packer').startup(function(use)
 
     use("tpope/vim-surround")
     use("tpope/vim-repeat")
+    use('mfussenegger/nvim-dap')
+    use {
+        'linrongbin16/lsp-progress.nvim',
+        config = function()
+          require('lsp-progress').setup()
+        end
+      }
     --use('uga-rosa/cmp-dictionary')
     -- use({
     --     'jakewvincent/texmagic.nvim',
