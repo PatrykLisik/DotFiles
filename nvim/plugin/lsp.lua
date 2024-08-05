@@ -14,6 +14,9 @@ lsp.on_attach(function(client, bufnr)
     -- print(client.config.name .. " starting...")
     local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
     -- local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+    --
+    client.server_capabilities.semanticTokensProvider = nil
+
     local opts = { noremap = true, silent = true }
     buf_set_keymap('n', '<C-Space>', '<cmd>lua require("cosmic-ui").code_actions()<cr>', opts)
     buf_set_keymap('v', '<C-Space>', '<cmd>lua require("cosmic-ui").code_actions()<cr>', opts)
@@ -282,7 +285,7 @@ require'lspconfig'.ltex.setup{
     on_attach = lsp.on_attach,
     settings ={
         ltex = {
-            language = "pl-PL",
+           language = "pl-PL",
            languageToolHttpServerUri='http://localhost:8081/v2',
             setenceCacheSize = 2000,
             additionalRules = {
