@@ -135,6 +135,11 @@ _G.packer_plugins = {
     path = "/home/plisik/.local/share/nvim/site/pack/packer/start/inlay-hints.nvim",
     url = "https://github.com/simrat39/inlay-hints.nvim"
   },
+  ["lazygit.nvim"] = {
+    loaded = true,
+    path = "/home/plisik/.local/share/nvim/site/pack/packer/start/lazygit.nvim",
+    url = "https://github.com/kdheepak/lazygit.nvim"
+  },
   ["lsp-progress.nvim"] = {
     config = { "\27LJ\2\n:\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\17lsp-progress\frequire\0" },
     loaded = true,
@@ -196,6 +201,16 @@ _G.packer_plugins = {
     path = "/home/plisik/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
     url = "https://github.com/neovim/nvim-lspconfig"
   },
+  ["nvim-nyctophilia"] = {
+    loaded = true,
+    path = "/home/plisik/.local/share/nvim/site/pack/packer/start/nvim-nyctophilia",
+    url = "https://github.com/javiorfo/nvim-nyctophilia"
+  },
+  ["nvim-soil"] = {
+    loaded = true,
+    path = "/home/plisik/.local/share/nvim/site/pack/packer/start/nvim-soil",
+    url = "https://github.com/javiorfo/nvim-soil"
+  },
   ["nvim-tree.lua"] = {
     load_after = {},
     loaded = true,
@@ -227,6 +242,12 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/plisik/.local/share/nvim/site/pack/packer/start/packer.nvim",
     url = "https://github.com/wbthomason/packer.nvim"
+  },
+  ["plantuml.nvim"] = {
+    config = { "\27LJ\2\n6\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\rplantuml\frequire\0" },
+    loaded = true,
+    path = "/home/plisik/.local/share/nvim/site/pack/packer/start/plantuml.nvim",
+    url = "https://gitlab.com/itaranto/plantuml.nvim"
   },
   ["plenary.nvim"] = {
     loaded = true,
@@ -295,6 +316,10 @@ time([[Config for telescope.nvim]], false)
 time([[Config for lsp-progress.nvim]], true)
 try_loadstring("\27LJ\2\n:\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\17lsp-progress\frequire\0", "config", "lsp-progress.nvim")
 time([[Config for lsp-progress.nvim]], false)
+-- Config for: plantuml.nvim
+time([[Config for plantuml.nvim]], true)
+try_loadstring("\27LJ\2\n6\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\rplantuml\frequire\0", "config", "plantuml.nvim")
+time([[Config for plantuml.nvim]], false)
 -- Config for: cosmic-ui
 time([[Config for cosmic-ui]], true)
 try_loadstring("\27LJ\2\n7\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\14cosmic-ui\frequire\0", "config", "cosmic-ui")
