@@ -63,4 +63,4 @@ end)
 -- vim.builtin.telescope.defaults.preview = { treesitter = false }
 
 vim.g.telescope_changed_files_base_branch = "master"
-vim.keymap.set('n', '<leader>cc', ":Easypick changed_files<CR>", {})
+vim.keymap.set('n', '<leader>cc', ":Easypick changed_files<CR><ESC>", {})
