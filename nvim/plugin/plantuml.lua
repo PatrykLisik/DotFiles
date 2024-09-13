@@ -1,12 +1,14 @@
 require('plantuml').setup(
     {
         renderer = {
-            type = 'text',
+            type = 'image',
             options = {
-                split_cmd = 'vsp', -- Allowed values: 'split', 'vsplit'.
+                prog = 'nsxiv -b',
+                dark_mode = false,
+                format = nil, -- Allowed values: nil, 'png', 'svg'.
             }
         },
-        render_on_write = true, -- Set to false to disable auto-rendering.
+        render_on_write = true,
     }
 
 )
