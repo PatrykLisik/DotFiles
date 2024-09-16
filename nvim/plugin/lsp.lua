@@ -113,7 +113,7 @@ require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
 
 require('lspconfig').basedpyright.setup {
     settings = {
-        pyright = {
+        basedpyright = {
             -- Using Ruff's import organizer
             disableOrganizeImports = true,
             typeCheckingMode = 'basic',
