@@ -14,6 +14,10 @@ require('telescope').setup {
         '--line-number',
         '--column',
         '--smart-case' },
+        history = {
+            path = '~/.local/share/nvim/telescope_history.sqlite3',
+            limit = 100,
+        }
     },
     extensions = {
         fzf = {
@@ -75,7 +79,7 @@ local builtin = require('telescope.builtin')
 
 vim.keymap.set('n', '<leader>ff', builtin.find_files, {noremap=true})
 vim.keymap.set('n', '<leader>gg', builtin.git_files, {})
-vim.keymap.set('n', '<leader>tr', builtin.treesitter, {})
+vim.keymap.set('n', '<leader>tr', builtin.resume, {})
 vim.keymap.set('n', 'z=', builtin.spell_suggest, { noremap = true })
 vim.keymap.set('n', 'gd', builtin.lsp_definitions, { noremap = true })
 vim.keymap.set('n', '<leader>lr', builtin.lsp_references, { noremap = true })
@@ -116,3 +120,5 @@ end)
 
 vim.g.telescope_changed_files_base_branch = "master"
 vim.keymap.set('n', '<leader>cc', ":Easypick changed_files<CR><ESC>", {})
+
+require('telescope').load_extension('smart_history')
