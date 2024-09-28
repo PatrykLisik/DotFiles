@@ -3,9 +3,17 @@ require('telescope').setup {
         file_ignore_patterns = {
             "inv%-dev/.",
             ".git/",
-            "%.env"
+            -- "%.env"
         },
- initial_mode = "normal"
+        initial_mode = "normal",
+        vimgrep_arguments = { 'rg',
+        '--hidden',
+        '--color=never',
+        '--no-heading',
+        '--with-filename',
+        '--line-number',
+        '--column',
+        '--smart-case' },
     },
     extensions = {
         fzf = {
@@ -20,7 +28,11 @@ require('telescope').setup {
             follow_symlinks = true,
             cwd_to_path = true,
             auto_depth = true,
-            collapse_dirs = true
+            collapse_dirs = true,
+            grouped = true,
+            hidden = {
+                file_browser = true,
+                folder_browser = true }
 
         }
     },
@@ -32,33 +44,63 @@ require('telescope').setup {
             ["<C-h>"] = "which_key"
         },
         n = {
-            ["C-j"]  = require('telescope.actions').cycle_history_next,
-            ["C-k"]  = require('telescope.actions').cycle_history_prev,
+            ["C-j"] = require('telescope.actions').cycle_history_next,
+            ["C-k"] = require('telescope.actions').cycle_history_prev,
 
         }
-    }
+    },
+    pickers = {
+        find_files = {
+            -- hidden = true,
+            -- needed to exclude some files & dirs from general search
+            -- when not included or specified in .gitignore
+            find_command = {
+                "rg",
+                "--files",
+                "--hidden",
+                "--glob=!**/.git/*",
+                "--glob=!**/.idea/*",
+                "--glob=!**/.vscode/*",
+                "--glob=!**/build/*",
+                "--glob=!**/dist/*",
+                "--glob=!**/yarn.lock",
+                "--glob=!**/package-lock.json",
+            },
+        },
+    },
 }
 
 local builtin = require('telescope.builtin')
 
 
-vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
+vim.keymap.set('n', '<leader>ff', builtin.find_files, {noremap=true})
 vim.keymap.set('n', '<leader>gg', builtin.git_files, {})
 vim.keymap.set('n', '<leader>tr', builtin.treesitter, {})
 vim.keymap.set('n', 'z=', builtin.spell_suggest, { noremap = true })
 vim.keymap.set('n', 'gd', builtin.lsp_definitions, { noremap = true })
-vim.keymap.set('n', 'lr', builtin.lsp_references, { noremap = true })
-vim.keymap.set('n', 'li', builtin.lsp_implementations, { noremap = true })
+vim.keymap.set('n', '<leader>lr', builtin.lsp_references, { noremap = true })
+vim.keymap.set('n', '<leader>li', builtin.lsp_implementations, { noremap = true })
+vim.keymap.set('n', '<leader>ld', builtin.diagnostics, { noremap = true, })
 
 vim.keymap.set("n", "<leader>fg", ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>")
 --https://www.reddit.com/r/neovim/comments/p8wtmn/comment/hx0usg8/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
 vim.keymap.set("v", "<leader>fg", "\"zy<cmd>exec 'Telescope grep_string default_text=' . escape(@z, ' ')<cr>")
 vim.keymap.set('n', '<leader>vh', builtin.help_tags, {})
 vim.keymap.set('n', '<leader>fb', builtin.current_buffer_fuzzy_find, {})
+vim.keymap.set("v", "<leader>fb",
+    "\"zy<cmd>exec 'Telescope current_buffer_fuzzy_find default_text=' . escape(@z, ' ')<cr>")
 vim.keymap.set('n', '<leader>fo', builtin.oldfiles, {})
 vim.keymap.set('n', '<leader>sh', builtin.search_history, {})
+vim.keymap.set('n', '<leader>sq', builtin.quickfixhistory, {})
 vim.keymap.set('n', '<leader>sk', builtin.keymaps, {})
 vim.keymap.set('n', '<leader>re', builtin.registers, {})
+vim.keymap.set('n', '<leader>fq', builtin.quickfix, {})
+
+
+
+vim.keymap.set('n', '<leader>og', builtin.lsp_outgoing_calls, {})
+vim.keymap.set('n', '<leader>ig', builtin.lsp_incoming_calls, {})
+
 
 require("telescope").load_extension "file_browser"
 
