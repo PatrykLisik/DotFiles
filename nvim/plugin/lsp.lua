@@ -263,7 +263,7 @@ require'lspconfig'.ltex.setup{
             setenceCacheSize = 2000,
             additionalRules = {
                 enablePickyRules = true,
-                motherTongue = "pl-Pl",
+                motherTongue = "pl-PL",
             }
         }
     }
