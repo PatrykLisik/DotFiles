@@ -13,7 +13,9 @@ return require('packer').startup(function(use)
             { "nvim-telescope/telescope-live-grep-args.nvim" },
             { 'nvim-telescope/telescope-fzf-native.nvim',    run = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' },
             { "nvim-telescope/telescope-file-browser.nvim" },
-            { "axkirillov/easypick.nvim" }
+            { "axkirillov/easypick.nvim" },
+            { "nvim-telescope/telescope-smart-history.nvim" },
+            { "kkharji/sqlite.lua" }
         },
         config = function()
             require("telescope").load_extension("live_grep_args")
@@ -77,19 +79,21 @@ return require('packer').startup(function(use)
     use("icewind/ltex-client.nvim")
     use("ThePrimeagen/vim-be-good")
     use { 'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async' }
-    use {'javiorfo/nvim-soil', requires = 'javiorfo/nvim-nyctophilia' } -- puml
+    use { 'javiorfo/nvim-soil', requires = 'javiorfo/nvim-nyctophilia' } -- puml
     use { "sindrets/diffview.nvim" }
 
     use("tpope/vim-surround")
     use("tpope/vim-repeat")
-    use('mfussenegger/nvim-dap')
+    use('mfussenegger/nvim-dap-python')
+    use { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" } }
+    use("theHamsta/nvim-dap-virtual-text")
     use {
         'linrongbin16/lsp-progress.nvim',
         config = function()
-          require('lsp-progress').setup()
+            require('lsp-progress').setup()
         end
-      }
-    use {"kdheepak/lazygit.nvim"}
+    }
+    use { "kdheepak/lazygit.nvim" }
 
     use {
         'https://gitlab.com/itaranto/plantuml.nvim',
