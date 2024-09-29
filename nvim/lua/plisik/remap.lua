@@ -75,3 +75,12 @@ vim.api.nvim_create_user_command("W", "wa", { desc = "Save all" })
 vim.api.nvim_create_user_command("Q", "wa <CR> q", { desc = "Save all and quit" })
 
 vim.api.nvim_set_keymap('t', '<ESC>', '<C-\\><C-n>', { noremap = true })
+
+vim.keymap.set("x", "(", "S)", { remap = true })
+vim.keymap.set("x", ")", "S)", { remap = true })
+vim.keymap.set("x", "[", "S]", { remap = true })
+vim.keymap.set("x", "]", "S]", { remap = true })
+vim.keymap.set("x", "{", "S}", { remap = true })
+vim.keymap.set("x", "}", "S}", { remap = true })
+vim.keymap.set("x", '"', 'S"', { remap = true })
+vim.keymap.set("x", "'", "S'", { remap = true })
