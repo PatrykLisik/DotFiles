@@ -100,19 +100,5 @@ return require('packer').startup(function(use)
         tag = '*',
         config = function() require('plantuml').setup() end
     }
-    --use('uga-rosa/cmp-dictionary')
-    -- use({
-    --     'jakewvincent/texmagic.nvim',
-    --     config = function()
-    --         require('texmagic').setup({
-    --             -- Config goes here; leave blank for defaults
-    --         })
-    --     end
-    -- })
-    -- use({
-    --     "stevearc/oil.nvim",
-    --     config = function()
-    --         require("oil").setup()
-    --     end,
-    -- })
+    use{"stevearc/qf_helper.nvim"}
 end)
