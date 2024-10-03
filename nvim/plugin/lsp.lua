@@ -59,24 +59,8 @@ cmp.setup({
         { name = 'nvim_lsp' },
         { name = 'luasnip', option = { show_autosnippets = true } },
         { name = 'path' },
-        {
-            name = 'look',
-            keyword_length = 2,
-            option = {
-                convert_case = true,
-                loud = true,
-                dict = '/home/plisik/.config/nvim/spell/en.dict'
-            }
-        }
-        -- {
-        --     name = 'spell',
-        --     option = {
-        --         keep_all_entries = false,
-        --         enable_in_context = function()
-        --             return true
-        --         end,
-        --     },
-        -- },
+        { name = 'vim-dadbod-completion' },
+        { name = 'buffer' }
     },
     mapping = {
         ['<C-f>'] = cmp_action.luasnip_jump_forward(),

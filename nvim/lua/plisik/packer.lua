@@ -100,5 +100,12 @@ return require('packer').startup(function(use)
         tag = '*',
         config = function() require('plantuml').setup() end
     }
-    use{"stevearc/qf_helper.nvim"}
+    use { "stevearc/qf_helper.nvim" }
+    use {
+        'kristijanhusak/vim-dadbod-ui',
+        requires = {
+            { 'tpope/vim-dadbod' },
+            { 'kristijanhusak/vim-dadbod-completion', ft = { 'sql', 'mysql', 'plsql' } },
+        }}
+    use{'tpope/vim-dotenv'}
 end)
