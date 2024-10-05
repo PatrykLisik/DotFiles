@@ -249,9 +249,10 @@ require 'lspconfig'.ltex.setup {
                 enablePickyRules = true,
                 motherTongue = "pl-PL",
             }
-        },
-        filetypes = { "tex", "bib", "plaintext", "text" }
-    }
+        }
+    },
+    filetypes = { "tex", "bib", "plaintext", "text" }
+
 }
 require("ltex-client").setup({
     user_dictionaries_path = '/home/plisik/.config/nvim/spell'
