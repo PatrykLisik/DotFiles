@@ -1,0 +1,1 @@
+/home/plisik/.p10k.zsh

@@ -45,8 +45,8 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec rxvt-unicode
-bindsym $mod+Shift+Return exec  rxvt-unicode  -cd "`xcwd`"
+bindsym $mod+Return exec SHELL=/bin/zsh rxvt-unicode
+bindsym $mod+Shift+Return exec  SHELL=/bin/zsh rxvt-unicode  -cd "`xcwd`"
 # kill focused window
 bindsym $mod+Shift+q kill
 
