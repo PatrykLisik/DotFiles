@@ -57,7 +57,7 @@ cmp.setup({
     },
     sources = {
         { name = 'nvim_lsp' },
-        { name = 'luasnip', option = { show_autosnippets = true } },
+        { name = 'luasnip',              option = { show_autosnippets = true } },
         { name = 'path' },
         { name = 'vim-dadbod-completion' },
         { name = 'buffer' }
@@ -104,7 +104,7 @@ require('lspconfig').basedpyright.setup {
             analysis = {
                 autoSearchPaths = true,
                 useLibraryCodeForTypes = true,
-                diagnosticMode='openFilesOnly'
+                diagnosticMode = 'openFilesOnly'
             }
         },
         python = {
@@ -120,12 +120,12 @@ require('lspconfig').basedpyright.setup {
 -- See: https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#ruff_lsp
 -- For the default config, along with instructions on how to customize the settings
 require('lspconfig').ruff_lsp.setup {
-  init_options = {
-    settings = {
-      -- Any extra CLI arguments for `ruff` go here.
-      args = {},
+    init_options = {
+        settings = {
+            -- Any extra CLI arguments for `ruff` go here.
+            args = {},
+        }
     }
-  }
 }
 
 local util = require 'lspconfig.util'
@@ -192,7 +192,7 @@ require('lspconfig').texlab.setup {
             diagnosticsDelay = 300,
             latexFormatter = 'latexindent',
             latexindent = {
-                ['local'] = nil,         -- local is a reserved keyword
+                ['local'] = nil, -- local is a reserved keyword
                 modifyLineBreaks = false,
             },
             bibtexFormatter = 'texlab',
@@ -233,23 +233,24 @@ require('lspconfig').typos_lsp.setup({
     }
 })
 
-require'lspconfig'.jsonls.setup{}
-require'lspconfig'.yamlls.setup{}
-require'lspconfig'.jinja_lsp.setup{}
-require'lspconfig'.bashls.setup{}
-require'lspconfig'.vacuum.setup{}
-require'lspconfig'.ltex.setup{
+require 'lspconfig'.jsonls.setup {}
+require 'lspconfig'.yamlls.setup {}
+require 'lspconfig'.jinja_lsp.setup {}
+require 'lspconfig'.bashls.setup {}
+require 'lspconfig'.vacuum.setup {}
+require 'lspconfig'.ltex.setup {
     on_attach = lsp.on_attach,
-    settings ={
+    settings = {
         ltex = {
-           language = "pl-PL",
-           languageToolHttpServerUri='http://localhost:8081/v2',
+            language = "pl-PL",
+            languageToolHttpServerUri = 'http://localhost:8081/v2',
             setenceCacheSize = 2000,
             additionalRules = {
                 enablePickyRules = true,
                 motherTongue = "pl-PL",
             }
-        }
+        },
+        filetypes = { "tex", "bib", "plaintext", "text" }
     }
 }
 require("ltex-client").setup({
