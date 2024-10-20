@@ -124,5 +124,5 @@ vim.keymap.set('n', '<leader>cc', ":Easypick changed_files<CR><ESC>", {})
 require('telescope').load_extension('smart_history')
 
 -- search clipboard history 
-vim.keymap.set( "i", "<leader>hh", ":Telescope neoclip<CR>")
+vim.keymap.set("n", "<leader>hh", ":Telescope neoclip<CR>")
 
