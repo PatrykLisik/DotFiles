@@ -116,4 +116,9 @@ return require('packer').startup(function(use)
             -- {'nvim-telescope/telescope.nvim'},
             -- {'ibhagwan/fzf-lua'},
         } }
+
+    use {
+        "vinnymeller/swagger-preview.nvim",
+        run = "npm install -g swagger-ui-watcher",
+    }
 end)
