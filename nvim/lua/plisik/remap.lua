@@ -46,7 +46,7 @@ vim.keymap.set({ "v", "n" }, "p", '"*p')
 --vim.keymap.set({"n", "v"}, "pp", "*p")
 vim.keymap.set({ "x", "v" }, "x", '"*x :let @+=@*<CR>', { noremap = true, silent = true })
 vim.keymap.set({ "v", "n" }, "d", '"_d')
-vim.keymap.set({ "v", "n" }, "D", '_d$', { noremap = true, silent = true })
+vim.keymap.set({ "v", "n" }, "D", 'd$', { noremap = true, silent = true })
 vim.keymap.set({ "v", "n" }, "y", '"*y :let @+=@*<CR>', { noremap = true, silent = true })
 vim.keymap.set("n", "yy", '"*yy :let @+=@*<CR>', { noremap = true, silent = true })
 
