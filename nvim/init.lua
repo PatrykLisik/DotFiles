@@ -1,4 +1,4 @@
-require("plisik")
-require("plisik.remap")
-require("plisik.set")
-require("plisik.packer")
+require("config")
+require("remap")
+require("set")
+require("config.lazy")

@@ -1,0 +1,105 @@
+-- return {
+--      { 'nvim-telescope/telescope.nvim', version = '0.1.5',
+--         -- or                            , branch = '0.1.x',
+--         dependancies = {
+--             { 'nvim-lua/plenary.nvim' },
+--             { "nvim-telescope/telescope-live-grep-args.nvim" },
+--             { 'nvim-telescope/telescope-fzf-native.nvim',    build= 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' },
+--             { "nvim-telescope/telescope-file-browser.nvim" },
+--             { "axkirillov/easypick.nvim" },
+--             { "nvim-telescope/telescope-smart-history.nvim" },
+--             { "kkharji/sqlite.lua" }
+--         },
+--         config = function()
+--             require("telescope").load_extension("live_grep_args")
+--             require('telescope').load_extension('fzf')
+--         end
+--     },
+--     -- {'nvim-treesitter/nvim-treesitter', { build = ':TSUpdate' }},
+--     {'nvim-treesitter/nvim-treesitter-context'},
+--     {'nvim-lua/plenary.nvim'},
+--     {'ThePrimeagen/harpoon'},
+--     {'mbbill/undotree'},
+--     {'tpope/vim-fugitive'},
+--     { "catppuccin/nvim", as = "catppuccin" },
+--     {'hrsh7th/cmp-path'},
+--     {'octaltree/cmp-look'},
+--     {"terrortylor/nvim-comment"},
+--     {
+--         'CosmicNvim/cosmic-ui',
+--         dependancies = { 'MunifTanjim/nui.nvim', 'nvim-lua/plenary.nvim' },
+--         config = function()
+--             require('cosmic-ui').setup()
+--         end,
+--     },
+--     {'VonHeikemen/lsp-zero.nvim', branch = 'v4.x'},
+--     {'neovim/nvim-lspconfig'},
+--     {'hrsh7th/cmp-nvim-lsp'},
+--     {'hrsh7th/nvim-cmp'},
+--     {
+--         "L3MON4D3/LuaSnip",
+--         -- follow latest release.
+--         version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
+--         -- install jsregexp (optional!:).
+--         build = "make install_jsregexp"
+--     }, -- Required
+--     { 'saadparwaiz1/cmp_luasnip' },
+--     {
+--         "nvim-tree/nvim-tree.lua",
+--         after = "nvim-web-devicons",
+--         dependancies = "nvim-tree/nvim-web-devicons",
+--     },
+--     {
+--         "iamcco/markdown-preview.nvim",
+--         build = function() vim.fn["mkdp#util#install"]() end,
+--     },
+--     {'vigoux/LanguageTool.nvim'},
+--     {'simrat39/inlay-hints.nvim'},
+--     {
+--         'nvim-lualine/lualine.nvim',
+--         dependancies = { 'nvim-tree/nvim-web-devicons', opt = true }
+--     },
+--     {"icewind/ltex-client.nvim"},
+--     {"ThePrimeagen/vim-be-good"},
+--     { 'kevinhwang91/nvim-ufo', dependancies = 'kevinhwang91/promise-async' },
+--     { 'javiorfo/nvim-soil', dependancies = 'javiorfo/nvim-nyctophilia' },
+--     { "sindrets/diffview.nvim" },
+--     {"tpope/vim-surround"},
+--     {"tpope/vim-repeat"},
+--     {'mfussenegger/nvim-dap-python'},
+--     { "rcarriga/nvim-dap-ui", dependancies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" } },
+--     {"theHamsta/nvim-dap-virtual-text"},
+--     {
+--         'linrongbin16/lsp-progress.nvim',
+--         config = function()
+--             require('lsp-progress').setup()
+--         end
+--     },
+--     { "kdheepak/lazygit.nvim" },
+--     {
+--         'https://gitlab.com/itaranto/plantuml.nvim',
+--         version = '*',
+--         config = function() require('plantuml').setup() end
+--     },
+--     { "stevearc/qf_helper.nvim" },
+--     {
+--         'kristijanhusak/vim-dadbod-ui',
+--         dependancies = {
+--             { 'tpope/vim-dadbod' },
+--             { 'kristijanhusak/vim-dadbod-completion', ft = { 'sql', 'mysql', 'plsql' } },
+--         } },
+--     { 'tpope/vim-dotenv' },
+--     {
+--         "AckslD/nvim-neoclip.lua",
+--         dependancies = {
+--             { 'kkharji/sqlite.lua', module = 'sqlite' },
+--             -- you'll need at least one of these
+--             -- {'nvim-telescope/telescope.nvim'},
+--             -- {'ibhagwan/fzf-lua'},
+--         } },
+--
+--     {
+--         "vinnymeller/swagger-preview.nvim",
+--         build = "npm install -g swagger-ui-watcher",
+--     }
+--     }
