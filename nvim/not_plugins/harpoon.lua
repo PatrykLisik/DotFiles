@@ -3,8 +3,6 @@ local ui = require("harpoon.ui")
 
 vim.keymap.set("n", "<leader>a", mark.add_file)
 vim.keymap.set("n", "<leader>e", ui.toggle_quick_menu)
--- vim.keymap.set("n", "<C-h>", ui.toogle_quick_menu)
--- vim.keymap.set("n", "<C-x>", ui.toogle_quick_menu)
 
 require("harpoon").setup({
     global_settings = {

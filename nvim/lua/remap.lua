@@ -84,3 +84,7 @@ vim.keymap.set("x", "{", "S}", { remap = true })
 vim.keymap.set("x", "}", "S}", { remap = true })
 vim.keymap.set("x", '"', 'S"', { remap = true })
 vim.keymap.set("x", "'", "S'", { remap = true })
+
+
+-- Undo tree 
+vim.keymap.set('n', '<leader><F5>', vim.cmd.UndotreeToggle)
