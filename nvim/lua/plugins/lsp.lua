@@ -98,11 +98,14 @@ return {
             cmp.setup({
 
                 sources = {
-                    {name = 'nvim_lsp'},
-                    { name = 'luasnip',              option = { show_autosnippets = true } },
+                    { name = 'nvim_lsp' },
+                    { name = 'luasnip',                option = { show_autosnippets = true } },
                     { name = 'path' },
                     { name = 'vim-dadbod-completion' },
-                    { name = 'buffer' }
+                    { name = 'buffer' },
+                    { name = 'nvim_lsp_signature_help' },
+                    { name = "dotenv" },
+                    { name = "latex_symbols" }
                 },
                 mapping = cmp.mapping.preset.insert({
                     ['<C-Space>'] = cmp.mapping.complete(),
@@ -119,16 +122,32 @@ return {
     },
 
     -- LSP
-  {
-    'neovim/nvim-lspconfig',
-    cmd = {'LspInfo', 'LspInstall', 'LspStart'},
-    event = {'BufReadPre', 'BufNewFile'},
-    dependencies = {
-      {'hrsh7th/cmp-nvim-lsp'},
-      {'williamboman/mason.nvim'},
-      {'williamboman/mason-lspconfig.nvim'},
-      {"icewind/ltex-client.nvim"}
-    },
+    {
+        'neovim/nvim-lspconfig',
+        cmd = { 'LspInfo', 'LspInstall', 'LspStart' },
+        event = { 'BufReadPre', 'BufNewFile' },
+        dependencies = {
+            { 'hrsh7th/cmp-nvim-lsp' },
+            { 'williamboman/mason.nvim' },
+            { 'williamboman/mason-lspconfig.nvim' },
+            { "icewind/ltex-client.nvim" },
+            { 'hrsh7th/cmp-path' },
+            { 'octaltree/cmp-look' },
+            { 'hrsh7th/nvim-cmp' },
+            { 'saadparwaiz1/cmp_luasnip' },
+            { 'hrsh7th/cmp-nvim-lsp-signature-help' },
+            { 'SergioRibera/cmp-dotenv' },
+            { 'hrsh7th/cmp-buffer' },
+            { 'hrsh7th/cmp-latex-symbols' },
+            {
+                'CosmicNvim/cosmic-ui',
+                dependencies = { 'MunifTanjim/nui.nvim', 'nvim-lua/plenary.nvim' },
+                config = function()
+                    require('cosmic-ui').setup()
+                end,
+            }
+
+        },
         init = function()
             -- Reserve a space in the gutter
             -- This will avoid an annoying layout shift in the screen
@@ -150,7 +169,7 @@ return {
             vim.api.nvim_create_autocmd('LspAttach', {
                 desc = 'LSP actions',
                 callback = function(event)
-                    local opts = {buffer = event.buf}
+                    local opts = { buffer = event.buf }
 
                     vim.keymap.set('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
                     vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', opts)
@@ -160,7 +179,7 @@ return {
                     vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>', opts)
                     vim.keymap.set('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<cr>', opts)
                     -- vim.keymap.set('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
-                    vim.keymap.set({'n', 'x'}, '<F3>', '<cmd>lua vim.lsp.buf.format({async = true})<cr>', opts)
+                    vim.keymap.set({ 'n', 'x' }, '<F3>', '<cmd>lua vim.lsp.buf.format({async = true})<cr>', opts)
                     vim.keymap.set('n', '<F4>', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
                     vim.keymap.set('n', '<C-Space>', '<cmd>lua require("cosmic-ui").code_actions()<cr>', opts)
                     vim.keymap.set('v', '<C-Space>', '<cmd>lua require("cosmic-ui").code_actions()<cr>', opts)
@@ -182,11 +201,10 @@ return {
                     "ltex",
                     "jsonls",
                     "yamlls",
-                    "jinja_lsp",
                     "bashls",
                     "vacuum",
                     "basedpyright",
-                    "ruff_lsp"
+                    "ruff"
 
                 }
                 -- handlers = {
@@ -204,7 +222,6 @@ return {
             local lsp = require('lsp-zero')
             require 'lspconfig'.jsonls.setup {}
             require 'lspconfig'.yamlls.setup {}
-            require 'lspconfig'.jinja_lsp.setup {}
             require 'lspconfig'.bashls.setup {}
             require 'lspconfig'.vacuum.setup {}
             require 'lspconfig'.ltex.setup {
@@ -265,105 +282,105 @@ return {
             require("lspconfig").jdtls.setup {}
 
             -- require("lspconfig").vale_ls.setup{
-                --     filetypes={ "markdown", "text","tex" },
-                -- }
+            --     filetypes={ "markdown", "text","tex" },
+            -- }
 
-                require("lspconfig").docker_compose_language_service.setup {
-                    -- on_attach=lsp.on_attach,
-                    filetypes = { "yml", "yaml" },
-                    -- root_pattern={"docker-compose.yaml", "docker-compose.yml", "compose.yaml", "compose.yml"},
-                    -- cmd={ "docker-compose-langserver", "--stdio" },
-                    -- single_file_support=true
+            require("lspconfig").docker_compose_language_service.setup {
+                -- on_attach=lsp.on_attach,
+                filetypes = { "yml", "yaml" },
+                -- root_pattern={"docker-compose.yaml", "docker-compose.yml", "compose.yaml", "compose.yml"},
+                -- cmd={ "docker-compose-langserver", "--stdio" },
+                -- single_file_support=true
+            }
+
+            require("lspconfig").dockerls.setup {
+                filetypes = { "Dockerfile" }
+            }
+
+            require('lspconfig').typos_lsp.setup({
+                filetypes = { "lua", "go", "python", "yaml", "java", "sql" },
+                -- Logging level of the language server. Logs appear in :LspLog. Defaults to error.
+                cmd_env = { RUST_LOG = "error" },
+                init_options = {
+                    -- Custom config. Used together with any workspace config files, taking precedence for
+                    -- settings declared in both. Equivalent to the typos `--config` cli argument.
+                    config = '~/.config/typos_lsp/typos.toml',
+                    -- How typos are rendered in the editor, eg: as errors, warnings, information, or hints.
+                    -- Defaults to error.
+                    diagnosticSeverity = "Warning"
                 }
+            })
 
-                require("lspconfig").dockerls.setup {
-                    filetypes = { "Dockerfile" }
-                }
-
-                require('lspconfig').typos_lsp.setup({
-                    filetypes = { "lua", "go", "python", "yaml", "java", "sql" },
-                    -- Logging level of the language server. Logs appear in :LspLog. Defaults to error.
-                    cmd_env = { RUST_LOG = "error" },
-                    init_options = {
-                        -- Custom config. Used together with any workspace config files, taking precedence for
-                        -- settings declared in both. Equivalent to the typos `--config` cli argument.
-                        config = '~/.config/typos_lsp/typos.toml',
-                        -- How typos are rendered in the editor, eg: as errors, warnings, information, or hints.
-                        -- Defaults to error.
-                        diagnosticSeverity = "Warning"
-                    }
-                })
-
-                local util = require 'lspconfig.util'
-                require('lspconfig').gopls.setup {
-                    on_attach = function(c, b)
-                        lsp.on_attach(c, b)
-                    end,
-                    settings = {
-                        gopls = {
-                            analyses = {
-                                unusedparams = true,
-                            },
-                            staticcheck = false,
-                            gofumpt = true,
-                            hints = {
-                                assignVariableTypes = true,
-                                compositeLiteralFields = true,
-                                compositeLiteralTypes = true,
-                                constantValues = true,
-                                functionTypeParameters = true,
-                                parameterNames = true,
-                                rangeVariableTypes = true,
-                            },
+            local util = require 'lspconfig.util'
+            require('lspconfig').gopls.setup {
+                on_attach = function(c, b)
+                    lsp.on_attach(c, b)
+                end,
+                settings = {
+                    gopls = {
+                        analyses = {
+                            unusedparams = true,
+                        },
+                        staticcheck = false,
+                        gofumpt = true,
+                        hints = {
+                            assignVariableTypes = true,
+                            compositeLiteralFields = true,
+                            compositeLiteralTypes = true,
+                            constantValues = true,
+                            functionTypeParameters = true,
+                            parameterNames = true,
+                            rangeVariableTypes = true,
                         },
                     },
-                    root_dir = function(fname)
-                        -- see: https://github.com/neovim/nvim-lspconfig/issues/804
-                        local mod_cache = vim.trim(vim.fn.system 'go env GOMODCACHE')
-                        if fname:sub(1, #mod_cache) == mod_cache then
-                            local clients = vim.lsp.get_active_clients { name = 'gopls' }
-                            if #clients > 0 then
-                                return clients[#clients].config.root_dir
-                            end
+                },
+                root_dir = function(fname)
+                    -- see: https://github.com/neovim/nvim-lspconfig/issues/804
+                    local mod_cache = vim.trim(vim.fn.system 'go env GOMODCACHE')
+                    if fname:sub(1, #mod_cache) == mod_cache then
+                        local clients = vim.lsp.get_active_clients { name = 'gopls' }
+                        if #clients > 0 then
+                            return clients[#clients].config.root_dir
                         end
-                        return util.root_pattern 'go.work' (fname) or util.root_pattern('go.mod', '.git')(fname)
-                    end,
-                }
+                    end
+                    return util.root_pattern 'go.work' (fname) or util.root_pattern('go.mod', '.git')(fname)
+                end,
+            }
 
-                -- Configure `ruff-lsp`.
-                -- See: https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#ruff_lsp
-                -- For the default config, along with instructions on how to customize the settings
-                require('lspconfig').ruff_lsp.setup {
-                    init_options = {
-                        settings = {
-                            -- Any extra CLI arguments for `ruff` go here.
-                            args = {},
-                        }
+            -- Configure `ruff-lsp`.
+            -- See: https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#ruff_lsp
+            -- For the default config, along with instructions on how to customize the settings
+            require('lspconfig').ruff.setup {
+                init_options = {
+                    settings = {
+                        -- Any extra CLI arguments for `ruff` go here.
+                        args = {},
                     }
                 }
+            }
 
-                require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
+            require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
 
-                require('lspconfig').basedpyright.setup {
-                    settings = {
-                        basedpyright = {
-                            -- Using Ruff's import organizer
-                            disableOrganizeImports = true,
-                            typeCheckingMode = 'basic',
-                            analysis = {
-                                autoSearchPaths = true,
-                                useLibraryCodeForTypes = true,
-                                diagnosticMode = 'openFilesOnly'
-                            }
-                        },
-                        python = {
-                            analysis = {
-                                -- Ignore all files for analysis to exclusively use Ruff for linting
-                                ignore = { '*' },
-                            },
+            require('lspconfig').basedpyright.setup {
+                settings = {
+                    basedpyright = {
+                        -- Using Ruff's import organizer
+                        disableOrganizeImports = true,
+                        typeCheckingMode = 'basic',
+                        analysis = {
+                            autoSearchPaths = true,
+                            useLibraryCodeForTypes = true,
+                            diagnosticMode = 'openFilesOnly'
+                        }
+                    },
+                    python = {
+                        analysis = {
+                            -- Ignore all files for analysis to exclusively use Ruff for linting
+                            ignore = { '*' },
                         },
                     },
-                }
-            end
-        }
+                },
+            }
+        end
     }
+}
