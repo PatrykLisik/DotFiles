@@ -96,7 +96,10 @@ return {
             local cmp = require('cmp')
 
             cmp.setup({
-
+                preselect = cmp.PreselectMode.None,
+                completion = {
+                    completeopt = 'menu,menuone,noinsert'
+                },
                 sources = {
                     { name = 'nvim_lsp' },
                     { name = 'luasnip',                option = { show_autosnippets = true } },
@@ -105,9 +108,24 @@ return {
                     { name = 'buffer' },
                     { name = 'nvim_lsp_signature_help' },
                     { name = "dotenv" },
-                    { name = "latex_symbols" }
+                    { name = "latex_symbols" },
+                    -- {
+                    --     name = "cmp_yanky",
+                    --     option = {
+                    --         -- only suggest items which match the current filetype
+                    --         onlyCurrentFiletype = false,
+                    --         -- only suggest items with a minimum length
+                    --         minLength = 3,
+                    --     },
+                    -- },
+                    { name = "pypi", keyword_length = 4 },
+                    { name = "go_pkgs" },
+                    { name = 'calc' },
+                    { name = 'nvim_lua' }
                 },
                 mapping = cmp.mapping.preset.insert({
+
+                    ['<CR>'] = cmp.mapping.confirm({ select = false }),
                     ['<C-Space>'] = cmp.mapping.complete(),
                     ['<C-u>'] = cmp.mapping.scroll_docs(-4),
                     ['<C-d>'] = cmp.mapping.scroll_docs(4),
@@ -139,6 +157,15 @@ return {
             { 'SergioRibera/cmp-dotenv' },
             { 'hrsh7th/cmp-buffer' },
             { 'hrsh7th/cmp-latex-symbols' },
+            -- { "chrisgrieser/cmp_yanky" },
+            {
+                "vrslev/cmp-pypi",
+                dependencies = { "nvim-lua/plenary.nvim" },
+                ft = "toml",
+            },
+            {"Snikimonkd/cmp-go-pkgs"},
+            {"hrsh7th/cmp-calc"},
+            {"hrsh7th/cmp-nvim-lua"},
             {
                 'CosmicNvim/cosmic-ui',
                 dependencies = { 'MunifTanjim/nui.nvim', 'nvim-lua/plenary.nvim' },
