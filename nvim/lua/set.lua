@@ -47,3 +47,18 @@ vim.env.PATH = "/snap/bin/npm:"..vim.env.PATH
 vim.g.netrw_preview   = 1
 vim.g.netrw_liststyle = 3
 vim.g.netrw_winsize   = 30
+
+
+vim.api.nvim_create_autocmd(
+    {
+        "BufNewFile",
+        "BufRead",
+    },
+    {
+        pattern = "*.tex,*.bib",
+        callback = function()
+                local buf = vim.api.nvim_get_current_buf()
+                vim.api.nvim_buf_set_option(buf, "filetype", "tex")
+        end
+    }
+)
