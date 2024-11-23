@@ -4,16 +4,17 @@ return {
         "nvim-lua/plenary.nvim",
         "nvim-treesitter/nvim-treesitter",
     },
-    lazy = false,
+
+    keys = {
+        {
+            "<leader>rr",
+            function() require('telescope').extensions.refactoring.refactors() end,
+            mode = { "n", "x" }
+        }
+    },
     config = function()
         require("refactoring").setup()
-
         require("telescope").load_extension("refactoring")
-
-        vim.keymap.set(
-            { "n", "x" },
-            "<leader>rr",
-            function() require('telescope').extensions.refactoring.refactors() end
-        )
     end
+
 }

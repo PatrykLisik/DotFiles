@@ -1,10 +1,10 @@
 return {
     "ThePrimeagen/harpoon",
+    keys = {
+        { "<leader>a", function() require("harpoon.mark").add_file() end},
+        { "<leader>e", function() require("harpoon.ui").toggle_quick_menu() end}
+    },
     config = function()
-        local mark = require("harpoon.mark")
-        local ui = require("harpoon.ui")
-
-
         require("harpoon").setup({
             global_settings = {
                 -- sets the marks upon calling `toggle` on the ui, instead of require `:w`.
@@ -32,8 +32,6 @@ return {
             }
         })
 
-        vim.keymap.set("n", "<leader>a", mark.add_file)
-        vim.keymap.set("n", "<leader>e", ui.toggle_quick_menu)
     end
 
 }

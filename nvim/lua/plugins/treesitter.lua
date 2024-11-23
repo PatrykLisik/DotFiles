@@ -14,6 +14,7 @@ return {
     -- end,
     cmd          = { "TSUpdateSync", "TSUpdate", "TSInstall" },
     dependencies = { 'nvim-treesitter/nvim-treesitter-context' },
+    priority= 99,
     config       = function()
         require 'nvim-treesitter.configs'.setup {
             -- A list of parser names, or "all" (the five listed parsers should always be installed)

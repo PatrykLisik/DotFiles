@@ -3,11 +3,48 @@ return {
     tag = '0.1.8',
     -- or                              , branch = '0.1.x',
     dependencies = { 'nvim-lua/plenary.nvim',
-    'nvim-telescope/telescope-file-browser.nvim',
-    'nvim-telescope/telescope-live-grep-args.nvim',
-    'nvim-telescope/telescope-smart-history.nvim',
-    'kkharji/sqlite.lua'
-},
+        'nvim-telescope/telescope-file-browser.nvim',
+        'nvim-telescope/telescope-live-grep-args.nvim',
+        'nvim-telescope/telescope-smart-history.nvim',
+        'kkharji/sqlite.lua'
+    },
+    keys = {
+        { '<leader>ff', function() require('telescope.builtin').find_files() end, mode = 'n' },
+        { '<leader>gg', function() require('telescope.builtin').git_files() end,  mode = 'n' },
+        { '<leader>re', function() require('telescope.builtin').resume() end,  mode = 'n' },
+        {'z=', function() require('telescope.builtin').spell_suggest() end },
+        {'gd', function() require('telescope.builtin').lsp_definitions() end },
+        {'<leader>lr', function() require('telescope.builtin').lsp_references() end },
+        {'<leader>li', function() require('telescope.builtin').lsp_implementations() end },
+        {'<leader>ld', function() require('telescope.builtin').diagnostics() end },
+        {"<leader>fg", ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>"},
+        --https://www.reddit.com/r/neovim/comments/p8wtmn/comment/hx0usg8/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
+        { "<leader>fg", "\"zy<cmd>exec 'Telescope grep_string default_text=' . escape(@z, ' ')<cr>", mode='v'},
+        {'<leader>vh',function() require('telescope.builtin').help_tags() end},
+        {'<leader>fb',function() require('telescope.builtin').current_buffer_fuzzy_find() end},
+        {"<leader>fb",
+            "\"zy<cmd>exec 'Telescope current_buffer_fuzzy_find default_text=' . escape(@z, ' ')<cr>", mode='v'},
+            {'<leader>fo',function() require('telescope.builtin').oldfiles() end},
+        {'<leader>sh', function() require('telescope.builtin').search_history() end},
+        {'<leader>sq', function() require('telescope.builtin').quickfixhistory() end},
+        {'<leader>sk', function() require('telescope.builtin').keymaps() end},
+        {'<leader>re', function() require('telescope.builtin').registers() end},
+        {'<leader>fq', function() require('telescope.builtin').quickfix() end},
+        {'<leader>og', function() require('telescope.builtin').lsp_outgoing_calls() end  },
+        {'<leader>ig', function() require('telescope.builtin').lsp_incoming_calls() end },
+        -- open file_browser with the path of the current buffer
+        {"<leader>bf", ":Telescope file_browser path=%:p:h select_buffer=true<CR>"},
+
+        -- Alternatively, using lua API
+        {"<leader>ba", function()
+            require("telescope").extensions.file_browser.file_browser()
+        end},
+
+        {'<leader>cc', ":Easypick changed_files<CR><ESC>"},
+        -- search clipboard history
+        { "<leader>hh", ":Telescope neoclip<CR>"}
+
+    },
     config = function()
         require('telescope').setup {
             defaults = {
@@ -85,55 +122,16 @@ return {
             },
         }
 
-        local builtin = require('telescope.builtin')
-
-        vim.keymap.set('n', '<leader>ff', builtin.find_files, { noremap = true })
-        vim.keymap.set('n', '<leader>gg', builtin.git_files, {})
-        vim.keymap.set('n', '<leader>tr', builtin.resume, {})
-        vim.keymap.set('n', 'z=', builtin.spell_suggest, { noremap = true })
-        vim.keymap.set('n', 'gd', builtin.lsp_definitions, { noremap = true })
-        vim.keymap.set('n', '<leader>lr', builtin.lsp_references, { noremap = true })
-        vim.keymap.set('n', '<leader>li', builtin.lsp_implementations, { noremap = true })
-        vim.keymap.set('n', '<leader>ld', builtin.diagnostics, { noremap = true, })
-
-        vim.keymap.set("n", "<leader>fg", ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>")
-        --https://www.reddit.com/r/neovim/comments/p8wtmn/comment/hx0usg8/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
-        vim.keymap.set("v", "<leader>fg", "\"zy<cmd>exec 'Telescope grep_string default_text=' . escape(@z, ' ')<cr>")
-        vim.keymap.set('n', '<leader>vh', builtin.help_tags, {})
-        vim.keymap.set('n', '<leader>fb', builtin.current_buffer_fuzzy_find, {})
-        vim.keymap.set("v", "<leader>fb",
-            "\"zy<cmd>exec 'Telescope current_buffer_fuzzy_find default_text=' . escape(@z, ' ')<cr>")
-        vim.keymap.set('n', '<leader>fo', builtin.oldfiles, {})
-        vim.keymap.set('n', '<leader>sh', builtin.search_history, {})
-        vim.keymap.set('n', '<leader>sq', builtin.quickfixhistory, {})
-        vim.keymap.set('n', '<leader>sk', builtin.keymaps, {})
-        vim.keymap.set('n', '<leader>re', builtin.registers, {})
-        vim.keymap.set('n', '<leader>fq', builtin.quickfix, {})
-
-
-
-        vim.keymap.set('n', '<leader>og', builtin.lsp_outgoing_calls, {})
-        vim.keymap.set('n', '<leader>ig', builtin.lsp_incoming_calls, {})
 
 
         require("telescope").load_extension "file_browser"
 
-        -- open file_browser with the path of the current buffer
-        vim.keymap.set("n", "<leader>bf", ":Telescope file_browser path=%:p:h select_buffer=true<CR>")
-
-        -- Alternatively, using lua API
-        vim.keymap.set("n", "<leader>ba", function()
-            require("telescope").extensions.file_browser.file_browser()
-        end)
         --
         -- vim.builtin.telescope.defaults.preview = { treesitter = false }
 
         vim.g.telescope_changed_files_base_branch = "master"
-        vim.keymap.set('n', '<leader>cc', ":Easypick changed_files<CR><ESC>", {})
 
         require('telescope').load_extension('smart_history')
 
-        -- search clipboard history
-        vim.keymap.set("n", "<leader>hh", ":Telescope neoclip<CR>")
     end
 }
