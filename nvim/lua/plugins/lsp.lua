@@ -252,7 +252,28 @@ return {
             require 'lspconfig'.bashls.setup {}
             require 'lspconfig'.vacuum.setup {}
             require 'lspconfig'.ltex.setup {
-                on_attach = lsp.on_attach,
+                on_attach = function ()
+                    lsp.on_attach()
+                    os.execute([[docker start languagetool ||  docker run -d \
+                    --name languagetool \
+                    --restart unless-stopped \
+                    --memory=300m \
+                    --cpus=".5" \
+                    --cap-drop ALL \
+                    --cap-add CAP_SETUID \
+                    --cap-add CAP_SETGID \
+                    --cap-add CAP_CHOWN \
+                    --security-opt no-new-privileges \
+                    --publish 8010:8010 \
+                    --env download_ngrams_for_langs=en \
+                    --read-only \
+                    --tmpfs /tmp \
+                    --volume ~/.local/share/nvim/languagetool/ngrams:/ngrams \
+                    --volume ~/.local/share/nvim/languagetool/fasttext:/fasttext \
+                    meyay/languagetool:latest
+                    ]]
+                )
+                end,
                 settings = {
                     ltex = {
                         language = "pl-PL",
