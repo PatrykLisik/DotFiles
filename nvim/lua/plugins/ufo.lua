@@ -2,6 +2,7 @@ return {
     'kevinhwang91/nvim-ufo',
     dependencies = { 'kevinhwang91/promise-async' },
     keys = {
+        { 'za'},
         { 'zR', function() require('ufo').openAllFolds() end },
         { 'zM', function() require('ufo').closeAllFolds() end },
         { 'zr', function() require('ufo').openFoldsExceptKinds() end },
