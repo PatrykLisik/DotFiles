@@ -51,6 +51,7 @@ return {
                 file_ignore_patterns = {
                     "inv%-dev/.",
                     ".git/",
+                    ".venv/"
                     -- "%.env"
                 },
                 initial_mode = "normal",
