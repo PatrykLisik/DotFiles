@@ -6,7 +6,7 @@ return {
         'nvim-telescope/telescope-file-browser.nvim',
         'nvim-telescope/telescope-live-grep-args.nvim',
         'nvim-telescope/telescope-smart-history.nvim',
-        'kkharji/sqlite.lua'
+        'kkharji/sqlite.lua',
     },
     keys = {
         { '<leader>ff', function() require('telescope.builtin').find_files() end, mode = 'n', desc = "description of the keymap group" },
@@ -39,8 +39,6 @@ return {
         {"<leader>ba", function()
             require("telescope").extensions.file_browser.file_browser()
         end},
-
-        {'<leader>cc', ":Easypick changed_files<CR><ESC>"},
         -- search clipboard history
         { "<leader>hh", ":Telescope neoclip<CR>"}
 
