@@ -1,4 +1,5 @@
 return {
     "tpope/vim-fugitive",
-    cmd = { "Git" }
+    cmd = { "Git" },
+    event = { 'BufReadPre', 'BufNewFile' },
 }
