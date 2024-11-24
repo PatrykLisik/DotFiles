@@ -9,7 +9,7 @@ return {
         'kkharji/sqlite.lua'
     },
     keys = {
-        { '<leader>ff', function() require('telescope.builtin').find_files() end, mode = 'n' },
+        { '<leader>ff', function() require('telescope.builtin').find_files() end, mode = 'n', desc = "find files" },
         { '<leader>gg', function() require('telescope.builtin').git_files() end,  mode = 'n' },
         { '<leader>re', function() require('telescope.builtin').resume() end,  mode = 'n' },
         {'z=', function() require('telescope.builtin').spell_suggest() end },
