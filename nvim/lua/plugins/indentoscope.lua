@@ -1,11 +1,12 @@
 return {
     'echasnovski/mini.indentscope',
     version = "*",
+    ft = {'python'},
     opts = {
         -- Draw options
         draw = {
             -- Delay (in ms) between event and start of drawing scope indicator
-            delay = 25,
+            delay = 200,
 
             -- Animation rule for scope's first drawing. A function which, given
             -- next and total step numbers, returns wait time (in ms). See
@@ -23,8 +24,8 @@ return {
         -- Module mappings. Use `''` (empty string) to disable one.
         mappings = {
             -- Textobjects
-            object_scope = 'ii',
-            object_scope_with_border = 'ai',
+            object_scope = '<leader>ii',
+            object_scope_with_border = '<leader>ai',
 
             -- Motions (jump to respective border line; if not present - body line)
             goto_top = '[i',
@@ -35,7 +36,7 @@ return {
         options = {
             -- Type of scope's border: which line(s) with smaller indent to
             -- categorize as border. Can be one of: 'both', 'top', 'bottom', 'none'.
-            border = 'both',
+            border = 'top',
 
             -- Whether to use cursor column when computing reference indent.
             -- Useful to see incremental scopes with horizontal cursor movements.

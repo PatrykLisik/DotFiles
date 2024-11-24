@@ -118,7 +118,7 @@ return {
                     --         minLength = 3,
                     --     },
                     -- },
-                    { name = "pypi", keyword_length = 4 },
+                    { name = "pypi",                   keyword_length = 4 },
                     { name = "go_pkgs" },
                     { name = 'calc' },
                     { name = 'nvim_lua' }
@@ -163,9 +163,9 @@ return {
                 dependencies = { "nvim-lua/plenary.nvim" },
                 ft = "toml",
             },
-            {"Snikimonkd/cmp-go-pkgs"},
-            {"hrsh7th/cmp-calc"},
-            {"hrsh7th/cmp-nvim-lua"},
+            { "Snikimonkd/cmp-go-pkgs" },
+            { "hrsh7th/cmp-calc" },
+            { "hrsh7th/cmp-nvim-lua" },
             {
                 'CosmicNvim/cosmic-ui',
                 dependencies = { 'MunifTanjim/nui.nvim', 'nvim-lua/plenary.nvim' },
@@ -252,13 +252,11 @@ return {
             require 'lspconfig'.bashls.setup {}
             require 'lspconfig'.vacuum.setup {}
             require 'lspconfig'.ltex.setup {
-                on_attach = function ()
+                on_attach = function()
                     lsp.on_attach()
-                    os.execute([[docker start languagetool ||  docker run -d \
+                    os.execute([[docker start languagetool > /dev/null 2>&1 ||  docker run -d \
                     --name languagetool \
                     --restart unless-stopped \
-                    --memory=300m \
-                    --cpus=".5" \
                     --cap-drop ALL \
                     --cap-add CAP_SETUID \
                     --cap-add CAP_SETGID \
@@ -270,9 +268,10 @@ return {
                     --tmpfs /tmp \
                     --volume ~/.local/share/nvim/languagetool/ngrams:/ngrams \
                     --volume ~/.local/share/nvim/languagetool/fasttext:/fasttext \
-                    meyay/languagetool:latest
+                    meyay/languagetool:latest \
+                    > /dev/null 2>&1
                     ]]
-                )
+                    )
                 end,
                 settings = {
                     ltex = {
@@ -418,13 +417,18 @@ return {
                         analysis = {
                             autoSearchPaths = true,
                             useLibraryCodeForTypes = true,
-                            diagnosticMode = 'openFilesOnly'
+                            diagnosticMode = 'openFilesOnly',
+                            inlayHints = {
+                                callArgumentNames = true,
+                                variableTypes = true
+                            }
                         }
                     },
                     python = {
                         analysis = {
                             -- Ignore all files for analysis to exclusively use Ruff for linting
                             ignore = { '*' },
+
                         },
                     },
                 },

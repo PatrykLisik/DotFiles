@@ -1,8 +1,13 @@
+local ls = require("luasnip")
+
 
 return {
-    require("luasnip").add_snippets("plain",
-    { trig = "article" },
-    { t([[
+    -- To return multiple snippets, use one `return` statement per snippet file
+    -- and return a table of Lua snippets.
+    ls.snippet(
+        "article",
+        { ls.text_node(
+            [[
     \documentclass[12pt]{article}
     \usepackage[utf8]{inputenc}
     \usepackage{polski}
@@ -26,6 +31,10 @@ return {
     \section*{Rozwiązanie}
 
     \end{document}
-    ]]) }
+]]) }
+    ),
+    ls.snippet(
+        "ltex lang",
+        { ls.text_node("% LTeX: language=pl-PL") }
     ),
 }
