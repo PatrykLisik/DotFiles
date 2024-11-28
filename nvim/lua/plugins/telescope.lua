@@ -17,7 +17,7 @@ return {
         {'<leader>lr', function() require('telescope.builtin').lsp_references() end },
         {'<leader>li', function() require('telescope.builtin').lsp_implementations() end },
         {'<leader>ld', function() require('telescope.builtin').diagnostics() end },
-        {"<leader>fg", ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>"},
+        {"<leader>fg", function() require('telescope').extensions.live_grep_args.live_grep_args() end},
         --https://www.reddit.com/r/neovim/comments/p8wtmn/comment/hx0usg8/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
         { "<leader>fg", "\"zy<cmd>exec 'Telescope grep_string default_text=' . escape(@z, ' ')<cr>", mode='v'},
         {'<leader>vh',function() require('telescope.builtin').help_tags() end},
@@ -28,7 +28,6 @@ return {
         {'<leader>sh', function() require('telescope.builtin').search_history() end},
         {'<leader>sq', function() require('telescope.builtin').quickfixhistory() end},
         {'<leader>sk', function() require('telescope.builtin').keymaps() end},
-        {'<leader>re', function() require('telescope.builtin').registers() end},
         {'<leader>fq', function() require('telescope.builtin').quickfix() end},
         {'<leader>og', function() require('telescope.builtin').lsp_outgoing_calls() end  },
         {'<leader>ig', function() require('telescope.builtin').lsp_incoming_calls() end },
@@ -60,7 +59,17 @@ return {
                     '--with-filename',
                     '--line-number',
                     '--column',
-                    '--smart-case' },
+                    '--smart-case',
+                    "--glob=!**/.git/*",
+                    "--glob=!**/.idea/*",
+                    "--glob=!**/.vscode/*",
+                    "--glob=!**/build/*",
+                    "--glob=!**/dist/*",
+                    "--glob=!**/yarn.lock",
+                    "--glob=!**/package-lock.json",
+                    "--glob=!**/.venv/**",
+                    "--glob=!**/venv/**",
+                },
                 history = {
                     path = '~/.local/share/nvim/telescope_history2.sqlite3',
                     limit = 100,
@@ -92,12 +101,17 @@ return {
                     -- map actions.which_key to <C-h> (default: <C-/>)
                     -- actions.which_key shows the mappings for your picker,
                     -- e.g. git_{create, delete, ...}_branch for the git_branches picker
-                    ["<C-h>"] = "which_key"
+                    ["<C-h>"] = "which_key",
+                    ["<C-j>"] = require('telescope.actions').cycle_history_next,
+                    ["<C-k>"] = require('telescope.actions').cycle_history_prev,
+                    ["<C-a>"] =  require("trouble.sources.telescope").add,
+                    ["<C-l>"] =  require("trouble.sources.telescope").open
                 },
                 n = {
-                    ["C-j"] = require('telescope.actions').cycle_history_next,
-                    ["C-k"] = require('telescope.actions').cycle_history_prev,
-
+                    ["<C-j>"] = require('telescope.actions').cycle_history_next,
+                    ["<C-k>"] = require('telescope.actions').cycle_history_prev,
+                    ["<C-a>"] =  require("trouble.sources.telescope").add,
+                    ["<C-l>"] =  require("trouble.sources.telescope").open
                 }
             },
             pickers = {
@@ -116,6 +130,8 @@ return {
                         "--glob=!**/dist/*",
                         "--glob=!**/yarn.lock",
                         "--glob=!**/package-lock.json",
+                        "--glob=!**/.venv/**",
+                        "--glob=!**/venv/**",
                     },
                 },
             },
