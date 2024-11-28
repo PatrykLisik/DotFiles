@@ -1,11 +1,12 @@
 return {
     'nvim-lualine/lualine.nvim',
-    dependencies = { 'nvim-tree/nvim-web-devicons',
+    dependencies = {
+        'nvim-tree/nvim-web-devicons',
+        'folke/trouble.nvim',
         {
             'linrongbin16/lsp-progress.nvim',
             config = function()
-                require(
-                    'lsp-progress').setup()
+                require('lsp-progress').setup()
             end
         } },
     opts = {
@@ -52,6 +53,6 @@ return {
         tabline = {},
         winbar = {},
         inactive_winbar = {},
-        extensions = {}
+        extensions = { 'trouble', 'fugitive' }
     }
 }
