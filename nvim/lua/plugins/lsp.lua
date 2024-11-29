@@ -101,12 +101,12 @@ return {
                     completeopt = 'menu,menuone,noinsert'
                 },
                 sources = {
+                    { name = 'nvim_lsp_signature_help' },
                     { name = 'nvim_lsp' },
-                    { name = 'luasnip',                option = { show_autosnippets = true } },
                     { name = 'path' },
                     { name = 'vim-dadbod-completion' },
                     { name = 'buffer' },
-                    { name = 'nvim_lsp_signature_help' },
+                    { name = 'luasnip',                option = { show_autosnippets = true } },
                     { name = "dotenv" },
                     { name = "latex_symbols" },
                     -- {
@@ -205,6 +205,7 @@ return {
                     vim.keymap.set('n', 'go', '<cmd>lua vim.lsp.buf.type_definition()<cr>', opts)
                     vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>', opts)
                     vim.keymap.set('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<cr>', opts)
+                    vim.keymap.set('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<cr>', opts)
                     -- vim.keymap.set('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
                     vim.keymap.set({ 'n', 'x' }, '<F3>', '<cmd>lua vim.lsp.buf.format({async = true})<cr>', opts)
                     vim.keymap.set('n', '<F4>', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
