@@ -1,33 +1,18 @@
 return {
     "ThePrimeagen/harpoon",
-    keys = {
-        { "<leader>a", function() require("harpoon.mark").add_file() end },
-        { "<leader>e", function() require("harpoon.ui").toggle_quick_menu() end }
-    },
-    opts = {
-        global_settings = {
-            -- sets the marks upon calling `toggle` on the ui, instead of require `:w`.
-            save_on_toggle = false,
-
-            -- saves the harpoon file upon every change. disabling is unrecommended.
-            save_on_change = true,
-
-            -- sets harpoon to run the command immediately as it's passed to the terminal when calling `sendCommand`.
-            enter_on_sendcmd = false,
-
-            -- closes any tmux windows harpoon that harpoon creates when you close Neovim.
-            tmux_autoclose_windows = false,
-
-            -- filetypes that you want to prevent from adding to the harpoon list menu.
-            excluded_filetypes = { "harpoon" },
-
-            -- set marks specific to each git branch inside git repository
-            mark_branch = true,
-
-            -- enable tabline with harpoon marks
-            tabline = false,
-            tabline_prefix = "   ",
-            tabline_suffix = "   ",
+    branch = "harpoon2",
+    dependencies = { 'letieu/harpoon-lualine', { "nvim-lua/plenary.nvim" } },
+    keys = function()
+        local harpoon = require("harpoon")
+        return {
+            { "<leader>a", function() harpoon:list():add() end },
+            { "<leader>e", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end },
+            { "<leader>1",     function() harpoon:list():select(1) end },
+            { "<leader>2",     function() harpoon:list():select(2) end },
+            { "<leader>3",     function() harpoon:list():select(3) end },
+            { "<leader>4",     function() harpoon:list():select(4) end },
+            { "<leader>5",     function() harpoon:list():select(5) end }
         }
-    }
+    end,
+    opts = {}
 }
