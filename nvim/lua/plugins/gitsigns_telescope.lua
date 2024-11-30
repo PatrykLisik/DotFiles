@@ -6,7 +6,7 @@ return {
     },
     keys = {
 
-        {'<leader>cc', function() require('telescope').extensions.git_signs.git_signs() end},
+        {'<leader>hl', function() require('telescope').extensions.git_signs.git_signs() end},
     },
     opts= function()
         require("telescope").load_extension("git_signs")
