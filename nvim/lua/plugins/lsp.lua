@@ -192,6 +192,7 @@ return {
                     ]]
                     )
                 end,
+                filetypes = { "tex","latex", "bib", "plaintext", "text" },
                 settings = {
                     ltex = {
                         language = "pl-PL",
@@ -203,7 +204,6 @@ return {
                         }
                     }
                 },
-                filetypes = { "tex", "bib", "plaintext", "text" }
 
             }
             require("ltex-client").setup({
@@ -213,6 +213,7 @@ return {
             require('lspconfig').texlab.setup {
                 on_attach = lsp.on_attach,
                 cmd = { "texlab" },
+                filetypes = {"tex", "latex"},
                 settings = {
                     texlab = {
                         rootDirectory = nil,
