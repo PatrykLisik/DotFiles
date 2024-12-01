@@ -1,8 +1,8 @@
 return {
     'kevinhwang91/nvim-ufo',
     dependencies = { 'kevinhwang91/promise-async' },
+    event = { 'BufReadPre', 'BufNewFile' },
     keys = {
-        { 'za'},
         { 'zR', function() require('ufo').openAllFolds() end },
         { 'zM', function() require('ufo').closeAllFolds() end },
         { 'zr', function() require('ufo').openFoldsExceptKinds() end },
