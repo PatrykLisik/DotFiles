@@ -1,3 +1,4 @@
+-- https://github.com/hrsh7th/nvim-cmp/discussions/1834
 local lspkind_comparator = function(conf)
     local lsp_types = require("cmp.types").lsp
     return function(entry1, entry2)
@@ -48,7 +49,6 @@ return {
                     completeopt = 'menu,menuone,noinsert'
                 },
                 sources = {
-                    { name = 'nvim_lsp_signature_help' },
                     { name = 'nvim_lsp' },
                     { name = 'path' },
                     { name = 'vim-dadbod-completion' },
@@ -98,12 +98,12 @@ return {
                                 Method = 10,
                                 Operator = 10,
                                 Reference = 10,
+                                Class = 10,
                                 Struct = 10,
-                                File = 8,
                                 Folder = 8,
-                                Class = 5,
                                 Color = 5,
                                 Module = 5,
+                                File = 5,
                                 Keyword = 2,
                                 Constructor = 1,
                                 Interface = 1,
@@ -114,9 +114,11 @@ return {
                                 Value = 1,
                             },
                         }),
-                        cmp.config.compare.score,
-                        require "cmp-under-comparator".under,
+                        cmp.config.compare.locality,
                         cmp.config.compare.recently_used,
+                        cmp.config.compare.score, -- based on :  score = score + ((#sources - (source_index - 1)) * sorting.priority_weight)
+                        cmp.config.compare.offset,
+                        require "cmp-under-comparator".under,
                     }
                 }
             })
@@ -137,7 +139,6 @@ return {
             { 'octaltree/cmp-look' },
             { 'hrsh7th/nvim-cmp' },
             { 'saadparwaiz1/cmp_luasnip' },
-            { 'hrsh7th/cmp-nvim-lsp-signature-help' },
             { 'SergioRibera/cmp-dotenv' },
             { 'hrsh7th/cmp-buffer' },
             { 'hrsh7th/cmp-latex-symbols' },
@@ -156,7 +157,8 @@ return {
                 config = function()
                     require('cosmic-ui').setup()
                 end,
-            }
+            },
+            {'ray-x/lsp_signature.nvim'}
 
         },
         init = function()
@@ -395,6 +397,17 @@ return {
             require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
 
             require('lspconfig').basedpyright.setup {
+                on_attach = function (client, bufnr)
+                    local opts = {
+                        bind = true,
+                        handler_opts = {
+                            border = "rounded"
+                        },
+                        -- hint_inline = function() return true  end,
+                        hint_prefix  = ""
+                    }
+                    require"lsp_signature".on_attach(opts, bufnr)
+                end,
                 settings = {
                     basedpyright = {
                         -- Using Ruff's import organizer
@@ -420,5 +433,16 @@ return {
                 },
             }
         end
+    },
+    {
+        "ray-x/lsp_signature.nvim",
+        event = "InsertEnter",
+        opts = {
+            bind = true,
+            handler_opts = {
+                border = "rounded"
+            },
+            hint_inline = function() return true  end
+        },
     }
 }
