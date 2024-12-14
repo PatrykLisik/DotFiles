@@ -26,10 +26,6 @@ local lspkind_comparator = function(conf)
     end
 end
 
-local label_comparator = function(entry1, entry2)
-    return entry1.completion_item.label < entry2.completion_item.label
-end
-
 return {
     {
         'VonHeikemen/lsp-zero.nvim',
@@ -42,6 +38,7 @@ return {
     {
         'hrsh7th/nvim-cmp',
         event = 'InsertEnter',
+        dependencies={'lukas-reineke/cmp-under-comparator'},
         config = function()
             local cmp = require('cmp')
 
@@ -117,7 +114,9 @@ return {
                                 Value = 1,
                             },
                         }),
-                        label_comparator,
+                        cmp.config.compare.score,
+                        require "cmp-under-comparator".under,
+                        cmp.config.compare.recently_used,
                     }
                 }
             })
