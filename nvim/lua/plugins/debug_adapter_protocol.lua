@@ -59,32 +59,35 @@ return {
             end
 
             require('dap-python').setup()
-            table.insert(require 'dap'.configurations.python, {
-                type = 'python',
-                request = 'launch',
-                name = "Launch file",
-                program = "${file}",
-                pythonPath = pythonPath()
-            })
-
-            table.insert(require 'dap'.configurations.python, {
-                type = 'python',
-                request = 'launch',
-                name = "Pytest",
-                module = "pytest",
-                -- args = { "-vvv", "--no-cov" },
-                console = "integratedTerminal",
-                pythonPath = pythonPath()
-            })
-            table.insert(require 'dap'.configurations.python, {
-                type = 'python',
-                request = 'launch',
-                name = "Pytest current file",
-                module = "pytest",
-                -- args = { "-vvv", "--no-cov", "${file}" },
-                console = "integratedTerminal",
-                pythonPath = pythonPath()
-            })
+            table.insert(require 'dap'.configurations.python,
+                {
+                    {
+                        type = 'python',
+                        request = 'launch',
+                        name = "Launch file",
+                        program = "${file}",
+                        pythonPath = pythonPath()
+                    },
+                    {
+                        type = 'python',
+                        request = 'launch',
+                        name = "Pytest",
+                        module = "pytest",
+                        -- args = { "-vvv", "--no-cov" },
+                        console = "integratedTerminal",
+                        pythonPath = pythonPath()
+                    },
+                    {
+                        type = 'python',
+                        request = 'launch',
+                        name = "Pytest current file",
+                        module = "pytest",
+                        -- args = { "-vvv", "--no-cov", "${file}" },
+                        console = "integratedTerminal",
+                        pythonPath = pythonPath()
+                    }
+                }
+            )
         end,
     },
     {
