@@ -39,7 +39,7 @@ return {
     {
         'hrsh7th/nvim-cmp',
         event = 'InsertEnter',
-        dependencies={'lukas-reineke/cmp-under-comparator'},
+        dependencies = { 'lukas-reineke/cmp-under-comparator' },
         config = function()
             local cmp = require('cmp')
 
@@ -53,7 +53,7 @@ return {
                     { name = 'path' },
                     { name = 'vim-dadbod-completion' },
                     { name = 'buffer' },
-                    { name = 'luasnip',                option = { show_autosnippets = true } },
+                    { name = 'luasnip',              option = { show_autosnippets = true } },
                     { name = "dotenv" },
                     { name = "latex_symbols" },
                     -- {
@@ -65,7 +65,7 @@ return {
                     --         minLength = 3,
                     --     },
                     -- },
-                    { name = "pypi",                   keyword_length = 4 },
+                    { name = "pypi",                 keyword_length = 4 },
                     { name = "go_pkgs" },
                     { name = 'calc' },
                     { name = 'nvim_lua' }
@@ -92,7 +92,7 @@ return {
                                 Property = 11,
                                 Constant = 10,
                                 Enum = 10,
-                                EnumMember = 10,
+                                EnumMember = 11,
                                 Event = 10,
                                 Function = 10,
                                 Method = 10,
@@ -114,11 +114,14 @@ return {
                                 Value = 1,
                             },
                         }),
-                        cmp.config.compare.locality,
-                        cmp.config.compare.recently_used,
-                        cmp.config.compare.score, -- based on :  score = score + ((#sources - (source_index - 1)) * sorting.priority_weight)
                         cmp.config.compare.offset,
+                        cmp.config.compare.exact,
+                        cmp.config.compare.score,
                         require "cmp-under-comparator".under,
+                        cmp.config.compare.kind,
+                        cmp.config.compare.sort_text,
+                        cmp.config.compare.length,
+                        cmp.config.compare.order,
                     }
                 }
             })
@@ -158,7 +161,7 @@ return {
                     require('cosmic-ui').setup()
                 end,
             },
-            {'ray-x/lsp_signature.nvim'}
+            { 'ray-x/lsp_signature.nvim' }
 
         },
         init = function()
@@ -397,16 +400,16 @@ return {
             require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
 
             require('lspconfig').basedpyright.setup {
-                on_attach = function (client, bufnr)
+                on_attach = function(client, bufnr)
                     local opts = {
-                        bind = true,
+                        bind         = true,
                         handler_opts = {
                             border = "rounded"
                         },
                         -- hint_inline = function() return true  end,
                         hint_prefix  = ""
                     }
-                    require"lsp_signature".on_attach(opts, bufnr)
+                    require "lsp_signature".on_attach(opts, bufnr)
                 end,
                 settings = {
                     basedpyright = {
@@ -442,7 +445,7 @@ return {
             handler_opts = {
                 border = "rounded"
             },
-            hint_inline = function() return true  end
+            hint_inline = function() return true end
         },
     }
 }
