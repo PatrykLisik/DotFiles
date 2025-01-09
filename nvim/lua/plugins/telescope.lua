@@ -7,9 +7,10 @@ return {
         'nvim-telescope/telescope-live-grep-args.nvim',
         'nvim-telescope/telescope-smart-history.nvim',
         'kkharji/sqlite.lua',
+        "nvim-telescope/telescope-frecency.nvim"
     },
     keys = {
-        { '<leader>ff', function() require('telescope.builtin').find_files() end, mode = 'n', desc = "description of the keymap group" },
+        { '<leader>ff', ":Telescope frecency workspace=CWD path_display={'shorten'}<CR>" },
         { '<leader>gg', function() require('telescope.builtin').git_files() end,  mode = 'n' },
         { '<leader>re', function() require('telescope.builtin').resume() end,  mode = 'n' },
         {'z=', function() require('telescope.builtin').spell_suggest() end },
@@ -43,6 +44,7 @@ return {
 
     },
     config = function()
+        require("telescope").load_extension "frecency"
         require('telescope').setup {
             defaults = {
                 file_ignore_patterns = {
