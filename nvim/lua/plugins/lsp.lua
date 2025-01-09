@@ -84,6 +84,7 @@ return {
                 },
                 sorting = {
                     comparators = {
+                        require "cmp-under-comparator".under,
                         lspkind_comparator({
                             kind_priority = {
                                 Parameter = 14,
@@ -117,7 +118,6 @@ return {
                         cmp.config.compare.offset,
                         cmp.config.compare.exact,
                         cmp.config.compare.score,
-                        require "cmp-under-comparator".under,
                         cmp.config.compare.kind,
                         cmp.config.compare.sort_text,
                         cmp.config.compare.length,
@@ -445,7 +445,9 @@ return {
             handler_opts = {
                 border = "rounded"
             },
-            hint_inline = function() return true end
+            hint_inline = function() return 'eol' end,
+            toggle_key = '<C-k>',
+            select_signature_key = '<C-n>'
         },
     }
 }
