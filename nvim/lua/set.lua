@@ -87,3 +87,12 @@ vim.api.nvim_create_autocmd("LspAttach", {
         }, bufnr)
     end,
 })
+
+
+vim.api.nvim_create_autocmd("BufWinEnter", {
+    callback = function(ev)
+        if vim.bo[ev.buf].filetype == "gitcommit" then
+            vim.cmd([[setlocal spell! spelllang=en,pl]])
+        end
+    end,
+})
