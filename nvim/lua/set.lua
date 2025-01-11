@@ -96,3 +96,15 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
         end
     end,
 })
+
+vim.api.nvim_create_autocmd({"BufWinEnter","BufEnter","FocusGained","InsertLeave"}, {
+    callback = function(ev)
+        vim.cmd([[set relativenumber]])
+    end,
+})
+
+vim.api.nvim_create_autocmd({"BufLeave","FocusLost","InsertEnter"}, {
+    callback = function(ev)
+        vim.cmd([[set norelativenumber]])
+    end,
+})
