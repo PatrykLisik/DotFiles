@@ -35,7 +35,7 @@ vim.cmd("setlocal spell spelllang=en,pl")
 
 vim.cmd.syntax 'off'
 
-vim.env.PATH = "/snap/bin/npm:"..vim.env.PATH
+vim.env.PATH          = "/snap/bin/npm:" .. vim.env.PATH
 
 vim.g.netrw_preview   = 1
 vim.g.netrw_liststyle = 3
@@ -49,19 +49,41 @@ vim.api.nvim_create_autocmd(
     {
         pattern = "*.tex,*.bib",
         callback = function()
-                local buf = vim.api.nvim_get_current_buf()
-                vim.bo[buf].filetype = "latex"
+            local buf = vim.api.nvim_get_current_buf()
+            vim.bo[buf].filetype = "latex"
         end
     }
 )
 
 vim.api.nvim_create_autocmd("BufRead", {
-  callback = function(ev)
-    if vim.bo[ev.buf].buftype == "quickfix" then
-      vim.schedule(function()
-        vim.cmd([[cclose]])
-        vim.cmd([[Trouble qflist open]])
-      end)
-    end
-  end,
+    callback = function(ev)
+        if vim.bo[ev.buf].buftype == "quickfix" then
+            vim.schedule(function()
+                vim.cmd([[cclose]])
+                vim.cmd([[Trouble qflist open]])
+            end)
+        end
+    end,
+})
+
+vim.api.nvim_create_autocmd("LspAttach", {
+    callback = function(args)
+        local bufnr = args.buf
+        local client = vim.lsp.get_client_by_id(args.data.client_id)
+        if vim.tbl_contains({ 'null-ls' }, client.name) then -- blacklist lsp
+            return
+        end
+        require("lsp_signature").on_attach({
+            bind = true,
+            floating_window = false,
+            hint_inline = function() return false end,
+            toggle_key = '<C-p>',
+            select_signature_key = '<C-s>',
+            hint_prefix = {
+                above = "↙ ", -- when the hint is on the line above the current line
+                current = "← ", -- when the hint is on the same line
+                below = "↖ " -- when the hint is on the line below the current line
+            }
+        }, bufnr)
+    end,
 })

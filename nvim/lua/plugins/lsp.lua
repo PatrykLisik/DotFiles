@@ -56,15 +56,6 @@ return {
                     { name = 'luasnip',              option = { show_autosnippets = true } },
                     { name = "dotenv" },
                     { name = "latex_symbols" },
-                    -- {
-                    --     name = "cmp_yanky",
-                    --     option = {
-                    --         -- only suggest items which match the current filetype
-                    --         onlyCurrentFiletype = false,
-                    --         -- only suggest items with a minimum length
-                    --         minLength = 3,
-                    --     },
-                    -- },
                     { name = "pypi",                 keyword_length = 4 },
                     { name = "go_pkgs" },
                     { name = 'calc' },
@@ -400,16 +391,9 @@ return {
             require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
 
             require('lspconfig').basedpyright.setup {
-                on_attach = function(client, bufnr)
-                    local opts = {
-                        bind         = true,
-                        handler_opts = {
-                            border = "rounded"
-                        },
-                        -- hint_inline = function() return true  end,
-                        hint_prefix  = ""
-                    }
-                    require "lsp_signature".on_attach(opts, bufnr)
+                root_dir = function(fname)
+                    return util.root_pattern 'venv' (fname) or util.root_pattern '.venv' (fname) or
+                    util.root_pattern('pyproject.toml')(fname) or util.root_pattern('.git')(fname)
                 end,
                 settings = {
                     basedpyright = {
@@ -422,7 +406,9 @@ return {
                             diagnosticMode = 'openFilesOnly',
                             inlayHints = {
                                 callArgumentNames = true,
-                                variableTypes = true
+                                variableTypes = true,
+                                functionReturnTypes = true,
+                                genericTypes = true
                             }
                         }
                     },
@@ -439,13 +425,11 @@ return {
     },
     {
         "ray-x/lsp_signature.nvim",
-        event = "InsertEnter",
+        event = "VeryLazy",
         opts = {
             bind = true,
-            handler_opts = {
-                border = "rounded"
-            },
-            hint_inline = function() return 'eol' end,
+            floating_window = false,
+            hint_inline = function() return false end,
             toggle_key = '<C-k>',
             select_signature_key = '<C-n>'
         },
