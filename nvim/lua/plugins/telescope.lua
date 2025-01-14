@@ -10,7 +10,7 @@ return {
         "nvim-telescope/telescope-frecency.nvim"
     },
     keys = {
-        { '<leader>ff', ":Telescope frecency workspace=CWD path_display={'shorten'}<CR>" },
+        { '<leader>ff', ":Telescope frecency workspace=CWD <CR>" },
         { '<leader>gg', function() require('telescope.builtin').git_files() end,  mode = 'n' },
         { '<leader>re', function() require('telescope.builtin').resume() end,  mode = 'n' },
         {'z=', function() require('telescope.builtin').spell_suggest() end },
@@ -47,6 +47,8 @@ return {
         require("telescope").load_extension "frecency"
         require('telescope').setup {
             defaults = {
+                path_display = {"smart"},
+                wrap=true,
                 file_ignore_patterns = {
                     "inv%-dev/.",
                     ".git/",
