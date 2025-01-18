@@ -7,7 +7,7 @@ return {
         'nvim-telescope/telescope-live-grep-args.nvim',
         'nvim-telescope/telescope-smart-history.nvim',
         'kkharji/sqlite.lua',
-        "nvim-telescope/telescope-frecency.nvim"
+        "nvim-telescope/telescope-frecency.nvim",
     },
     keys = {
         { '<leader>ff', ":Telescope frecency workspace=CWD <CR>" },
@@ -40,7 +40,8 @@ return {
             require("telescope").extensions.file_browser.file_browser()
         end},
         -- search clipboard history
-        { "<leader>hh", ":Telescope neoclip<CR>"}
+        { "<leader>hh", ":Telescope neoclip<CR>"},
+        { "<leader>fm", ":Telescope mark<CR>"}
 
     },
     config = function()
