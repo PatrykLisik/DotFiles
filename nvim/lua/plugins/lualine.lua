@@ -32,10 +32,6 @@ return {
             lualine_a = { 'mode' },
             lualine_b = { 'branch', 'diff', 'diagnostics' },
             lualine_c = { { 'filename', path = 1 },
-                {
-                    "harpoon2",
-                    no_harpoon = "",
-                },
                 function()
                     -- invoke `progress` here.
                     return require('lsp-progress').progress()

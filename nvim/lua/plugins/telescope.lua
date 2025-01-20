@@ -8,6 +8,7 @@ return {
         'nvim-telescope/telescope-smart-history.nvim',
         'kkharji/sqlite.lua',
         "nvim-telescope/telescope-frecency.nvim",
+        '2kabhishek/markit.nvim' --marks
     },
     keys = {
         { '<leader>ff', ":Telescope frecency workspace=CWD <CR>" },
@@ -41,12 +42,13 @@ return {
         end},
         -- search clipboard history
         { "<leader>hh", ":Telescope neoclip<CR>"},
-        { "<leader>fm", ":Telescope mark<CR>"}
+        { "<leader>e", "<cmd>lua require('telescope').extensions.marks_nvim.marks_list_all()<cr>"}
 
     },
     config = function()
-        require("telescope").load_extension "frecency"
-        require('telescope').setup {
+        local telescope = require("telescope")
+        telescope.load_extension "frecency"
+        telescope.setup {
             defaults = {
                 path_display = {"smart"},
                 wrap=true,
@@ -142,16 +144,16 @@ return {
             },
         }
 
-
-
-        require("telescope").load_extension "file_browser"
+        telescope.load_extension "file_browser"
 
         --
         -- vim.builtin.telescope.defaults.preview = { treesitter = false }
 
         vim.g.telescope_changed_files_base_branch = "master"
 
-        require('telescope').load_extension('smart_history')
+        telescope.load_extension('smart_history')
+
+        telescope.load_extension("marks_nvim")
 
     end
 }
