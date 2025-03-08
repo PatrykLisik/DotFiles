@@ -1,7 +1,11 @@
 return {
     "folke/snacks.nvim",
-azy=false,
+    priority = 1000,
+    lazy = false,
     opts = {
+        bigfile = {},
+        animate = {},
+        quickfile={},
         picker = {
             prompt = " ",
             sources = {
