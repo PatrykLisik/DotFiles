@@ -212,7 +212,8 @@ return {
                     "bashls",
                     "vacuum",
                     "basedpyright",
-                    "ruff"
+                    "ruff",
+                    "rust_analyzer"
 
                 }
                 -- handlers = {
@@ -229,6 +230,13 @@ return {
             -- servers you have installed in your system
             local lsp = require('lsp-zero')
             require 'lspconfig'.jsonls.setup {}
+            require'lspconfig'.rust_analyzer.setup{
+                settings = {
+                    diagnostics = {
+                        enable = false;
+                    }
+                }
+            }
             require 'lspconfig'.yamlls.setup {}
             require 'lspconfig'.bashls.setup {}
             require 'lspconfig'.vacuum.setup {}
