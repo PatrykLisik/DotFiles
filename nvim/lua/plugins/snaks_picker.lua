@@ -6,15 +6,17 @@ return {
         bigfile = {},
         animate = {},
         quickfile={},
+        explorer={},
         picker = {
             prompt = " ",
             sources = {
                 explorer = {
                     layout = {
-                        preset = "telescope",
+                        preset = "default",
                         preview=true
                     },
-                    auto_close = true
+                    auto_close = true,
+                    replace_netrw = true
                 }
             },
             focus = "input",
@@ -22,7 +24,7 @@ return {
                 cycle = true,
                 --- Use the default layout or vertical if the window is too narrow
                 preset = function()
-                    return vim.o.columns >= 120 and "telescope" or "vertical"
+                    return vim.o.columns >= 120 and "default" or "vertical"
                 end,
             },
             ---@class snacks.picker.matcher.Config
@@ -35,14 +37,14 @@ return {
                 file_pos = true, -- support patterns like `file:line:col` and `file:line`
                 -- the bonusses below, possibly require string concatenation and path normalization,
                 -- so this can have a performance impact for large lists and increase memory usage
-                cwd_bonus = false, -- give bonus for matching files in the cwd
+                cwd_bonus = true, -- give bonus for matching files in the cwd
                 frecency = true, -- frecency bonus
                 history_bonus = true, -- give more weight to chronological order
             },
-            sort = {
-                -- default sort is by score, text length and index
-                fields = { "score:desc", "#text", "idx" },
-            },
+            -- sort = {
+            --     -- default sort is by score, text length and index
+            --     fields = { "score:desc", "#text", "idx" },
+            -- },
             ui_select = true, -- replace `vim.ui.select` with the snacks picker
             ---@class snacks.picker.formatters.Config
             formatters = {
@@ -234,11 +236,6 @@ return {
                 keymaps = {
                     nowait = "󰓅 "
                 },
-                tree = {
-                    vertical = "│ ",
-                    middle   = "├╴",
-                    last     = "└╴",
-                },
                 undo = {
                     saved = " ",
                 },
@@ -321,7 +318,7 @@ return {
                 -- path to the sqlite3 library
                 -- If not set, it will try to load the library by name.
                 -- On Windows it will download the library from the internet.
-                sqlite3_path = nil, ---@type string?
+                sqlite3_path = "/usr/bin/sqlite3", ---@type string?
             },
             ---@class snacks.picker.debug
             debug = {
@@ -342,9 +339,9 @@ return {
         { "<leader>/",       function() Snacks.picker.grep() end,                                    desc = "Grep" },
         { "<leader>:",       function() Snacks.picker.command_history() end,                         desc = "Command History" },
         { "<leader>n",       function() Snacks.picker.notifications() end,                           desc = "Notification History" },
-        { "<leader>bf",      function() Snacks.explorer() end,                                       desc = "File Explorer" },
+        { "<leader>bf",      function() Snacks.explorer({follow_file=true}) end,                                       desc = "File Explorer" },
+        { "<leader>ba",      function() Snacks.explorer() end,                                       desc = "File Explorer projest base" },
         -- find
-        { "<leader>fb",      function() Snacks.picker.buffers() end,                                 desc = "Buffers" },
         { "<leader>fc",      function() Snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end, desc = "Find Config File" },
         { "<leader>ff",      function() Snacks.picker.files() end,                                   desc = "Find Files" },
         { "<leader>fg",      function() Snacks.picker.git_files() end,                               desc = "Find Git Files" },
@@ -387,11 +384,11 @@ return {
         { "<leader>su",      function() Snacks.picker.undo() end,                                    desc = "Undo History" },
         { "<leader>uC",      function() Snacks.picker.colorschemes() end,                            desc = "Colorschemes" },
         -- LSP
-        { "ld",              function() Snacks.picker.lsp_definitions() end,                         desc = "Goto Definition" },
-        { "lD",              function() Snacks.picker.lsp_declarations() end,                        desc = "Goto Declaration" },
-        { "lr",              function() Snacks.picker.lsp_references() end,                          nowait = true,                     desc = "References" },
-        { "lI",              function() Snacks.picker.lsp_implementations() end,                     desc = "Goto Implementation" },
-        { "ly",              function() Snacks.picker.lsp_type_definitions() end,                    desc = "Goto T[y]pe Definition" },
+        { "<leader>ld",      function() Snacks.picker.lsp_definitions() end,                         desc = "Goto Definition" },
+        { "<leader>lD",      function() Snacks.picker.lsp_declarations() end,                        desc = "Goto Declaration" },
+        { "<leader>lr",      function() Snacks.picker.lsp_references() end,                          nowait = true,                     desc = "References" },
+        { "<leader>lI",      function() Snacks.picker.lsp_implementations() end,                     desc = "Goto Implementation" },
+        { "<leader>ly",      function() Snacks.picker.lsp_type_definitions() end,                    desc = "Goto T[y]pe Definition" },
         { "<leader>ss",      function() Snacks.picker.lsp_symbols() end,                             desc = "LSP Symbols" },
         { "<leader>sS",      function() Snacks.picker.lsp_workspace_symbols() end,                   desc = "LSP Workspace Symbols" },
     },
