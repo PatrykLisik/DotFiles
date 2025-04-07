@@ -3,17 +3,20 @@ return {
     priority = 1000,
     lazy = false,
     opts = {
-        bigfile = {},
+        bigfile = {
+            size = 3 * 1024 * 1024,
+            line_length = 1000
+        },
         animate = {},
-        quickfile={},
-        explorer={},
+        quickfile = {},
+        explorer = {},
         picker = {
             prompt = " ",
             sources = {
                 explorer = {
                     layout = {
                         preset = "default",
-                        preview=true
+                        preview = true
                     },
                     auto_close = true,
                     replace_netrw = true
@@ -29,22 +32,22 @@ return {
             },
             ---@class snacks.picker.matcher.Config
             matcher = {
-                fuzzy = true, -- use fuzzy matching
-                smartcase = true, -- use smartcase
-                ignorecase = true, -- use ignorecase
-                sort_empty = false, -- sort results when the search string is empty
+                fuzzy = true,          -- use fuzzy matching
+                smartcase = true,      -- use smartcase
+                ignorecase = true,     -- use ignorecase
+                sort_empty = false,    -- sort results when the search string is empty
                 filename_bonus = true, -- give bonus for matching file names (last part of the path)
-                file_pos = true, -- support patterns like `file:line:col` and `file:line`
+                file_pos = true,       -- support patterns like `file:line:col` and `file:line`
                 -- the bonusses below, possibly require string concatenation and path normalization,
                 -- so this can have a performance impact for large lists and increase memory usage
-                cwd_bonus = true, -- give bonus for matching files in the cwd
-                frecency = true, -- frecency bonus
+                cwd_bonus = true,     -- give bonus for matching files in the cwd
+                frecency = true,      -- frecency bonus
                 history_bonus = true, -- give more weight to chronological order
             },
-            -- sort = {
-            --     -- default sort is by score, text length and index
-            --     fields = { "score:desc", "#text", "idx" },
-            -- },
+            sort = {
+                -- default sort is by score, text length and index
+                fields = { "score:desc", "#text", "idx" },
+            },
             ui_select = true, -- replace `vim.ui.select` with the snacks picker
             ---@class snacks.picker.formatters.Config
             formatters = {
@@ -53,46 +56,46 @@ return {
                 },
                 file = {
                     filename_first = false, -- display filename before the file path
-                    truncate = 40, -- truncate the file path to (roughly) this length
-                    filename_only = false, -- only show the filename
-                    icon_width = 2, -- width of the icon (in characters)
-                    git_status_hl = true, -- use the git status highlight group for the filename
+                    truncate = 40,          -- truncate the file path to (roughly) this length
+                    filename_only = false,  -- only show the filename
+                    icon_width = 2,         -- width of the icon (in characters)
+                    git_status_hl = true,   -- use the git status highlight group for the filename
                 },
                 selected = {
                     show_always = false, -- only show the selected column when there are multiple selections
-                    unselected = true, -- use the unselected icon for unselected items
+                    unselected = true,   -- use the unselected icon for unselected items
                 },
                 severity = {
-                    icons = true, -- show severity icons
+                    icons = true,  -- show severity icons
                     level = false, -- show severity level
                     ---@type "left"|"right"
-                    pos = "left", -- position of the diagnostics
+                    pos = "left",  -- position of the diagnostics
                 },
             },
             ---@class snacks.picker.previewers.Config
             previewers = {
                 diff = {
-                    builtin = true, -- use Neovim for previewing diffs (true) or use an external tool (false)
+                    builtin = true,    -- use Neovim for previewing diffs (true) or use an external tool (false)
                     cmd = { "delta" }, -- example to show a diff with delta
                 },
                 git = {
                     builtin = true, -- use Neovim for previewing git output (true) or use git (false)
-                    args = {}, -- additional arguments passed to the git command. Useful to set pager options usin `-c ...`
+                    args = {},      -- additional arguments passed to the git command. Useful to set pager options usin `-c ...`
                 },
                 file = {
                     max_size = 1024 * 1024, -- 1MB
-                    max_line_length = 500, -- max line length
+                    max_line_length = 500,  -- max line length
                     ft = nil, ---@type string? filetype for highlighting. Use `nil` for auto detect
                 },
                 man_pager = nil, ---@type string? MANPAGER env to use for `man` preview
             },
             ---@class snacks.picker.jump.Config
             jump = {
-                jumplist = true, -- save the current position in the jumplist
-                tagstack = false, -- save the current position in the tagstack
+                jumplist = true,   -- save the current position in the jumplist
+                tagstack = false,  -- save the current position in the tagstack
                 reuse_win = false, -- reuse an existing window if the buffer is already open
-                close = true, -- close the picker when jumping/editing to a location (defaults to true)
-                match = false, -- jump to the first match position. (useful for `lines`)
+                close = true,      -- close the picker when jumping/editing to a location (defaults to true)
+                match = false,     -- jump to the first match position. (useful for `lines`)
             },
             toggles = {
                 follow = "f",
@@ -322,12 +325,12 @@ return {
             },
             ---@class snacks.picker.debug
             debug = {
-                scores = false, -- show scores in the list
-                leaks = false, -- show when pickers don't get garbage collected
+                scores = false,   -- show scores in the list
+                leaks = false,    -- show when pickers don't get garbage collected
                 explorer = false, -- show explorer debug info
-                files = false, -- show file debug info
-                grep = false, -- show file debug info
-                proc = false, -- show proc debug info
+                files = false,    -- show file debug info
+                grep = false,     -- show file debug info
+                proc = false,     -- show proc debug info
                 extmarks = false, -- show extmarks errors
             },
         },
@@ -339,7 +342,7 @@ return {
         { "<leader>/",       function() Snacks.picker.grep() end,                                    desc = "Grep" },
         { "<leader>:",       function() Snacks.picker.command_history() end,                         desc = "Command History" },
         { "<leader>n",       function() Snacks.picker.notifications() end,                           desc = "Notification History" },
-        { "<leader>bf",      function() Snacks.explorer({follow_file=true}) end,                                       desc = "File Explorer" },
+        { "<leader>bf",      function() Snacks.explorer({ follow_file = true }) end,                 desc = "File Explorer" },
         { "<leader>ba",      function() Snacks.explorer() end,                                       desc = "File Explorer projest base" },
         -- find
         { "<leader>fc",      function() Snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end, desc = "Find Config File" },
@@ -359,7 +362,7 @@ return {
         { "<leader>sb",      function() Snacks.picker.lines() end,                                   desc = "Buffer Lines" },
         { "<leader>sB",      function() Snacks.picker.grep_buffers() end,                            desc = "Grep Open Buffers" },
         { "<leader>fb",      function() Snacks.picker.grep() end,                                    desc = "Grep" },
-        { "<leader>fg",      function() Snacks.picker.grep_word() end,                               desc = "Visual selection ", mode = {"v", "x" } },
+        { "<leader>fg",      function() Snacks.picker.grep_word() end,                               desc = "Visual selection ",         mode = { "v", "x" } },
         { "<leader>fg",      function() Snacks.picker.grep() end,                                    desc = "Visual selection " },
         -- search
         { '<leader>s"',      function() Snacks.picker.registers() end,                               desc = "Registers" },
@@ -386,7 +389,7 @@ return {
         -- LSP
         { "<leader>ld",      function() Snacks.picker.lsp_definitions() end,                         desc = "Goto Definition" },
         { "<leader>lD",      function() Snacks.picker.lsp_declarations() end,                        desc = "Goto Declaration" },
-        { "<leader>lr",      function() Snacks.picker.lsp_references() end,                          nowait = true,                     desc = "References" },
+        { "<leader>lr",      function() Snacks.picker.lsp_references() end,                          nowait = true,                      desc = "References" },
         { "<leader>lI",      function() Snacks.picker.lsp_implementations() end,                     desc = "Goto Implementation" },
         { "<leader>ly",      function() Snacks.picker.lsp_type_definitions() end,                    desc = "Goto T[y]pe Definition" },
         { "<leader>ss",      function() Snacks.picker.lsp_symbols() end,                             desc = "LSP Symbols" },
