@@ -230,10 +230,10 @@ return {
             -- servers you have installed in your system
             local lsp = require('lsp-zero')
             require 'lspconfig'.jsonls.setup {}
-            require'lspconfig'.rust_analyzer.setup{
+            require 'lspconfig'.rust_analyzer.setup {
                 settings = {
                     diagnostics = {
-                        enable = false;
+                        enable = false,
                     }
                 }
             }
@@ -401,17 +401,17 @@ return {
             require('lspconfig').basedpyright.setup {
                 root_dir = function(fname)
                     return util.root_pattern 'venv' (fname) or util.root_pattern '.venv' (fname) or
-                    util.root_pattern('pyproject.toml')(fname) or util.root_pattern('.git')(fname)
+                        util.root_pattern('pyproject.toml')(fname) or util.root_pattern('.git')(fname)
                 end,
                 settings = {
                     basedpyright = {
                         -- Using Ruff's import organizer
                         disableOrganizeImports = true,
-                        typeCheckingMode = 'basic',
                         analysis = {
+                            typeCheckingMode = 'standard',
                             autoSearchPaths = true,
                             useLibraryCodeForTypes = true,
-                            diagnosticMode = 'openFilesOnly',
+                            diagnosticMode = 'workspace',
                             inlayHints = {
                                 callArgumentNames = true,
                                 variableTypes = true,
