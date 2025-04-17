@@ -189,8 +189,11 @@ return {
                     -- vim.keymap.set('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
                     vim.keymap.set({ 'n', 'x' }, '<F3>', '<cmd>lua vim.lsp.buf.format({async = true})<cr>', opts)
                     vim.keymap.set('n', '<F4>', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
-                    vim.keymap.set('n', '<C-Space>', '<cmd>lua require("cosmic-ui").code_actions()<cr>', opts)
-                    vim.keymap.set('v', '<C-Space>', '<cmd>lua require("cosmic-ui").code_actions()<cr>', opts)
+                    -- vim.keymap.set('n', '<C-Space>', '<cmd>lua require("cosmic-ui").code_actions()<cr>', opts)
+                    -- vim.keymap.set('v', '<C-Space>', '<cmd>lua require("cosmic-ui").code_actions()<cr>', opts)
+                    vim.keymap.set('v', '<F4>', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
+                    vim.keymap.set('v', '<C-Space>', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
+                    vim.keymap.set('n', '<C-Space>', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
                     vim.keymap.set('n', '<F2>', '<cmd>lua require("cosmic-ui").rename()<cr>', opts)
                 end,
             })
@@ -390,8 +393,10 @@ return {
             require('lspconfig').ruff.setup {
                 init_options = {
                     settings = {
-                        -- Any extra CLI arguments for `ruff` go here.
-                        args = {},
+                        logLevel = 'debug',
+                        lint = {
+                            preview = true
+                        }
                     }
                 }
             }
