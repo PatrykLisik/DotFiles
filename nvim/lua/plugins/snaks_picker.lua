@@ -45,7 +45,6 @@ return {
                 history_bonus = true, -- give more weight to chronological order
             },
             sort = {
-                -- default sort is by score, text length and index
                 fields = { "score:desc", "#text", "idx" },
             },
             ui_select = true, -- replace `vim.ui.select` with the snacks picker
@@ -56,7 +55,7 @@ return {
                 },
                 file = {
                     filename_first = false, -- display filename before the file path
-                    truncate = 40,          -- truncate the file path to (roughly) this length
+                    truncate = 75,          -- truncate the file path to (roughly) this length
                     filename_only = false,  -- only show the filename
                     icon_width = 2,         -- width of the icon (in characters)
                     git_status_hl = true,   -- use the git status highlight group for the filename
@@ -83,8 +82,8 @@ return {
                     args = {},      -- additional arguments passed to the git command. Useful to set pager options usin `-c ...`
                 },
                 file = {
-                    max_size = 1024 * 1024, -- 1MB
-                    max_line_length = 500,  -- max line length
+                    max_size = 5 * 1024 * 1024, -- 5MB
+                    max_line_length = 500,    -- max line length
                     ft = nil, ---@type string? filetype for highlighting. Use `nil` for auto detect
                 },
                 man_pager = nil, ---@type string? MANPAGER env to use for `man` preview
@@ -359,7 +358,7 @@ return {
         { "<leader>gd",      function() Snacks.picker.git_diff() end,                                desc = "Git Diff (Hunks)" },
         { "<leader>gf",      function() Snacks.picker.git_log_file() end,                            desc = "Git Log File" },
         -- Grep
-        { "<leader>sb",      function() Snacks.picker.lines() end,                                   desc = "Buffer Lines" },
+        -- { "<leader>sb",      function() Snacks.picker.lines() end,                                   desc = "Buffer Lines" },
         { "<leader>sB",      function() Snacks.picker.grep_buffers() end,                            desc = "Grep Open Buffers" },
         { "<leader>fb",      function() Snacks.picker.grep() end,                                    desc = "Grep" },
         { "<leader>fg",      function() Snacks.picker.grep_word() end,                               desc = "Visual selection ",         mode = { "v", "x" } },
@@ -368,13 +367,12 @@ return {
         { '<leader>s"',      function() Snacks.picker.registers() end,                               desc = "Registers" },
         { '<leader>s/',      function() Snacks.picker.search_history() end,                          desc = "Search History" },
         { "<leader>sa",      function() Snacks.picker.autocmds() end,                                desc = "Autocmds" },
-        { "<leader>sb",      function() Snacks.picker.lines() end,                                   desc = "Buffer Lines" },
+        { "<leader>sb",      function() Snacks.picker.lines() end,                                   desc = "Buffer Lines",         mode = { "v", "x" } },
         { "<leader>sc",      function() Snacks.picker.command_history() end,                         desc = "Command History" },
         { "<leader>sC",      function() Snacks.picker.commands() end,                                desc = "Commands" },
         { "<leader>sd",      function() Snacks.picker.diagnostics() end,                             desc = "Diagnostics" },
         { "<leader>sD",      function() Snacks.picker.diagnostics_buffer() end,                      desc = "Buffer Diagnostics" },
         { "<leader>sh",      function() Snacks.picker.help() end,                                    desc = "Help Pages" },
-        { "<leader>sH",      function() Snacks.picker.highlights() end,                              desc = "Highlights" },
         { "<leader>si",      function() Snacks.picker.icons() end,                                   desc = "Icons" },
         { "<leader>sj",      function() Snacks.picker.jumps() end,                                   desc = "Jumps" },
         { "<leader>sk",      function() Snacks.picker.keymaps() end,                                 desc = "Keymaps" },
@@ -383,7 +381,7 @@ return {
         { "<leader>sm",      function() Snacks.picker.man() end,                                     desc = "Man Pages" },
         { "<leader>sp",      function() Snacks.picker.lazy() end,                                    desc = "Search for Plugin Spec" },
         { "<leader>sq",      function() Snacks.picker.qflist() end,                                  desc = "Quickfix List" },
-        { "<leader>sR",      function() Snacks.picker.resume() end,                                  desc = "Resume" },
+        { "<leader>re",      function() Snacks.picker.resume() end,                                  desc = "Resume" },
         { "<leader>su",      function() Snacks.picker.undo() end,                                    desc = "Undo History" },
         { "<leader>uC",      function() Snacks.picker.colorschemes() end,                            desc = "Colorschemes" },
         -- LSP
