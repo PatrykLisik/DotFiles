@@ -83,7 +83,7 @@ return {
                 },
                 file = {
                     max_size = 5 * 1024 * 1024, -- 5MB
-                    max_line_length = 500,    -- max line length
+                    max_line_length = 10000,      -- max line length
                     ft = nil, ---@type string? filetype for highlighting. Use `nil` for auto detect
                 },
                 man_pager = nil, ---@type string? MANPAGER env to use for `man` preview
@@ -342,7 +342,7 @@ return {
         { "<leader>:",       function() Snacks.picker.command_history() end,                         desc = "Command History" },
         { "<leader>n",       function() Snacks.picker.notifications() end,                           desc = "Notification History" },
         { "<leader>bf",      function() Snacks.explorer({ follow_file = true }) end,                 desc = "File Explorer" },
-        { "<leader>ba",      function() Snacks.explorer() end,                                       desc = "File Explorer projest base" },
+        { "<leader>ba",      function() Snacks.explorer({ follow_file = false }) end,                                       desc = "File Explorer projest base" },
         -- find
         { "<leader>fc",      function() Snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end, desc = "Find Config File" },
         { "<leader>ff",      function() Snacks.picker.files() end,                                   desc = "Find Files" },
@@ -362,12 +362,11 @@ return {
         { "<leader>sB",      function() Snacks.picker.grep_buffers() end,                            desc = "Grep Open Buffers" },
         { "<leader>fb",      function() Snacks.picker.grep() end,                                    desc = "Grep" },
         { "<leader>fg",      function() Snacks.picker.grep_word() end,                               desc = "Visual selection ",         mode = { "v", "x" } },
-        { "<leader>fg",      function() Snacks.picker.grep() end,                                    desc = "Visual selection " },
         -- search
         { '<leader>s"',      function() Snacks.picker.registers() end,                               desc = "Registers" },
         { '<leader>s/',      function() Snacks.picker.search_history() end,                          desc = "Search History" },
         { "<leader>sa",      function() Snacks.picker.autocmds() end,                                desc = "Autocmds" },
-        { "<leader>sb",      function() Snacks.picker.lines() end,                                   desc = "Buffer Lines",         mode = { "v", "x" } },
+        { "<leader>fl",      function() Snacks.picker.lines() end,                                   desc = "Buffer Lines",         mode = { "v", "x" } },
         { "<leader>sc",      function() Snacks.picker.command_history() end,                         desc = "Command History" },
         { "<leader>sC",      function() Snacks.picker.commands() end,                                desc = "Commands" },
         { "<leader>sd",      function() Snacks.picker.diagnostics() end,                             desc = "Diagnostics" },
