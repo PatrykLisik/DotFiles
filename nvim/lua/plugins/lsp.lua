@@ -1,4 +1,3 @@
--- https://github.com/hrsh7th/nvim-cmp/discussions/1834
 local lspkind_comparator = function(conf)
     local lsp_types = require("cmp.types").lsp
     return function(entry1, entry2)
@@ -79,7 +78,7 @@ return {
                         lspkind_comparator({
                             kind_priority = {
                                 Parameter = 14,
-                                Variable = 12,
+                                Variable = 13,
                                 Field = 11,
                                 Property = 11,
                                 Constant = 10,
@@ -95,8 +94,8 @@ return {
                                 Folder = 8,
                                 Color = 5,
                                 Module = 5,
-                                File = 5,
-                                Keyword = 2,
+                                File = 1,
+                                Keyword = 10,
                                 Constructor = 1,
                                 Interface = 1,
                                 Snippet = 0,
@@ -126,8 +125,8 @@ return {
         event = { 'BufReadPre', 'BufNewFile' },
         dependencies = {
             { 'hrsh7th/cmp-nvim-lsp' },
-            { 'williamboman/mason.nvim' },
-            { 'williamboman/mason-lspconfig.nvim' },
+            { 'williamboman/mason.nvim', version = "^1.0.0" },
+            { 'williamboman/mason-lspconfig.nvim', version = "^1.0.0" },
             { "icewind/ltex-client.nvim" },
             { 'hrsh7th/cmp-path' },
             { 'octaltree/cmp-look' },
