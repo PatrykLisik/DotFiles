@@ -21,6 +21,30 @@ return {
                     },
                     auto_close = true,
                     replace_netrw = true
+                },
+                marks = {
+                    actions = {
+                        delmark = function(picker, item)
+                            local cursor = picker.list.cursor
+                            local select = picker:selected { fallback = true }
+                            -- stylua: ignore
+                            local delete = vim.iter(select):map(function(it) return it.label end):join ''
+                            local ok
+                            print(delete)
+                            vim.api.nvim_win_call(vim.fn.win_getid(vim.fn.winnr '#'), function()
+                                ok = pcall(vim.cmd.delmark, delete)
+                                picker:find() -- NOTE: Should also be called inside `nvim_win_cal`
+                            end)
+                            if ok then
+                                for _, it in ipairs(select) do
+                                    picker.list:unselect(it)
+                                end
+                            else
+                                Snacks.notify.error(string.format('Unable to delete marks: %s', delete))
+                            end
+                            picker.list:view(math.min(cursor, #picker.list.items))
+                        end,
+                    }
                 }
             },
             focus = "input",
@@ -161,6 +185,7 @@ return {
                         ["j"] = "list_down",
                         ["k"] = "list_up",
                         ["q"] = "close",
+                        ['dd'] = { 'delmark', mode = { 'i', 'n' } }
                     },
                     b = {
                         minipairs_disable = true,
@@ -375,7 +400,7 @@ return {
         { "<leader>sj", function() Snacks.picker.jumps() end,                                   desc = "Jumps" },
         { "<leader>sk", function() Snacks.picker.keymaps() end,                                 desc = "Keymaps" },
         { "<leader>sl", function() Snacks.picker.loclist() end,                                 desc = "Location List" },
-        { "<leader>e",  function() Snacks.picker.marks() end,                                   desc = "Marks" },
+        { "<leader>e",  function() Snacks.picker.marks({ ["local"] = false }) end,              desc = "Marks" },
         { "<leader>sm", function() Snacks.picker.man() end,                                     desc = "Man Pages" },
         { "<leader>sp", function() Snacks.picker.lazy() end,                                    desc = "Search for Plugin Spec" },
         { "<leader>sq", function() Snacks.picker.qflist() end,                                  desc = "Quickfix List" },
