@@ -360,7 +360,7 @@ return {
         -- Grep
         { "<leader>fl", function() Snacks.picker.lines() end,                                   desc = "Buffer Lines",              mode = { "v", "x" } },
         { "<leader>sB", function() Snacks.picker.grep_buffers() end,                            desc = "Grep Open Buffers" },
-        { "<leader>fb", function() Snacks.picker.grep() end,                                    desc = "Grep" },
+        { "<leader>fg", function() Snacks.picker.grep() end,                                    desc = "Grep" },
         { "<leader>fg", function() Snacks.picker.grep_word() end,                               desc = "Visual selection ",         mode = { "v", "x" } },
         -- search
         { '<leader>s"', function() Snacks.picker.registers() end,                               desc = "Registers" },
