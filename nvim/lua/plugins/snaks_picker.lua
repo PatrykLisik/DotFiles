@@ -11,6 +11,7 @@ return {
         animate = {},
         quickfile = {},
         explorer = {},
+        image = {},
         picker = {
             prompt = " ",
             sources = {
