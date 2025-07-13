@@ -109,41 +109,65 @@
 !*color7: #e0def4
 !*color15: #e0def4
 
-! https://raw.githubusercontent.com/catppuccin/xresources/main/mocha.Xresources
-*background: #1E1E2E
-*foreground: #CDD6F4
+! ! https://raw.githubusercontent.com/catppuccin/xresources/main/mocha.Xresources
+! *background: #1E1E2E
+! *foreground: #CDD6F4
 
-! black
-*color0: #45475A
-*color8: #585B70
+! ! black
+! *color0: #45475A
+! *color8: #585B70
 
-! red
-*color1: #F38BA8
-*color9: #F38BA8
+! ! red
+! *color1: #F38BA8
+! *color9: #F38BA8
 
-! green
-*color2: #A6E3A1
-*color10: #A6E3A1
+! ! green
+! *color2: #A6E3A1
+! *color10: #A6E3A1
 
-! yellow
-*color3: #F9E2AF
-*color11: #F9E2AF
+! ! yellow
+! *color3: #F9E2AF
+! *color11: #F9E2AF
 
-! blue
-*color4: #89B4FA
-*color12: #89B4FA
+! ! blue
+! *color4: #89B4FA
+! *color12: #89B4FA
 
-! magenta
-*color5: #F5C2E7
-*color13: #F5C2E7
+! ! magenta
+! *color5: #F5C2E7
+! *color13: #F5C2E7
 
-! cyan
-*color6: #94E2D5
-*color14: #94E2D5
+! ! cyan
+! *color6: #94E2D5
+! *color14: #94E2D5
 
-! white
-*color7: #BAC2DE
-*color15: #A6ADC8
+! ! white
+! *color7: #BAC2DE
+! *color15: #A6ADC8
+!
+! TokyoNight colors for Xresources
+
+*background: #222436
+*foreground: #c8d3f5
+
+*color0: #1b1d2b
+*color1: #ff757f
+*color2: #c3e88d
+*color3: #ffc777
+*color4: #82aaff
+*color5: #c099ff
+*color6: #86e1fc
+*color7: #828bb8
+
+*color8: #444a73
+*color9: #ff757f
+*color10: #c3e88d
+*color11: #ffc777
+*color12: #82aaff
+*color13: #c099ff
+*color14: #86e1fc
+*color15: #c8d3f5
+
 URxvt.font: \
             xft:NotoSansM Nerd Font Mono:size=10, \
             xft:Noto Sans Mono:style=Normal:antialias=true:size=10:minspace=False, \

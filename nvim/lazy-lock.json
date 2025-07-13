@@ -17,6 +17,7 @@
   "gitsigns.nvim": { "branch": "main", "commit": "5f1b1e25373cd589ecf418ced8c2ece28229dd83" },
   "golf": { "branch": "main", "commit": "abf1bc0c1c4a5482b4a4b36b950b49aaa0f39e69" },
   "inlayhint-filler.nvim": { "branch": "main", "commit": "1c89bc6405831c01a6b2cdea0a8f8f344d147ea8" },
+  "kitty-scrollback.nvim": { "branch": "main", "commit": "36d19dc85c0a1d0193e7c52d41129c4aa28b72e8" },
   "lazy.nvim": { "branch": "main", "commit": "6c3bda4aca61a13a9c63f1c1d1b16b9d3be90d7a" },
   "lsp-progress.nvim": { "branch": "main", "commit": "f3df1df8f5ea33d082db047b5d2d2b83cc01cd8a" },
   "lsp-zero.nvim": { "branch": "v4.x", "commit": "d502a22640d0ff4752547c6d71f117a1bb2bb653" },
