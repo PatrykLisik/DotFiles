@@ -216,8 +216,7 @@ return {
                     "vacuum",
                     "basedpyright",
                     "ruff",
-                    "rust_analyzer"
-
+                    "rust_analyzer",
                 }
                 -- handlers = {
                 --     -- this first function is the "default handler"
@@ -434,6 +433,8 @@ return {
                     },
                 },
             }
+         -- lsp installed by os.execute in kulala.nvim file
+            require('lspconfig').kulala_ls.setup{}
         end
     },
     {
