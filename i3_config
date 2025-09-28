@@ -45,8 +45,8 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec SHELL=/bin/zsh kitty
-bindsym $mod+Shift+Return exec  SHELL=/bin/zsh kitty  -e "`xcwd`"
+bindsym $mod+Return exec LIBGL_ALWAYS_SOFTWARE=true GALLIUM_DRIVER=llvmpipe kitty
+bindsym $mod+Shift+Return exec LIBGL_ALWAYS_SOFTWARE=true GALLIUM_DRIVER=llvmpipe kitty  -e "`xcwd`"
 # kill focused window
 bindsym $mod+Shift+q kill
 
