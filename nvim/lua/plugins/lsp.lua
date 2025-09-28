@@ -121,11 +121,11 @@ return {
     -- LSP
     {
         'neovim/nvim-lspconfig',
-        cmd = { 'LspInfo', 'LspInstall', 'LspStart' },
+        cmd = { 'LspInfo', 'LspInstall', 'LspStart', "Mason" },
         event = { 'BufReadPre', 'BufNewFile' },
         dependencies = {
             { 'hrsh7th/cmp-nvim-lsp' },
-            { 'williamboman/mason.nvim', version = "^1.0.0" },
+            { 'williamboman/mason.nvim',           version = "^1.0.0" },
             { 'williamboman/mason-lspconfig.nvim', version = "^1.0.0" },
             { "icewind/ltex-client.nvim" },
             { 'hrsh7th/cmp-path' },
@@ -217,14 +217,14 @@ return {
                     "basedpyright",
                     "ruff",
                     "rust_analyzer",
+                },
+                handlers = {
+                    -- this first function is the "default handler"
+                    -- it applies to every language server without a "custom handler"
+                    function(server_name)
+                        vim.lsp.config(server_name, {})
+                    end,
                 }
-                -- handlers = {
-                --     -- this first function is the "default handler"
-                --     -- it applies to every language server without a "custom handler"
-                --     function(server_name)
-                --         require('lspconfig')[server_name].setup({})
-                --     end,
-                -- }
             })
 
 
@@ -318,23 +318,23 @@ return {
                 },
             }
 
-            require("lspconfig").jdtls.setup {}
+            vim.lsp.config("jdtls", {})
 
             -- require("lspconfig").vale_ls.setup{
             --     filetypes={ "markdown", "text","tex" },
             -- }
 
-            require("lspconfig").docker_compose_language_service.setup {
+            vim.lsp.config("docker_compose_language_service", {
                 -- on_attach=lsp.on_attach,
                 filetypes = { "yml", "yaml" },
                 -- root_pattern={"docker-compose.yaml", "docker-compose.yml", "compose.yaml", "compose.yml"},
                 -- cmd={ "docker-compose-langserver", "--stdio" },
                 -- single_file_support=true
-            }
+            })
 
-            require("lspconfig").dockerls.setup {
+            vim.lsp.config("dockerls", {
                 filetypes = { "Dockerfile" }
-            }
+            })
 
             -- require('lspconfig').typos_lsp.setup({
             --     filetypes = { "lua", "go", "python", "yaml", "java", "sql" },
@@ -351,7 +351,7 @@ return {
             -- })
 
             local util = require 'lspconfig.util'
-            require('lspconfig').gopls.setup {
+            vim.lsp.config("gopls", {
                 on_attach = function(c, b)
                     lsp.on_attach(c, b)
                 end,
@@ -384,12 +384,12 @@ return {
                     end
                     return util.root_pattern 'go.work' (fname) or util.root_pattern('go.mod', '.git')(fname)
                 end,
-            }
+            })
 
             -- Configure `ruff-lsp`.
             -- See: https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#ruff_lsp
             -- For the default config, along with instructions on how to customize the settings
-            require('lspconfig').ruff.setup {
+            vim.lsp.config("ruff", {
                 init_options = {
                     settings = {
                         logLevel = 'debug',
@@ -398,11 +398,11 @@ return {
                         }
                     }
                 }
-            }
+            })
 
-            require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
+            vim.lsp.config("lua_ls", lsp.nvim_lua_ls())
 
-            require('lspconfig').basedpyright.setup {
+            vim.lsp.config("basedpyright", {
                 root_dir = function(fname)
                     return util.root_pattern 'venv' (fname) or util.root_pattern '.venv' (fname) or
                         util.root_pattern('pyproject.toml')(fname) or util.root_pattern('.git')(fname)
@@ -432,9 +432,9 @@ return {
                         },
                     },
                 },
-            }
-         -- lsp installed by os.execute in kulala.nvim file
-            require('lspconfig').kulala_ls.setup{}
+            })
+            -- lsp installed by os.execute in kulala.nvim file
+            vim.lsp.config("kulala_ls", {})
         end
     },
     {
