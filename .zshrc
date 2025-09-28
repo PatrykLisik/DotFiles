@@ -126,3 +126,13 @@ if [ -f ~/.bash_aliases ]; then
 fi
 
 export JAVA_HOME=$(readlink -f /usr/bin/java | sed "s:bin/java::")
+
+. "$HOME/.local/bin/env"
+eval "$(uv generate-shell-completion zsh)"
+
+autoload -Uz compinit
+compinit
+if [ $commands[oc] ]; then
+  source <(oc completion zsh)
+  compdef _oc oc
+fi
