@@ -41,34 +41,65 @@ vim.g.netrw_preview   = 1
 vim.g.netrw_liststyle = 3
 vim.g.netrw_winsize   = 30
 
-vim.o.foldenable = true
-vim.o.foldlevel = 99
-vim.o.foldmethod = "expr"
-vim.o.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+vim.o.foldenable      = true
+vim.o.foldlevel       = 99
+vim.o.foldmethod      = "expr"
+vim.o.foldexpr        = "v:lua.vim.treesitter.foldexpr()"
 -- Prefer LSP folding if client supports it
 vim.api.nvim_create_autocmd('LspAttach', {
     callback = function(args)
-         local client = vim.lsp.get_client_by_id(args.data.client_id)
-         if client and client:supports_method('textDocument/foldingRange') then
-             local win = vim.api.nvim_get_current_win()
-             vim.wo[win][0].foldexpr = 'v:lua.vim.lsp.foldexpr()'
+        local client = vim.lsp.get_client_by_id(args.data.client_id)
+        if client and client:supports_method('textDocument/foldingRange') then
+            local win = vim.api.nvim_get_current_win()
+            vim.wo[win][0].foldexpr = 'v:lua.vim.lsp.foldexpr()'
         end
     end,
- })
+})
 
 vim.api.nvim_create_autocmd("LspAttach", {
-  group = vim.api.nvim_create_augroup('lsp_attach_disable_ruff_hover', { clear = true }),
-  callback = function(args)
-    local client = vim.lsp.get_client_by_id(args.data.client_id)
-    if client == nil then
-      return
-    end
-    if client.name == 'ruff' then
-      -- Disable hover in favor of Pyright
-      client.server_capabilities.hoverProvider = false
-    end
-  end,
-  desc = 'LSP: Disable hover capability from Ruff',
+    group = vim.api.nvim_create_augroup('lsp_attach_disable_ruff_hover', { clear = true }),
+    callback = function(args)
+        local client = vim.lsp.get_client_by_id(args.data.client_id)
+        if client == nil then
+            return
+        end
+        if client.name == 'ruff' then
+            -- Disable hover in favor of Pyright
+            client.server_capabilities.hoverProvider = false
+        end
+    end,
+    desc = 'LSP: Disable hover capability from Ruff',
+})
+
+vim.api.nvim_create_autocmd("LspAttach", {
+    group = vim.api.nvim_create_augroup('lsp_attach_disable_ruff_hover', { clear = true }),
+    callback = function(args)
+        local client = vim.lsp.get_client_by_id(args.data.client_id)
+        if client == nil then
+            return
+        end
+        if client.name == 'ltex' then
+            os.execute([[docker start languagetool > /dev/null 2>&1 ||  docker run -d \
+                    --name languagetool \
+                    --restart unless-stopped \
+                    --cap-drop ALL \
+                    --cap-add CAP_SETUID \
+                    --cap-add CAP_SETGID \
+                    --cap-add CAP_CHOWN \
+                    --security-opt no-new-privileges \
+                    --publish 8010:8010 \
+                    --env download_ngrams_for_langs=en \
+                    --read-only \
+                    --tmpfs /tmp \
+                    --volume ~/.local/share/nvim/languagetool/ngrams:/ngrams \
+                    --volume ~/.local/share/nvim/languagetool/fasttext:/fasttext \
+                    meyay/languagetool:latest \
+                    > /dev/null 2>&1
+                    ]]
+            )
+        end
+    end,
+    desc = 'LSP: Run languagetool when ltex is stating',
 })
 
 vim.api.nvim_create_autocmd(
@@ -96,27 +127,27 @@ vim.api.nvim_create_autocmd("BufRead", {
     end,
 })
 
-vim.api.nvim_create_autocmd("LspAttach", {
-    callback = function(args)
-        local bufnr = args.buf
-        local client = vim.lsp.get_client_by_id(args.data.client_id)
-        if vim.tbl_contains({ 'null-ls' }, client.name) then -- blacklist lsp
-            return
-        end
-        require("lsp_signature").on_attach({
-            bind = true,
-            floating_window = false,
-            hint_inline = function() return false end,
-            toggle_key = '<C-p>',
-            select_signature_key = '<C-s>',
-            hint_prefix = {
-                above = "↙ ", -- when the hint is on the line above the current line
-                current = "← ", -- when the hint is on the same line
-                below = "↖ " -- when the hint is on the line below the current line
-            }
-        }, bufnr)
-    end,
-})
+-- vim.api.nvim_create_autocmd("LspAttach", {
+--     callback = function(args)
+--         local bufnr = args.buf
+--         local client = vim.lsp.get_client_by_id(args.data.client_id)
+--         if vim.tbl_contains({ 'null-ls' }, client.name) then -- blacklist lsp
+--             return
+--         end
+--         require("lsp_signature").on_attach({
+--             bind = true,
+--             floating_window = false,
+--             hint_inline = function() return false end,
+--             toggle_key = '<C-p>',
+--             select_signature_key = '<C-s>',
+--             hint_prefix = {
+--                 above = "↙ ", -- when the hint is on the line above the current line
+--                 current = "← ", -- when the hint is on the same line
+--                 below = "↖ " -- when the hint is on the line below the current line
+--             }
+--         }, bufnr)
+--     end,
+-- })
 
 
 vim.api.nvim_create_autocmd("BufWinEnter", {
@@ -127,14 +158,40 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
     end,
 })
 
-vim.api.nvim_create_autocmd({"BufWinEnter","BufEnter","FocusGained","InsertLeave"}, {
+vim.api.nvim_create_autocmd({ "BufWinEnter", "BufEnter", "FocusGained", "InsertLeave" }, {
     callback = function(ev)
         vim.cmd([[set relativenumber]])
     end,
 })
 
-vim.api.nvim_create_autocmd({"BufLeave","FocusLost","InsertEnter"}, {
+vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost", "InsertEnter" }, {
     callback = function(ev)
         vim.cmd([[set norelativenumber]])
+    end,
+})
+
+vim.api.nvim_create_autocmd('LspAttach', {
+    desc = 'LSP actions',
+    callback = function(event)
+        local opts = { buffer = event.buf }
+        vim.lsp.inlay_hint.enable(true)
+
+        vim.keymap.set('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
+        vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', opts)
+        vim.keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', opts)
+        vim.keymap.set('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>', opts)
+        vim.keymap.set('n', 'go', '<cmd>lua vim.lsp.buf.type_definition()<cr>', opts)
+        vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>', opts)
+        vim.keymap.set('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<cr>', opts)
+        vim.keymap.set('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<cr>', opts)
+        vim.keymap.set('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
+        vim.keymap.set({ 'n', 'x' }, '<F3>', '<cmd>lua vim.lsp.buf.format({async = true})<cr>', opts)
+        vim.keymap.set('n', '<F4>', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
+        -- vim.keymap.set('n', '<C-Space>', '<cmd>lua require("cosmic-ui").code_actions()<cr>', opts)
+        -- vim.keymap.set('v', '<C-Space>', '<cmd>lua require("cosmic-ui").code_actions()<cr>', opts)
+        vim.keymap.set('v', '<F4>', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
+        vim.keymap.set('v', '<C-Space>', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
+        vim.keymap.set('n', '<C-Space>', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
+        -- vim.keymap.set('n', '<F2>', '<cmd>lua require("cosmic-ui").rename()<cr>', opts)
     end,
 })
