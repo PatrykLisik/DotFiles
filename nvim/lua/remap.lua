@@ -59,7 +59,7 @@ vim.keymap.set("i", "<C-j>", "<Down>", { noremap = true })
 vim.keymap.set("i", "<C-k>", "<Up>", { noremap = true })
 vim.keymap.set("i", "<C-l>", "<Right>", { noremap = true })
 
---ctrl backspace to detele whole word
+--ctrl backspace to delete whole word
 vim.api.nvim_set_keymap('i', '<C-H>', '<C-W>', { noremap = true })
 
 --moving to different buferrs fast
