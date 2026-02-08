@@ -13,6 +13,13 @@ return {
         explorer = {},
         image = {},
         picker = {
+            exclude={
+                ".git",
+                "node_modules",
+                "venv",
+                ".venv",
+                "/inv-dev/"
+            },
             prompt = " ",
             sources = {
                 explorer = {
