@@ -136,3 +136,6 @@ if [ $commands[oc] ]; then
   source <(oc completion zsh)
   compdef _oc oc
 fi
+export PYENV_ROOT="$HOME/.pyenv
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH
+eval "$(pyenv init - zsh)
