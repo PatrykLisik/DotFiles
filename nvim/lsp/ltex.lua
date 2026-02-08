@@ -1,4 +1,4 @@
-vim.lsp.config("ltex", {
+return {
     filetypes = { "tex", "latex", "bib", "plaintext", "text" },
     settings = {
         ltex = {
@@ -12,4 +12,4 @@ vim.lsp.config("ltex", {
         }
     },
 
-})
+}
