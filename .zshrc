@@ -127,15 +127,46 @@ fi
 
 export JAVA_HOME=$(readlink -f /usr/bin/java | sed "s:bin/java::")
 
-. "$HOME/.local/bin/env"
-eval "$(uv generate-shell-completion zsh)"
-
 autoload -Uz compinit
 compinit
 if [ $commands[oc] ]; then
   source <(oc completion zsh)
-  compdef _oc oc
+  # compdef _oc oc
 fi
-export PYENV_ROOT="$HOME/.pyenv
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH
-eval "$(pyenv init - zsh)
+
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - zsh)"
+
+. "$HOME/.local/bin/env"
+eval "$(uv generate-shell-completion zsh)"
+
+#kityy tile https://github.com/kovidgoyal/kitty/discussions/7568
+DISABLE_AUTO_TITLE="true"
+
+# Function to set terminal title
+function set_terminal_title() {
+  if [[ -n "$1" ]]; then
+    # When a process is running, show the command and the current directory
+    print -Pn "\e]0;$PWD | $1\a"
+  else
+    # Default title showing only the current directory
+    print -Pn "\e]0;$PWD\a"
+  fi
+}
+
+# Pre-command hook to update the terminal title before each command
+function preexec() {
+  # Update the terminal title with the running command and the current directory
+  set_terminal_title "$1"
+}
+
+# Post-command hook to reset the terminal title after each command
+function precmd() {
+  # Reset the terminal title to the current directory
+  set_terminal_title
+}
+
+# Call the function to set the initial title when the shell starts
+set_terminal_title
+
