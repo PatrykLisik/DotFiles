@@ -78,7 +78,8 @@ HYPHEN_INSENSITIVE="true"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git fzf zsh-interactive-cd zsh-vi-mode )
+plugins=(git fzf zsh-interactive-cd )
+
 
 source $ZSH/oh-my-zsh.sh
 
