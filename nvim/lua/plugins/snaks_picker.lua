@@ -189,6 +189,10 @@ return {
                         ["<Up>"] = "list_up",
                         ["<a-d>"] = "inspect",
                         ["<a-f>"] = "toggle_follow",
+                        ["<c-h>"] = {
+                            "toggle_hidden",
+                            mode = { "i", "n" }
+                        },
                         ["<a-h>"] = "toggle_hidden",
                         ["<a-i>"] = "toggle_ignored",
                         ["<a-m>"] = "toggle_maximize",
