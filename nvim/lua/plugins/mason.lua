@@ -24,7 +24,9 @@ return {
             "basedpyright",
             "ruff",
             "rust_analyzer",
-            -- "vulture" not lsp  
+            "lemminx"
+            -- "pylsp"
+            -- "vulture" not lsp
         }
     }
 
