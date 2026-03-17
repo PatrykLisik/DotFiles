@@ -195,3 +195,11 @@ vim.api.nvim_create_autocmd('LspAttach', {
         -- vim.keymap.set('n', '<F2>', '<cmd>lua require("cosmic-ui").rename()<cr>', opts)
     end,
 })
+
+vim.api.nvim_create_autocmd("BufWinEnter", {
+    callback = function(ev)
+        if vim.bo[ev.buf].filetype == "zsh" then
+            vim.cmd([[set ft=bash]])
+        end
+    end,
+})

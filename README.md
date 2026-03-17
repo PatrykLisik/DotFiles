@@ -23,3 +23,6 @@ ubuntu deps
 
 ## Language tool 
 ` languagetool org.languagetool.server.HTTPServer --port 8081 --allow-origin &` 
+
+## Edit command in vim mode 
+`ctrl+x ctrl+e`
